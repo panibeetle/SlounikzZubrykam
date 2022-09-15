@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Slounik z Zubrykam</string>
+    <string name="feed">пачаставаць</string>
+    <string name="zubryk_sad_pic">zubryk sad</string>
 </resources>

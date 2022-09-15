@@ -14,6 +14,18 @@
         android:theme="@style/Theme.SlounikZZubrykam"
         tools:targetApi="31">
         <activity
+            android:name=".Reward"
+            android:exported="false" />
+        <activity
+            android:name=".GuessGame"
+            android:exported="false" />
+        <activity
+            android:name=".TriningWithCards"
+            android:exported="false" />
+        <activity
+            android:name=".MeatingWithWord"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -22,6 +34,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

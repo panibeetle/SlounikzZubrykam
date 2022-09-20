@@ -10,14 +10,6 @@
     android:layout_height="match_parent"
     tools:context=".TopicList">
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/cardView2"
-        app:layout_constraintTop_toTopOf="@+id/cardView2"
-        app:srcCompat="@drawable/ic_baseline_lock_24" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="wrap_content"
@@ -34,6 +26,12 @@
             android:layout_margin="12dp"
             android:alpha="0.5"
             app:srcCompat="@drawable/zubr_chewing" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_baseline_lock_24" />
 
     </androidx.cardview.widget.CardView>
 

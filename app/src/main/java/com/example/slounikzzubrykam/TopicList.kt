@@ -5,16 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.example.slounikzzubrykam.databinding.ActivityMainBinding
+import com.example.slounikzzubrykam.databinding.ActivityTopicListBinding
 
-class MainActivity : AppCompatActivity() {
+class TopicList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityMainBinding = DataBindingUtil.setContentView(
-            this, R.layout.activity_main)
-        binding.button.setOnClickListener {
-            val intent = Intent(this, Reward::class.java)
+        val binding: ActivityTopicListBinding = DataBindingUtil.setContentView(
+            this, R.layout.activity_topic_list)
+        binding.cardViewVeg.setOnClickListener {
+            val intent = Intent(this, MeetingWithWord::class.java)
             startActivity(intent)
         }
-
     }
 }

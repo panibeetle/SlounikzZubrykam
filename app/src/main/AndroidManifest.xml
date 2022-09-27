@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.slounikzzubrykam">
+    package="com.example.slounikzzubrykam" >
 
     <application
         android:allowBackup="true"
@@ -12,31 +12,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SlounikZZubrykam"
-        tools:targetApi="31">
+        tools:targetApi="31" >
         <activity
-            android:name=".RepeatWord"
+            android:name="zb.club.slounikzzubrykam.Wordlee"
             android:exported="false" />
         <activity
-            android:name=".MeetingWithWord"
+            android:name="zb.club.slounikzzubrykam.RepeatWord"
             android:exported="false" />
         <activity
-            android:name=".TopicList"
+            android:name="zb.club.slounikzzubrykam.MeetingWithWord"
             android:exported="false" />
         <activity
-            android:name=".Reward"
+            android:name="zb.club.slounikzzubrykam.TopicList"
             android:exported="false" />
         <activity
-            android:name=".GuessGame"
+            android:name="zb.club.slounikzzubrykam.Reward"
             android:exported="false" />
         <activity
-            android:name=".TriningWithCards"
+            android:name="zb.club.slounikzzubrykam.GuessGame"
             android:exported="false" />
         <activity
-            android:name=".MeatingWithWord"
+            android:name="zb.club.slounikzzubrykam.TriningWithCards"
             android:exported="false" />
+
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name="zb.club.slounikzzubrykam.MainActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

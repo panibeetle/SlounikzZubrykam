@@ -1,4 +1,4 @@
-package com.example.slounikzzubrykam
+package zb.club.slounikzzubrykam
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

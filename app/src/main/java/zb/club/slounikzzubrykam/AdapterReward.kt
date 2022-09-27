@@ -1,4 +1,4 @@
-package com.example.slounikzzubrykam
+package zb.club.slounikzzubrykam
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -13,9 +13,9 @@ class AdapterReward (fragmentActivity: FragmentActivity, private var totalCount:
 
         override fun createFragment(position: Int): Fragment {
             return when (position) {
-                0 -> Meal()
-                1 -> Friends()
-                else -> Meal()
+                0 -> zb.club.slounikzzubrykam.Meal()
+                1 -> zb.club.slounikzzubrykam.Friends()
+                else -> zb.club.slounikzzubrykam.Meal()
             }
         }
     }

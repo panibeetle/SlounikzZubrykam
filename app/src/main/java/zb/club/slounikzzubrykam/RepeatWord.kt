@@ -1,10 +1,10 @@
-package com.example.slounikzzubrykam
+package zb.club.slounikzzubrykam
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import com.example.slounikzzubrykam.databinding.ActivityMainBinding
+import com.example.slounikzzubrykam.R
 import com.example.slounikzzubrykam.databinding.ActivityRepeatWordBinding
 
 class RepeatWord : AppCompatActivity() {
@@ -14,7 +14,7 @@ class RepeatWord : AppCompatActivity() {
             this, R.layout.activity_repeat_word)
 
         binding.button2.setOnClickListener {
-            val intent = Intent(this, GuessGame::class.java)
+            val intent = Intent(this, zb.club.slounikzzubrykam.GuessGame::class.java)
             startActivity(intent)
         }
     }

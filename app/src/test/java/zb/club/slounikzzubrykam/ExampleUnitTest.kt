@@ -1,4 +1,4 @@
-package com.example.slounikzzubrykam
+package zb.club.slounikzzubrykam
 
 import org.junit.Test
 

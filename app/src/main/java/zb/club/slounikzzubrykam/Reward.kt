@@ -1,15 +1,10 @@
-package com.example.slounikzzubrykam
+package zb.club.slounikzzubrykam
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
-import com.example.slounikzzubrykam.databinding.ActivityMainBinding
+import com.example.slounikzzubrykam.R
 import com.example.slounikzzubrykam.databinding.ActivityRewardBinding
-import com.example.slounikzzubrykam.databinding.FragmentFriendsBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 class Reward : AppCompatActivity() {
@@ -23,7 +18,7 @@ class Reward : AppCompatActivity() {
         )
          binding.floatingActionButtonPlay.setOnClickListener {
              val intent =
-                 android.content.Intent(this, com.example.slounikzzubrykam.TopicList::class.java)
+                 android.content.Intent(this, zb.club.slounikzzubrykam.TopicList::class.java)
              startActivity(intent)
          }
         setupViewPager()
@@ -40,7 +35,7 @@ class Reward : AppCompatActivity() {
     }
 
     private fun setupViewPager() {
-        val adapter = AdapterReward(this, 2)
+        val adapter = zb.club.slounikzzubrykam.AdapterReward(this, 2)
         binding.viepager.adapter = adapter
     }
 

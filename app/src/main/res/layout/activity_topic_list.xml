@@ -8,69 +8,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TopicList">
+    tools:context="zb.club.slounikzzubrykam.TopicList">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerTopic"
+        android:layout_width="409dp"
+        android:layout_height="524dp"
+        android:scrollbars="vertical"
+        app:fastScrollEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="145dp"
-            android:layout_height="145dp"
-            android:layout_margin="12dp"
-            android:alpha="0.5"
-            app:srcCompat="@drawable/zubr_chewing" />
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_baseline_lock_24" />
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewVeg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="145dp"
-            android:layout_height="145dp"
-            android:layout_margin="12dp"
-            app:srcCompat="@drawable/bett" />
-
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="гародніна"
-        app:layout_constraintEnd_toEndOf="@+id/cardViewVeg"
-        app:layout_constraintStart_toStartOf="@+id/cardViewVeg"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewVeg" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="жывёлы"
-        app:layout_constraintEnd_toEndOf="@+id/cardView2"
-        app:layout_constraintHorizontal_bias="0.389"
-        app:layout_constraintStart_toStartOf="@+id/cardView2"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
     </layout>

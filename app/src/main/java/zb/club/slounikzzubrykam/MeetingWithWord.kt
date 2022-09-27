@@ -1,12 +1,12 @@
-package com.example.slounikzzubrykam
+package zb.club.slounikzzubrykam
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
+import com.example.slounikzzubrykam.R
 import com.example.slounikzzubrykam.databinding.ActivityMeetingWithWordBinding
-import com.example.slounikzzubrykam.databinding.ActivityRewardBinding
 
 class MeetingWithWord : AppCompatActivity() {
     private lateinit var binding: ActivityMeetingWithWordBinding

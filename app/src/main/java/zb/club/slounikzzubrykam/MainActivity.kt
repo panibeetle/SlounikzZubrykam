@@ -1,20 +1,21 @@
-package com.example.slounikzzubrykam
+package zb.club.slounikzzubrykam
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import com.example.slounikzzubrykam.databinding.ActivityGuessGameBinding
+import com.example.slounikzzubrykam.R
 import com.example.slounikzzubrykam.databinding.ActivityMainBinding
 
-class GuessGame : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityGuessGameBinding = DataBindingUtil.setContentView(
-            this, R.layout.activity_guess_game)
-        binding.imageView19.setOnClickListener {
+        val binding: ActivityMainBinding = DataBindingUtil.setContentView(
+            this, R.layout.activity_main)
+        binding.button.setOnClickListener {
             val intent = Intent(this, Reward::class.java)
             startActivity(intent)
         }
+
     }
 }

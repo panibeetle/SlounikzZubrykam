@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import com.example.slounikzzubrykam.R
-import com.example.slounikzzubrykam.databinding.ActivityRepeatWordBinding
+import zb.club.slounikzzubrykam.databinding.ActivityRepeatWordBinding
+
 
 class RepeatWord : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

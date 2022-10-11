@@ -1,11 +1,13 @@
 package zb.club.slounikzzubrykam
 
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import com.example.slounikzzubrykam.R
-import com.example.slounikzzubrykam.databinding.ActivityRewardBinding
+
 import com.google.android.material.tabs.TabLayoutMediator
+import zb.club.slounikzzubrykam.databinding.ActivityRewardBinding
 
 class Reward : AppCompatActivity() {
     private lateinit var binding: ActivityRewardBinding
@@ -17,6 +19,8 @@ class Reward : AppCompatActivity() {
             this, R.layout.activity_reward
         )
          binding.floatingActionButtonPlay.setOnClickListener {
+             var mediaPlayer: MediaPlayer? = MediaPlayer.create(this, R.raw.tap1)
+             mediaPlayer?.start()
              val intent =
                  android.content.Intent(this, zb.club.slounikzzubrykam.TopicList::class.java)
              startActivity(intent)
@@ -30,7 +34,18 @@ class Reward : AppCompatActivity() {
     private fun setupTabLayout() {
         TabLayoutMediator(
             binding.tabLayout, binding.viepager
-        ) { tab, position -> tab.text = "Tab " + (position + 1) }.attach()
+        ) { tab, position ->
+            when(position) {
+                0 -> {
+                    tab.icon = ContextCompat.getDrawable(this, R.drawable.ic_baseline_flatware_24)
+                }
+                1 ->{
+                    tab.icon = ContextCompat.getDrawable(this, R.drawable.ic_toy)
+                }
+                else -> {
+
+                }}
+        }.attach()
 
     }
 

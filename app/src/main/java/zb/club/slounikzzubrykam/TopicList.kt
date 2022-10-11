@@ -6,8 +6,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.slounikzzubrykam.R
-import com.example.slounikzzubrykam.databinding.ActivityTopicListBinding
+import zb.club.slounikzzubrykam.databinding.ActivityTopicListBinding
+
 import zb.club.slounikzzubrykam.dataclasses.WordViewModel
 
 class TopicList : AppCompatActivity() {

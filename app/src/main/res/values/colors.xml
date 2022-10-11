@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="green_light">#FFB6F2C3</color>
-    <color name="green">#FF63846A</color>
-    <color name="green_dark">#FF54705A</color>
-    <color name="broun">#FFA9562D</color>
-    <color name="broun_dark">#FF47130F</color>
+    <color name="red_light">#EEACAC</color>
+    <color name="red">#CC0000</color>
+    <color name="red_variant">#CD0000</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_gray">#FFBABABA</color>

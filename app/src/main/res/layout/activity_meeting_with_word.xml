@@ -38,7 +38,7 @@
         android:progress="25"
 
         android:progressDrawable="@drawable/rounded_corners_progress_bar"
-        android:progressTint="@color/green"
+        android:progressTint="@color/red"
         app:layout_constraintBottom_toTopOf="@+id/buttonRepeat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

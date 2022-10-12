@@ -16,7 +16,7 @@ class GuessGame : AppCompatActivity() {
         binding.imageView19.setOnClickListener {
             var mediaPlayer: MediaPlayer? = MediaPlayer.create(this, R.raw.tap_2)
             mediaPlayer?.start()
-            val intent = Intent(this, zb.club.slounikzzubrykam.Wordlee::class.java)
+            val intent = Intent(this, zb.club.slounikzzubrykam.WordlyFragment::class.java)
             startActivity(intent)
         }
     }

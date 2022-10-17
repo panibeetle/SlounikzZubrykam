@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_main">
+    android:id="@+id/nav_main"
+    app:startDestination="@id/home2">
+
+    <fragment
+        android:id="@+id/home2"
+        android:name="zb.club.slounikzzubrykam.Home"
+        android:label="Home" >
+        <action
+            android:id="@+id/action_home2_to_rewards"
+            app:destination="@id/rewards" />
+    </fragment>
+    <fragment
+        android:id="@+id/topicFragment"
+        android:name="zb.club.slounikzzubrykam.topic.TopicFragment"
+        android:label="TopicFragment" >
+        <action
+            android:id="@+id/action_topicFragment_to_repeatFragment"
+            app:destination="@id/repeatFragment">
+
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/repeatFragment"
+        android:name="zb.club.slounikzzubrykam.repeate.RepeatFragment"
+        android:label="RepeatFragment" >
+        <action
+            android:id="@+id/action_repeatFragment_to_guessFragment"
+            app:destination="@id/guessFragment" />
+        <argument
+            android:name="topic"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/guessFragment"
+        android:name="zb.club.slounikzzubrykam.GuessFragment"
+        android:label="GuessFragment" >
+        <action
+            android:id="@+id/action_guessFragment_to_wordlyFragment"
+            app:destination="@id/wordlyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wordlyFragment"
+        android:name="zb.club.slounikzzubrykam.WordlyFragment"
+        android:label="WordlyFragment" />
+    <fragment
+        android:id="@+id/rewards"
+        android:name="zb.club.slounikzzubrykam.reward.Rewards"
+        android:label="Rewards" >
+        <action
+            android:id="@+id/action_rewards_to_topicFragment"
+            app:destination="@id/topicFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/friends"
+        android:name="zb.club.slounikzzubrykam.reward.Friends"
+        android:label="Friends" />
+    <fragment
+        android:id="@+id/meal"
+        android:name="zb.club.slounikzzubrykam.reward.Meal"
+        android:label="Meal" />
+
 
 </navigation>

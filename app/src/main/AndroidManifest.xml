@@ -13,27 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SlounikZZubrykam"
         tools:targetApi="31" >
-        <activity
-            android:name="zb.club.slounikzzubrykam.Wordlee"
-            android:exported="false" />
-        <activity
-            android:name="zb.club.slounikzzubrykam.RepeatWord"
-            android:exported="false" />
-        <activity
-            android:name="zb.club.slounikzzubrykam.MeetingWithWord"
-            android:exported="false" />
-        <activity
-            android:name="zb.club.slounikzzubrykam.TopicList"
-            android:exported="false" />
-        <activity
-            android:name="zb.club.slounikzzubrykam.Reward"
-            android:exported="false" />
-        <activity
-            android:name="zb.club.slounikzzubrykam.GuessGame"
-            android:exported="false" />
-        <activity
-            android:name="zb.club.slounikzzubrykam.TriningWithCards"
-            android:exported="false" />
+
 
         <activity
             android:name="zb.club.slounikzzubrykam.MainActivity"

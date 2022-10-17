@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "298267646639",
+    "project_id": "zubryk-81e47",
+    "storage_bucket": "zubryk-81e47.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:298267646639:android:7125be84c3d418cfa3525a",
+        "android_client_info": {
+          "package_name": "zb.club.slounikzzubrykam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "298267646639-selfosab7v3ahk4s3ehbk14chle3kbs1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbp3ZasqCVnJyMmmkWH_rJXvXWIz6oy5Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "298267646639-selfosab7v3ahk4s3ehbk14chle3kbs1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

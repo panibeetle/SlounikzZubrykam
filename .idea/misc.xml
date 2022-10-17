@@ -9,6 +9,7 @@
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.1" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/drawable/ic_baseline_flatware_24.xml" value="0.1" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.1" />
+        <entry key="..\:/SlounikzZubrykam/app/src/main/res/drawable/ic_baseline_paid_24.xml" value="0.1" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1485" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1485" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/drawable/ic_toy.xml" value="0.1" />
@@ -20,12 +21,20 @@
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/activity_meating_with_word.xml" value="0.18229166666666666" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/activity_meeting_with_word.xml" value="0.2572463768115942" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/activity_repeat_word.xml" value="0.25" />
-        <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/activity_reward.xml" value="0.3578125" />
+        <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/activity_reward.xml" value="0.2" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/activity_topic_list.xml" value="0.2572463768115942" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/activity_trining_with_cards.xml" value="0.3578125" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/activity_wordlee.xml" value="0.18229166666666666" />
+        <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/card_word.xml" value="0.18229166666666666" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/fragment_friends.xml" value="0.3066123188405797" />
+        <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/fragment_guess.xml" value="0.3578125" />
+        <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/fragment_home.xml" value="0.18229166666666666" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/fragment_meal.xml" value="0.3066123188405797" />
+        <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/fragment_repeat.xml" value="0.3578125" />
+        <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/fragment_reward.xml" value="0.3578125" />
+        <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/fragment_rewards.xml" value="0.2572463768115942" />
+        <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/fragment_topic.xml" value="0.3578125" />
+        <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/fragment_wordly.xml" value="0.3578125" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/topic_card_recycler.xml" value="0.2572463768115942" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>

@@ -29,7 +29,7 @@ class WordlyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_reward, container,false)
+        binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_wordly, container,false)
 
 
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)

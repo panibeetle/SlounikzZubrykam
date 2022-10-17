@@ -3,46 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/topiccard"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="12dp">
+    android:layout_margin="16dp"
+    app:cardCornerRadius="24dp"
+   >
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <ImageView
+        android:id="@+id/image_topic"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/art_cover_animals" />
 
-        <TextView
-            android:id="@+id/text_view_topic_rec"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/alice"
-            android:text="TextView"
-            android:textSize="28sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_topic" />
-
-        <ImageView
-            android:id="@+id/image_topic"
-            android:layout_width="150dp"
-            android:layout_height="0dp"
-            android:layout_margin="12dp"
-            android:adjustViewBounds="false"
-            app:layout_constraintDimensionRatio="w,1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/zubr_chewing" />
-
-        <ImageView
-            android:id="@+id/imageView23"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_lock_24" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/text_view_topic_rec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:background="@drawable/shape_text_view"
+        android:fontFamily="@font/rubik_light"
+        android:gravity="bottom|left"
+        android:padding="8dp"
+        android:text="TextView"
+        android:textColor="@color/white"
+        android:textSize="56px" />
 </androidx.cardview.widget.CardView>

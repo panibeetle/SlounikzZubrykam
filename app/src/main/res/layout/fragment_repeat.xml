@@ -41,7 +41,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="Калі ўсе карткі пракліканы мінімум й раз"
+            android:fontFamily="@font/rubik_light"
+            android:background="@drawable/shape_butons"
+            android:text="Калі ўсе карткі пракліканы мінімум n раз"
             app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

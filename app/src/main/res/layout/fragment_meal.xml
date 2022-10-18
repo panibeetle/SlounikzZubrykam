@@ -11,18 +11,23 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
+        android:background="#FFF9EB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        app:cardCornerRadius="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cardView3">
 
         <ImageView
             android:id="@+id/imageView13"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_margin="20dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:padding="8dp"
+
             android:alpha="0.3"
+            android:background="@drawable/shape_reward"
             android:src="@drawable/melon" />
 
     </androidx.cardview.widget.CardView>
@@ -32,16 +37,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:background="#FFF9EB"
+        app:cardCornerRadius="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imageView14"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_margin="20dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:alpha="0.3"
+            android:background="@drawable/shape_reward"
+            android:padding="8dp"
             android:src="@drawable/bett" />
     </androidx.cardview.widget.CardView>
 
@@ -51,6 +59,7 @@
         android:layout_height="wrap_content"
         android:text="1"
         android:textSize="28dp"
+        android:fontFamily="@font/rubik_light"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
@@ -61,6 +70,7 @@
         android:layout_height="wrap_content"
         android:text="3"
         android:textSize="28dp"
+        android:fontFamily="@font/rubik_light"
         app:layout_constraintEnd_toEndOf="@+id/cardView3"
         app:layout_constraintStart_toStartOf="@+id/cardView3"
         app:layout_constraintTop_toBottomOf="@+id/cardView3" />
@@ -91,6 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_add_24" />

@@ -15,10 +15,11 @@
             android:id="@+id/bottomReward"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:background="@color/red"
+            android:background="@drawable/bottom_shape"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView

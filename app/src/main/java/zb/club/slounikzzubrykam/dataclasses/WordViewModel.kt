@@ -22,7 +22,11 @@ class WordViewModel(application: Application):AndroidViewModel(application) {
         return repository.readWordInTopic(topic)
 
     }
+    fun  getSevenRandomWords(topic:String): LiveData<List<Word>>{
 
+        return repository.getSevenWordInTopic(topic)
+
+    }
 
     fun addWord(word: Word){
         viewModelScope.launch(Dispatchers.IO) {
@@ -32,6 +36,21 @@ class WordViewModel(application: Application):AndroidViewModel(application) {
     }
 
 
+    private val _arrayWordForGame = MutableLiveData<List<Word>>()
+    val arrayWordForGame: LiveData<List<Word>> get() = _arrayWordForGame
+
+    fun setWordForGame(arrayWord: List<Word>) {
+        _arrayWordForGame.value  = arrayWord
+    }
+
+    fun getSevenWordSuspend(topic:(String)){
+        var list = listOf<Word>()
+        viewModelScope.launch(Dispatchers.IO) {
+            list = repository.getSevenWordSuspend(topic)
+            _arrayWordForGame.postValue(list)
+
+        }
+    }
 
 
 

@@ -42,7 +42,8 @@ class RepeatFragment : Fragment() {
         binding.recyclerWord.adapter = adapter
         binding.recyclerWord.layoutManager =LinearLayoutManager(requireContext())
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
-        viewModel.readWordInTopic(topic).observe(viewLifecycleOwner, Observer {
+        viewModel.getSevenWordSuspend(topic)
+        viewModel.arrayWordForGame.observe(viewLifecycleOwner, Observer {
             adapter.setData(it)
         })
         return binding.root

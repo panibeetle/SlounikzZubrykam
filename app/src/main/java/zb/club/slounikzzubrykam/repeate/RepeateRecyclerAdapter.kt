@@ -32,23 +32,33 @@ class RepeateRecyclerAdapter: RecyclerView.Adapter<RepeateRecyclerAdapter.MyHold
         val currentItem = wordList[position]
         val textViewWord = holder.itemView.findViewById<TextView>(R.id.textViewWord)
         val imageWord= holder.itemView.findViewById<ImageView>(R.id.imageViewWordPicture)
-
+        val card = holder.itemView.findViewById<CardView>(R.id.card_word)
         textViewWord.text = currentItem.word
 
 
         var res = 0
         val context: Context = holder.itemView.context
 
+        card.setOnClickListener {
 
+            try {
+                val nameVoice = currentItem.voice
+                val voiceId = context.resources.getIdentifier(nameVoice, "raw", context.packageName)
+                var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, voiceId)
+                mediaPlayer?.start()}catch (e: IllegalAccessException) {
+                var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, R.raw.tap1)
+                mediaPlayer?.start()
+            }
+
+
+
+
+        }
 
         // Try to find the resource with that name (icons in drawable folder)
         try {
             val nameDrow = currentItem.picture
-
             val drawableId = context.resources.getIdentifier(nameDrow, "drawable", context.packageName)
-
-
-
             imageWord.setImageResource(drawableId)
         } catch (e: IllegalAccessException) {
             e.printStackTrace()
@@ -56,6 +66,8 @@ class RepeateRecyclerAdapter: RecyclerView.Adapter<RepeateRecyclerAdapter.MyHold
             // if no icon is found
             imageWord.setImageResource(R.drawable.zubr_happy)
         }
+
+
 
 
 

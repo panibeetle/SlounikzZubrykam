@@ -67,7 +67,7 @@ class Rewards : Fragment() {
     private fun setupViewPager() {
         val adapter = RewardsAdapter(
             fragmentList,
-            requireActivity().supportFragmentManager,
+            childFragmentManager,
             lifecycle
         )
         binding.viepager.adapter = adapter

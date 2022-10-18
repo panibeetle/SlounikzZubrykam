@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import zb.club.slounikzzubrykam.databinding.FragmentWordlyBinding
@@ -83,6 +84,7 @@ class WordlyFragment : Fragment() {
             if(letter.isNotEmpty()){
                 val dynamicTextview = TextView(requireContext())
                 dynamicTextview.text = letter
+                dynamicTextview!!.typeface = ResourcesCompat.getFont(requireContext(), R.font.rubik_light)
                 val params = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
@@ -103,6 +105,7 @@ class WordlyFragment : Fragment() {
                     )
                     params.setMargins(8,4,8,4)
                     dynamicTextviewReady.setLayoutParams(params)
+                    dynamicTextviewReady!!.typeface = ResourcesCompat.getFont(requireContext(), R.font.rubik_light)
                     dynamicTextviewReady.textSize = (40F)
                     dynamicTextviewReady.background = resources.getDrawable(R.drawable.square_letters)
                     binding.readyWord.addView(dynamicTextviewReady)

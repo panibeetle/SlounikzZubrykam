@@ -21,8 +21,8 @@ class WordRepository(private val daoWord: DaoWord) {
         daoWord.insertWord(word)
     }
 
-    suspend fun getSevenWordSuspend(topic: String):List<Word>{
-        return daoWord.getSevenRandomWordsSuspend(topic)
+    suspend fun getSevenWordSuspend(topic: String, n:Int):MutableList<Word>{
+        return daoWord.getSevenRandomWordsSuspend(topic, n)
     }
 
 

@@ -15,15 +15,18 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import zb.club.slounikzzubrykam.R
 import zb.club.slounikzzubrykam.databinding.FragmentRepeatBinding
+import zb.club.slounikzzubrykam.dataclasses.Word
 import zb.club.slounikzzubrykam.dataclasses.WordViewModel
 import zb.club.slounikzzubrykam.topic.TopicRecyclerAdapter
 
 
-class RepeatFragment : Fragment() {
+class RepeatFragment : Fragment(), WordRepeateInterface {
     private lateinit var viewModel: WordViewModel
     lateinit var adapter: RepeateRecyclerAdapter
     lateinit var  binding: FragmentRepeatBinding
     val args: RepeatFragmentArgs by navArgs()
+    lateinit var topic:String
+    var arrayForChanging = mutableListOf<Word>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,16 +40,35 @@ class RepeatFragment : Fragment() {
         }
 
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
-        val topic = args.topic.toString()
-        adapter = RepeateRecyclerAdapter()
+        topic = args.topic.toString()
+        adapter = RepeateRecyclerAdapter(this)
         binding.recyclerWord.adapter = adapter
         binding.recyclerWord.layoutManager =LinearLayoutManager(requireContext())
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
-        viewModel.getSevenWordSuspend(topic)
+        getNewWordForGame(topic)
+
         viewModel.arrayWordForGame.observe(viewLifecycleOwner, Observer {
             adapter.setData(it)
         })
+
+
+
         return binding.root
+    }
+
+    private fun getNewWordForGame(topic: String) {
+        viewModel.getSevenWordSuspend(topic, 1)
+        if (viewModel.sizeWordForGame.value!! < 7){
+            viewModel.getSevenWordSuspend(topic, 2)
+        }
+    }
+
+    override fun onTappedWord(tapedWord: Word) {
+        arrayForChanging = viewModel.arrayWordForGame.value!!
+        val changedWord = Word(tapedWord.idWord,tapedWord.topicId,tapedWord.word, tapedWord.picture, tapedWord.voice, tapedWord.flagOne, true,tapedWord.flafThree,tapedWord.flagFour, tapedWord.flagFive, tapedWord.topic )
+       arrayForChanging.remove(tapedWord)
+        arrayForChanging.add(changedWord)
+        viewModel.setWordForGame(arrayForChanging)
     }
 
 

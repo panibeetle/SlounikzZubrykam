@@ -15,7 +15,7 @@ import zb.club.slounikzzubrykam.dataclasses.Topic
 import zb.club.slounikzzubrykam.dataclasses.Word
 import zb.club.slounikzzubrykam.topic.TopicRecyclerAdapter
 
-class RepeateRecyclerAdapter: RecyclerView.Adapter<RepeateRecyclerAdapter.MyHolder>() {
+class RepeateRecyclerAdapter(var tappedWord: WordRepeateInterface): RecyclerView.Adapter<RepeateRecyclerAdapter.MyHolder>() {
     private var wordList = emptyList<Word>()
 
     class MyHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -29,15 +29,19 @@ class RepeateRecyclerAdapter: RecyclerView.Adapter<RepeateRecyclerAdapter.MyHold
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
+        var res = 0
+        val context: Context = holder.itemView.context
         val currentItem = wordList[position]
+        val imageViewChek = holder.itemView.findViewById<ImageView>(R.id.imageViewCheck)
         val textViewWord = holder.itemView.findViewById<TextView>(R.id.textViewWord)
         val imageWord= holder.itemView.findViewById<ImageView>(R.id.imageViewWordPicture)
         val card = holder.itemView.findViewById<CardView>(R.id.card_word)
         textViewWord.text = currentItem.word
+        if(currentItem.flagTwo) {
+            imageViewChek.visibility = View.VISIBLE
+        } else {imageViewChek.visibility = View.INVISIBLE}
 
 
-        var res = 0
-        val context: Context = holder.itemView.context
 
         card.setOnClickListener {
 
@@ -51,7 +55,7 @@ class RepeateRecyclerAdapter: RecyclerView.Adapter<RepeateRecyclerAdapter.MyHold
             }
 
 
-
+            tappedWord.onTappedWord(currentItem)
 
         }
 

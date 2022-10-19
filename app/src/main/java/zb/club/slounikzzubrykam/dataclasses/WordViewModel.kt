@@ -36,19 +36,23 @@ class WordViewModel(application: Application):AndroidViewModel(application) {
     }
 
 
-    private val _arrayWordForGame = MutableLiveData<List<Word>>()
-    val arrayWordForGame: LiveData<List<Word>> get() = _arrayWordForGame
+    private val _arrayWordForGame = MutableLiveData<MutableList<Word>>()
+    val arrayWordForGame: LiveData<MutableList<Word>> get() = _arrayWordForGame
 
-    fun setWordForGame(arrayWord: List<Word>) {
+    fun setWordForGame(arrayWord: MutableList<Word>) {
         _arrayWordForGame.value  = arrayWord
     }
+    private val _sizeWordForGame = MutableLiveData<Int>(0)
+    val sizeWordForGame: LiveData<Int> get() = _sizeWordForGame
 
-    fun getSevenWordSuspend(topic:(String)){
-        var list = listOf<Word>()
+
+
+    fun getSevenWordSuspend(topic:(String), n: Int){
+        var list = mutableListOf<Word>()
         viewModelScope.launch(Dispatchers.IO) {
-            list = repository.getSevenWordSuspend(topic)
+            list = repository.getSevenWordSuspend(topic, n)
             _arrayWordForGame.postValue(list)
-
+            _sizeWordForGame.postValue(list.size)
         }
     }
 

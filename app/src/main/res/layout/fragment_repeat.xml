@@ -5,48 +5,100 @@
     <data>
 
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbarSize="12dp"
         tools:context="zb.club.slounikzzubrykam.RepeatWord">
-
-        <ScrollView
-            android:id="@+id/scrollView2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="cards"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerWord"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
 
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="@font/rubik_light"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/shape_butons"
-            android:text="Калі ўсе карткі пракліканы мінімум n раз"
-            app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+            android:fontFamily="@font/rubik_light"
+
+            android:text="Пераходзь да новай гульні!"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/seekBarFirst"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:contentDescription="cards"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewCoinRepeat">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerWord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </ScrollView>
+
+        <SeekBar
+            android:id="@+id/seekBarFirst"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:indeterminate="false"
+            android:max="6"
+            android:progress="1"
+            android:progressBackgroundTintMode="src_in"
+            android:progressTint="@color/red_light"
+            android:scrollbarSize="12dp"
+            android:thumbTint="@color/red_light"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageViewCoinRepeat"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_paid_24" />
+
+        <TextView
+            android:id="@+id/textViewCountRepeate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/rubik_light"
+            android:text="1"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewCoinRepeat"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewCoinRepeat"
+            app:layout_constraintTop_toTopOf="@+id/imageViewCoinRepeat" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewCountRepeate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewCountRepeate"
+            app:srcCompat="@drawable/ic_round_arrow_back_ios_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

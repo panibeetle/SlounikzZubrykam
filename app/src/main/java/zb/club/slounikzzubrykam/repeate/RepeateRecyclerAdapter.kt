@@ -5,11 +5,13 @@ import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import zb.club.slounikzzubrykam.R
 import zb.club.slounikzzubrykam.dataclasses.Topic
 import zb.club.slounikzzubrykam.dataclasses.Word
@@ -36,28 +38,27 @@ class RepeateRecyclerAdapter(var tappedWord: WordRepeateInterface): RecyclerView
         val textViewWord = holder.itemView.findViewById<TextView>(R.id.textViewWord)
         val imageWord= holder.itemView.findViewById<ImageView>(R.id.imageViewWordPicture)
         val card = holder.itemView.findViewById<CardView>(R.id.card_word)
+        val buttonSound = holder.itemView.findViewById<ImageView>(R.id.imageViewButtonSound)
         textViewWord.text = currentItem.word
         if(currentItem.flagTwo) {
             imageViewChek.visibility = View.VISIBLE
+
         } else {imageViewChek.visibility = View.INVISIBLE}
 
-
-
-        card.setOnClickListener {
-
-            try {
-                val nameVoice = currentItem.voice
-                val voiceId = context.resources.getIdentifier(nameVoice, "raw", context.packageName)
-                var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, voiceId)
-                mediaPlayer?.start()}catch (e: IllegalAccessException) {
-                var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, R.raw.tap1)
-                mediaPlayer?.start()
-            }
-
-
+        buttonSound.setOnClickListener {   try {
+            val nameVoice = currentItem.voice
+            val voiceId = context.resources.getIdentifier(nameVoice, "raw", context.packageName)
+            var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, voiceId)
+            mediaPlayer?.start()
+            var mediaPlayerDing: MediaPlayer? = MediaPlayer.create(context, R.raw.ding)
+            mediaPlayerDing?.start()
             tappedWord.onTappedWord(currentItem)
+            }catch (e: IllegalAccessException) {
+            var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, R.raw.tap1)
+            mediaPlayer?.start()
+        } }
 
-        }
+
 
         // Try to find the resource with that name (icons in drawable folder)
         try {

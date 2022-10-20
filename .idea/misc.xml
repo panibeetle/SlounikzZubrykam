@@ -4,7 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.244" />
+        <entry key="..\:/SlounikzZubrykam/app/src/main/res/drawable/art_horse.xml" value="0.1935" />
+        <entry key="..\:/SlounikzZubrykam/app/src/main/res/drawable/art_kasurka.xml" value="0.1935" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/drawable/bottom_shape.xml" value="0.1925" />
+        <entry key="..\:/SlounikzZubrykam/app/src/main/res/drawable/gameplace.xml" value="0.1935" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/drawable/gradient_red.xml" value="0.1" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.1" />
@@ -36,7 +39,7 @@
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/fragment_meal.xml" value="0.3066123188405797" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/fragment_repeat.xml" value="0.3578125" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/fragment_reward.xml" value="0.3578125" />
-        <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/fragment_rewards.xml" value="0.2572463768115942" />
+        <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/fragment_rewards.xml" value="0.25" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/fragment_topic.xml" value="0.3578125" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/fragment_wordly.xml" value="0.3578125" />
         <entry key="..\:/SlounikzZubrykam/app/src/main/res/layout/topic_card_recycler.xml" value="0.2572463768115942" />

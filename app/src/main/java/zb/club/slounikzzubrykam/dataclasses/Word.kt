@@ -12,7 +12,7 @@ data class Word(
     @ColumnInfo(name = "picture") val picture: String,
     @ColumnInfo(name = "voice") val voice: String,
     @ColumnInfo(name = "flag_one") val flagOne: Boolean,
-    @ColumnInfo(name = "flag_two") val flagTwo: Boolean,
+    @ColumnInfo(name = "flag_two") var flagTwo: Boolean,
     @ColumnInfo(name = " flag_three") val flafThree: Boolean,
     @ColumnInfo(name = "flag_four") val flagFour: Boolean,
     @ColumnInfo(name = " flag_five") val flagFive: Boolean,

@@ -1,24 +1,20 @@
-package zb.club.slounikzzubrykam.repeate
+package zb.club.slounikzzubrykam.guess
 
 import android.content.Context
 import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import zb.club.slounikzzubrykam.R
-import zb.club.slounikzzubrykam.dataclasses.Topic
 import zb.club.slounikzzubrykam.dataclasses.Word
-import zb.club.slounikzzubrykam.topic.TopicRecyclerAdapter
+import zb.club.slounikzzubrykam.repeate.WordRepeateInterface
 
-class RepeateRecyclerAdapter(var tappedWord: WordRepeateInterface): RecyclerView.Adapter<RepeateRecyclerAdapter.MyHolder>() {
-    private var wordList = emptyList<Word>()
+class GuessAdapter: RecyclerView.Adapter<GuessAdapter.MyHolder>() {
+    private var wordList = mutableListOf<Word>()
 
     class MyHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
@@ -51,8 +47,7 @@ class RepeateRecyclerAdapter(var tappedWord: WordRepeateInterface): RecyclerView
             mediaPlayer?.start()
             var mediaPlayerDing: MediaPlayer? = MediaPlayer.create(context, R.raw.ding)
             mediaPlayerDing?.start()
-            tappedWord.onTappedWord(currentItem)
-            }catch (e: IllegalAccessException) {
+        }catch (e: IllegalAccessException) {
             var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, R.raw.tap1)
             mediaPlayer?.start()
         } }
@@ -81,7 +76,7 @@ class RepeateRecyclerAdapter(var tappedWord: WordRepeateInterface): RecyclerView
         return wordList.size
     }
 
-    fun setData(words: List<Word>){
+    fun setData(words: MutableList<Word>){
         this.wordList = words
         notifyDataSetChanged()
     }

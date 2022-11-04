@@ -12,58 +12,38 @@
         android:layout_height="match_parent"
         tools:context="zb.club.slounikzzubrykam.GuessGame">
 
-        <ImageView
-            android:id="@+id/imageView19"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/bett" />
-
-        <ImageView
-            android:id="@+id/imageView20"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/melon" />
-
-        <ImageView
-            android:id="@+id/imageView21"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView19"
-            app:srcCompat="@drawable/onion" />
-
-        <ImageView
-            android:id="@+id/imageView22"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView20"
-            app:srcCompat="@drawable/potato" />
-
         <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="32dp"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/rubik_light"
-            android:text="знайдзі бурак"
+            android:fontFamily="@font/alice"
+            android:text="знайдзі відэлец"
             android:textSize="28dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonNewGuess"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/buttonNewGuess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/shape_butons"
+            android:text="Button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerGuess"
+            android:layout_width="409dp"
+            android:layout_height="394dp"
+            android:layout_marginBottom="2dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView9"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView21" />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

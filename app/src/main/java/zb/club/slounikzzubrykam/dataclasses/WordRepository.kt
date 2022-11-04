@@ -25,6 +25,10 @@ class WordRepository(private val daoWord: DaoWord) {
         return daoWord.getSevenRandomWordsSuspend(topic, n)
     }
 
+    suspend fun  getWordById( id:List<Long>):MutableList<Word>{
+        return  daoWord.getWordById(id)
+    }
+
 
 
 

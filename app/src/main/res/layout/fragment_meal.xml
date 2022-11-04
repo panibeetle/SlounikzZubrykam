@@ -28,7 +28,7 @@
 
             android:alpha="0.3"
             android:background="@drawable/shape_reward"
-            android:src="@drawable/melon" />
+            android:src="@drawable/art_cup" />
 
     </androidx.cardview.widget.CardView>
 
@@ -50,7 +50,7 @@
             android:alpha="0.3"
             android:background="@drawable/shape_reward"
             android:padding="8dp"
-            android:src="@drawable/bett" />
+            android:src="@drawable/art_plate" />
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:text="1"
         android:textSize="28dp"
-        android:fontFamily="@font/rubik_light"
+        android:fontFamily="@font/alice"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />

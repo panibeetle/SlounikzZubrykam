@@ -30,7 +30,7 @@
 
             android:background="@drawable/shape_reward"
             android:padding="8dp"
-            android:src="@drawable/art_bunny_1" />
+            android:src="@drawable/art_kasurka" />
 
     </androidx.cardview.widget.CardView>
 
@@ -52,7 +52,7 @@
             android:padding="8dp"
             android:alpha="0.3"
             android:background="@drawable/shape_reward"
-            android:src="@drawable/art_mouse" />
+            android:src="@drawable/art_kasurka" />
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:text="1"
         android:textSize="28dp"
-        android:fontFamily="@font/rubik_light"
+        android:fontFamily="@font/alice"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
@@ -71,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="3"
-        android:fontFamily="@font/rubik_light"
+        android:fontFamily="@font/alice"
         android:textSize="28dp"
         app:layout_constraintEnd_toEndOf="@+id/cardView3"
         app:layout_constraintStart_toStartOf="@+id/cardView3"

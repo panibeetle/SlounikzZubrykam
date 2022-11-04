@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        app:srcCompat="@drawable/art_cover_animals" />
+        app:srcCompat="@drawable/art_set" />
 
     <TextView
         android:id="@+id/text_view_topic_rec"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|left"
         android:background="@drawable/shape_text_view"
-        android:fontFamily="@font/rubik_light"
+        android:fontFamily="@font/alice"
         android:gravity="bottom|left"
         android:padding="8dp"
         android:text="TextView"

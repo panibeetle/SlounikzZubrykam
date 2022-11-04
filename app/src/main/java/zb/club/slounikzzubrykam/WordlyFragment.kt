@@ -11,16 +11,19 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import zb.club.slounikzzubrykam.databinding.FragmentWordlyBinding
 import zb.club.slounikzzubrykam.dataclasses.Word
 import zb.club.slounikzzubrykam.dataclasses.WordViewModel
 
 class WordlyFragment : Fragment() {
+    val args: WordlyFragmentArgs by navArgs()
     lateinit var binding: FragmentWordlyBinding
     var wordRandom = String()
     private lateinit var viewModel: WordViewModel
-    var words = emptyList<Word>()
+    var words = arrayListOf<Word>()
 
 
 
@@ -53,13 +56,15 @@ class WordlyFragment : Fragment() {
                 binding.wordbybook.removeAllViews()
                 wordly()
 
+
             } else{ Toast.makeText(requireContext(),"Паспрабуй яшчэ раз!", Toast.LENGTH_LONG).show()
                 binding.readyWord.removeAllViews()
                 binding.wordbybook.removeAllViews()
-                wordly()}
+                wordly()
+                }
         }
-
         wordly()
+
         return binding.root
 
     }
@@ -67,10 +72,12 @@ class WordlyFragment : Fragment() {
 
 
     fun wordly(){
+        words = args as ArrayList<Word>
 
-        val wordList = arrayListOf("гарбуз", "бурак", "агурок", "кроп", "капуста", "бульба")
-
-        wordRandom = wordList.random()
+        val word: Word = words.random()
+        wordRandom = word.word
+        val picture = resources.getIdentifier(word.picture, "drawable", requireContext().packageName )
+        binding.imageViewGuessingWord.setImageResource(picture)
 
         var letters = wordRandom.removeSurrounding("[", "]")
             .takeIf(String::isNotEmpty)

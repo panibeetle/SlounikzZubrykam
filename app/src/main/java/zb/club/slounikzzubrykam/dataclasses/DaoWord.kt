@@ -22,4 +22,8 @@ interface DaoWord {
     @Query("SELECT * FROM word_table WHERE topic =:topic AND flag_one < :n ORDER BY random() LIMIT 7")
     suspend fun  getSevenRandomWordsSuspend( topic: String, n:Int):MutableList<Word>
 
+
+    @Query("SELECT * FROM word_table WHERE idWord IN (:id)")
+    suspend fun  getWordById( id:List<Long>):MutableList<Word>
+
 }

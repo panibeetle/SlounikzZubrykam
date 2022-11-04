@@ -36,16 +36,23 @@
     </fragment>
     <fragment
         android:id="@+id/guessFragment"
-        android:name="zb.club.slounikzzubrykam.GuessFragment"
+        android:name="zb.club.slounikzzubrykam.guess.GuessFragment"
         android:label="GuessFragment" >
         <action
             android:id="@+id/action_guessFragment_to_wordlyFragment"
             app:destination="@id/wordlyFragment" />
+        <argument
+            android:name="idWord"
+            app:argType="long[]" />
     </fragment>
     <fragment
         android:id="@+id/wordlyFragment"
         android:name="zb.club.slounikzzubrykam.WordlyFragment"
-        android:label="WordlyFragment" />
+        android:label="WordlyFragment" >
+        <argument
+            android:name="idWords"
+            app:argType="long[]" />
+    </fragment>
     <fragment
         android:id="@+id/rewards"
         android:name="zb.club.slounikzzubrykam.reward.Rewards"

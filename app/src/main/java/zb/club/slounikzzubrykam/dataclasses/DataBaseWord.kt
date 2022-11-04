@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-@Database(entities = [Word::class, Topic::class], version = 1, exportSchema = true)
+@Database(entities = [Word::class, Topic::class], version = 1, exportSchema = false)
 abstract class DataBaseWord: RoomDatabase() {
 
     abstract fun daoWord(): DaoWord
@@ -21,8 +21,8 @@ abstract class DataBaseWord: RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     DataBaseWord::class.java,
-                    "word_database.db"
-                ).createFromAsset("database/word_database.db").build()
+                    "worddatabase.db"
+                ).createFromAsset("database/worddatabase.db").build()
                 INSTANCE = instance
                 return instance
             }

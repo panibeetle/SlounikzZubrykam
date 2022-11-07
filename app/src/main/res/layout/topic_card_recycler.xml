@@ -19,12 +19,12 @@
 
     <TextView
         android:id="@+id/text_view_topic_rec"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|left"
         android:background="@drawable/shape_text_view"
         android:fontFamily="@font/alice"
-        android:gravity="bottom|left"
+        android:gravity="bottom|center|center_horizontal|center_vertical"
         android:padding="8dp"
         android:text="TextView"
         android:textColor="@color/white"

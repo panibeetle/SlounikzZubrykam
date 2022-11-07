@@ -29,23 +29,23 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
     lateinit var topic:String
     lateinit var idWords: LongArray
     var isMagic = true
+    var score =0
     var arrayForChanging = mutableListOf<Word>()
+    var idWord = arrayListOf<Long>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_repeat, container,false)
-
-
-
-
-
+        score=0
+        updateProgressBar()
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
-
         topic = args.topic.toString()
         adapter = RepeateRecyclerAdapter(this)
         binding.recyclerWord.adapter = adapter
+        binding.progressBarInRepeate.max = 7
+
         binding.recyclerWord.layoutManager =LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
         getNewWordForGame(topic)
@@ -93,16 +93,25 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
     }
 
     override fun onTappedWord(tapedWord: Word) {
+
         arrayForChanging = viewModel.arrayWordForGame.value!!
+        if(!tapedWord.flagTwo){
+        score = score + 1
+        updateProgressBar()
         arrayForChanging?.find { it.idWord == tapedWord.idWord }?.flagTwo = true
         viewModel.setWordForGame(arrayForChanging)
 
 
-        var idWord = arrayListOf<Long>()
+
         for(i in arrayForChanging){
             idWord.add(i.idWord)
         }
         idWords= idWord.toLongArray()
+
+    }}
+    private fun updateProgressBar(){
+        binding.count.text="$score/7"
+        binding.progressBarInRepeate.progress = score
 
     }
 

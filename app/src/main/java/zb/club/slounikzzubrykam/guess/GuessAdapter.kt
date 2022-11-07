@@ -5,16 +5,19 @@ import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
 import zb.club.slounikzzubrykam.R
 import zb.club.slounikzzubrykam.dataclasses.Word
-import zb.club.slounikzzubrykam.repeate.WordRepeateInterface
 
-class GuessAdapter: RecyclerView.Adapter<GuessAdapter.MyHolder>() {
+
+class GuessAdapter(var selectedWord: GuessSelectedWordPosition): RecyclerView.Adapter<GuessAdapter.MyHolder>() {
     private var wordList = mutableListOf<Word>()
+    private var lastCheckedPos = 0
+    private var lastChecked: MaterialCardView? = null
 
     class MyHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
@@ -22,35 +25,38 @@ class GuessAdapter: RecyclerView.Adapter<GuessAdapter.MyHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         return MyHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.card_word, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.card_for_guess_word, parent, false)
         )
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         var res = 0
+
         val context: Context = holder.itemView.context
         val currentItem = wordList[position]
-        val imageViewChek = holder.itemView.findViewById<ImageView>(R.id.imageViewCheck)
-        val textViewWord = holder.itemView.findViewById<TextView>(R.id.textViewWord)
-        val imageWord= holder.itemView.findViewById<ImageView>(R.id.imageViewWordPicture)
-        val card = holder.itemView.findViewById<CardView>(R.id.card_word)
-        textViewWord.text = currentItem.word
-        if(currentItem.flagTwo) {
-            imageViewChek.visibility = View.VISIBLE
+        val imageWord= holder.itemView.findViewById<ImageView>(R.id.imageViewForGuess)
+        val card = holder.itemView.findViewById<CardView>(R.id.cardwithpickguess)
+        if (position == lastCheckedPos){
+            lastChecked = card as MaterialCardView?
+        }else{card.isSelected = false}
 
-        } else {imageViewChek.visibility = View.INVISIBLE}
+        card.setOnClickListener {
+            lastChecked!!.isSelected = false
+            lastCheckedPos = holder.adapterPosition
+            card.isSelected = true
+            selectedWord.oSelectedWord(currentItem)
 
-        card.setOnClickListener {   try {
+            try {
             val nameVoice = currentItem.voice
             val voiceId = context.resources.getIdentifier(nameVoice, "raw", context.packageName)
             var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, voiceId)
             mediaPlayer?.start()
-            var mediaPlayerDing: MediaPlayer? = MediaPlayer.create(context, R.raw.ding)
-            mediaPlayerDing?.start()
+
         }catch (e: IllegalAccessException) {
             var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, R.raw.tap1)
             mediaPlayer?.start()
-        } }
+        }
+        notifyDataSetChanged()}
 
 
 
@@ -63,7 +69,7 @@ class GuessAdapter: RecyclerView.Adapter<GuessAdapter.MyHolder>() {
             e.printStackTrace()
         } catch (e: NoSuchFieldException) {
             // if no icon is found
-            imageWord.setImageResource(R.drawable.zubr_happy)
+            imageWord.setImageResource(R.drawable.art_cup)
         }
 
 

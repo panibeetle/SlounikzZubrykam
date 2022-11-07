@@ -35,7 +35,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewCoinRepeat">
+            app:layout_constraintTop_toBottomOf="@+id/progressBarInRepeate">
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -49,29 +49,26 @@
 
         </ScrollView>
 
-        <ImageView
-            android:id="@+id/imageViewCoinRepeat"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="8dp"
+        <ProgressBar
+            android:id="@+id/progressBarInRepeate"
+            android:max="7"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            style="@style/CircularDeterminateProgressBar"
+            tools:progress="60"
             app:layout_constraintEnd_toEndOf="parent"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_paid_24" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textViewCountRepeate"
+            android:id="@+id/count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:fontFamily="@font/alice"
-            android:text="1"
-            android:textSize="36sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewCoinRepeat"
-            app:layout_constraintEnd_toStartOf="@+id/imageViewCoinRepeat"
-            app:layout_constraintTop_toTopOf="@+id/imageViewCoinRepeat" />
-
+            app:layout_constraintBottom_toBottomOf="@+id/progressBarInRepeate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/progressBarInRepeate"
+            app:layout_constraintTop_toTopOf="@+id/progressBarInRepeate"
+            tools:text="1/7" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

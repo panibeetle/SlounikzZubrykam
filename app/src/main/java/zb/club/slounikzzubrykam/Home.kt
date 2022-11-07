@@ -31,7 +31,7 @@ class Home : Fragment() {
             var mediaPlayer: MediaPlayer? = MediaPlayer.create(requireContext(), R.raw.tap1)
             mediaPlayer?.start()
 
-            findNavController()?.navigate(R.id.action_home2_to_rewards)
+            findNavController()?.navigate(R.id.action_home2_to_topicFragment)
         }
         return binding.root
     }

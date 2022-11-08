@@ -47,6 +47,9 @@
         <argument
             android:name="idWord"
             app:argType="long[]" />
+        <action
+            android:id="@+id/action_guessFragment_to_home2"
+            app:destination="@id/home2" />
     </fragment>
     <fragment
         android:id="@+id/wordlyFragment"

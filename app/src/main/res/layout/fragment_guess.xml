@@ -12,28 +12,40 @@
         android:layout_height="match_parent"
         tools:context="zb.club.slounikzzubrykam.GuessGame">
 
+        <ProgressBar
+            android:id="@+id/progressBarInGuess"
+            style="@style/CircularDeterminateProgressBar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:max="7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:progress="60" />
+
+        <TextView
+            android:id="@+id/countGues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alice"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBarInGuess"
+            app:layout_constraintEnd_toEndOf="@+id/progressBarInGuess"
+            app:layout_constraintStart_toStartOf="@+id/progressBarInGuess"
+            app:layout_constraintTop_toTopOf="@+id/progressBarInGuess"
+            tools:text="1/7" />
+
         <Button
             android:id="@+id/buttonCheckWord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_butons"
-            app:layout_constraintBottom_toTopOf="@+id/buttonNewGuess"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="Праверыць!"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/buttonNewGuess"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-
             android:background="@drawable/shape_butons"
-            android:text="Запрасіць сябра да Зубрыка!"
-            android:visibility="invisible"
+            android:text="Праверыць!"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewGuess" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerGuess"
@@ -44,7 +56,7 @@
             app:layout_constraintBottom_toTopOf="@+id/cardViewGuess"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/progressBarInGuess" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewGuess"
@@ -86,5 +98,32 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationViewConfetti"
+            android:layout_width="348dp"
+            android:layout_height="256dp"
+            android:visibility="invisible"
+
+            app:layout_constraintBottom_toBottomOf="@+id/buttonInvite"
+            app:layout_constraintEnd_toEndOf="@+id/buttonInvite"
+            app:layout_constraintHorizontal_bias="0.448"
+            app:layout_constraintStart_toStartOf="@+id/buttonInvite"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/anim_confettie" />
+
+        <Button
+            android:id="@+id/buttonInvite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/shape_butons"
+            android:text="&quot;ЗАПРАСІЦЬ ДА ЗУБРЫКА СЯБРА!&quot;"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -9,24 +9,24 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-      
+
         tools:context="zb.club.slounikzzubrykam.MainActivity">
 
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationView"
-            android:layout_width="249dp"
-            android:layout_height="227dp"
+            android:layout_width="140dp"
+            android:layout_height="126dp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.096"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView"
             app:layout_constraintVertical_bias="1.0"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/pic" />
+            app:lottie_rawRes="@raw/anim_cute_caterpillar" />
 
         <Button
             android:id="@+id/button"
@@ -35,7 +35,7 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/shape_butons"
             android:fontFamily="@font/alice"
-            android:text="гульня"
+            android:text="пачаць!"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,13 +47,14 @@
             android:id="@+id/imageView"
             android:layout_width="216dp"
             android:layout_height="326dp"
-            android:layout_marginTop="96dp"
-            android:layout_marginEnd="16dp"
             android:contentDescription="@string/zubryk_sad_pic"
             app:layout_constraintBottom_toTopOf="@+id/button"
             app:layout_constraintDimensionRatio="3:4"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.558"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.559"
             app:srcCompat="@drawable/zubr_happy" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

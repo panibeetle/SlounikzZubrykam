@@ -48,9 +48,10 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
 
         binding.recyclerWord.layoutManager =LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
-        getNewWordForGame(topic)
 
+        getNewWordForGame(topic)
         viewModel.arrayWordForGame.observe(viewLifecycleOwner, Observer {
+
             adapter.setData(it)
             var isButtonVisible: Boolean = false
             for (i in it){
@@ -71,6 +72,14 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
                     mediaPlayer?.start()
                     isMagic=false}
                 binding.button2.visibility = View.VISIBLE}
+            var a = 0
+            for (i in it){
+                if(i.flagTwo){
+                    a = a+1
+                }
+            }
+            score = a
+            updateProgressBar()
 
         })
 
@@ -86,18 +95,18 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
     }
 
     private fun getNewWordForGame(topic: String) {
+        if(viewModel.sizeWordForGame.value!! == 0){
         viewModel.getSevenWordSuspend(topic, 1)
         if (viewModel.sizeWordForGame.value!! < 7){
             viewModel.getSevenWordSuspend(topic, 2)
-        }
+        }}
     }
 
     override fun onTappedWord(tapedWord: Word) {
 
         arrayForChanging = viewModel.arrayWordForGame.value!!
         if(!tapedWord.flagTwo){
-        score = score + 1
-        updateProgressBar()
+
         arrayForChanging?.find { it.idWord == tapedWord.idWord }?.flagTwo = true
         viewModel.setWordForGame(arrayForChanging)
 

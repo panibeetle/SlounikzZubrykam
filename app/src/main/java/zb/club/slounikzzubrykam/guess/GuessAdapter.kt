@@ -38,6 +38,8 @@ class GuessAdapter(var selectedWord: GuessSelectedWordPosition): RecyclerView.Ad
         val card = holder.itemView.findViewById<CardView>(R.id.cardwithpickguess)
         if (position == lastCheckedPos){
             lastChecked = card as MaterialCardView?
+            lastChecked!!.isSelected = true
+            selectedWord.oSelectedWord(currentItem)
         }else{card.isSelected = false}
 
         card.setOnClickListener {
@@ -45,6 +47,7 @@ class GuessAdapter(var selectedWord: GuessSelectedWordPosition): RecyclerView.Ad
             lastCheckedPos = holder.adapterPosition
             card.isSelected = true
             selectedWord.oSelectedWord(currentItem)
+            lastChecked = card as MaterialCardView?
 
             try {
             val nameVoice = currentItem.voice
@@ -56,7 +59,7 @@ class GuessAdapter(var selectedWord: GuessSelectedWordPosition): RecyclerView.Ad
             var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, R.raw.tap1)
             mediaPlayer?.start()
         }
-        notifyDataSetChanged()}
+        }
 
 
 

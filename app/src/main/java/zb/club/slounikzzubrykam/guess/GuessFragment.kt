@@ -89,25 +89,6 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
             findNavController().navigate(R.id.action_guessFragment_to_home2)
         }
 
-        binding.buttonCheckWord.setOnClickListener {
-            if(guessedWord.word == binding.textView.text.toString()){
-                var mediaPlayer: MediaPlayer? = MediaPlayer.create(requireContext(), R.raw.ding)
-                mediaPlayer?.start()
-                arrayForGuessing = viewModel.arrayWordForGuess.value!!
-                if(!guessedWord.flafThree){
-                    arrayForGuessing?.find { it.idWord == guessedWord.idWord }?.flafThree = true
-                    viewModel.setWordForGuess(arrayForGuessing) }
-
-            playGuess() } else{var mediaPlayer: MediaPlayer? = MediaPlayer.create(requireContext(), R.raw.voice_another)
-                mediaPlayer?.start()}
-
-
-        }
-
-
-
-
-
         return binding.root
     }
 
@@ -150,6 +131,30 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
 
     override fun oSelectedWord(selectedWord: Word) {
         guessedWord=selectedWord
+        if(guessedWord.word == binding.textView.text.toString()){
+
+            arrayForGuessing = viewModel.arrayWordForGuess.value!!
+            if(!guessedWord.flafThree){
+                arrayForGuessing?.find { it.idWord == guessedWord.idWord }?.flafThree = true
+                viewModel.setWordForGuess(arrayForGuessing) }
+            try {
+                val nameVoice = selectedWord.voice
+                val voiceId = requireContext().resources.getIdentifier(nameVoice, "raw", requireContext().packageName)
+                var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, voiceId)
+                mediaPlayer?.start()
+                var mediaPlayerDing: MediaPlayer? = MediaPlayer.create(requireContext(), R.raw.ding)
+                mediaPlayerDing?.start()
+
+            }catch (e: IllegalAccessException) {
+                var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, R.raw.tap1)
+                mediaPlayer?.start()
+            }
+
+            playGuess() } else{var mediaPlayer: MediaPlayer? = MediaPlayer.create(requireContext(), R.raw.voice_another_pic)
+            mediaPlayer?.start()}
+
+
+
     }
     private fun updateProgressBar(){
         binding.countGues.text="$score/7"

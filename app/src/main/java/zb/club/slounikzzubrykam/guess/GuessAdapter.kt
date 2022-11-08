@@ -16,8 +16,6 @@ import zb.club.slounikzzubrykam.dataclasses.Word
 
 class GuessAdapter(var selectedWord: GuessSelectedWordPosition): RecyclerView.Adapter<GuessAdapter.MyHolder>() {
     private var wordList = mutableListOf<Word>()
-    private var lastCheckedPos = 0
-    private var lastChecked: MaterialCardView? = null
 
     class MyHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
@@ -36,29 +34,16 @@ class GuessAdapter(var selectedWord: GuessSelectedWordPosition): RecyclerView.Ad
         val currentItem = wordList[position]
         val imageWord= holder.itemView.findViewById<ImageView>(R.id.imageViewForGuess)
         val card = holder.itemView.findViewById<CardView>(R.id.cardwithpickguess)
-        if (position == lastCheckedPos){
-            lastChecked = card as MaterialCardView?
-            lastChecked!!.isSelected = true
-            selectedWord.oSelectedWord(currentItem)
-        }else{card.isSelected = false}
+        card.isSelected = false
+
 
         card.setOnClickListener {
-            lastChecked!!.isSelected = false
-            lastCheckedPos = holder.adapterPosition
+
             card.isSelected = true
             selectedWord.oSelectedWord(currentItem)
-            lastChecked = card as MaterialCardView?
 
-            try {
-            val nameVoice = currentItem.voice
-            val voiceId = context.resources.getIdentifier(nameVoice, "raw", context.packageName)
-            var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, voiceId)
-            mediaPlayer?.start()
 
-        }catch (e: IllegalAccessException) {
-            var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, R.raw.tap1)
-            mediaPlayer?.start()
-        }
+
         }
 
 

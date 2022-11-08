@@ -67,6 +67,11 @@ class Home : Fragment() {
 
             findNavController()?.navigate(R.id.action_home2_to_topicFragment)
         }
+        var mediaPlayer: MediaPlayer? = MediaPlayer.create(requireContext(), R.raw.voice_glad_to_see)
+        mediaPlayer?.start()
+        binding.animationView.setOnClickListener {
+            binding.animationView.repeatCount = 2
+            binding.animationView.playAnimation() }
         return binding.root
     }
 

@@ -24,11 +24,12 @@ import zb.club.slounikzzubrykam.repeate.RepeateRecyclerAdapter
 class GuessFragment : Fragment(), GuessSelectedWordPosition {
     lateinit var adapter: GuessAdapter
     val args: GuessFragmentArgs by navArgs()
-    var arrayForChanging = mutableListOf<Word>()
     private lateinit var viewModel: WordViewModel
     lateinit var  binding: FragmentGuessBinding
     lateinit var guessedWord:Word
-    var isMagic = true
+    lateinit private var mediaPlayer: MediaPlayer
+
+    var voiceGuessing =""
     var score =0
     var arrayForGuessing = mutableListOf<Word>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,11 +62,9 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
                 }
                 isButtonInviteVisibility= true
             }
-            if(isButtonInviteVisibility and isMagic) {
+            if(isButtonInviteVisibility) {
                 binding.animationViewConfetti.visibility = View.VISIBLE
-                var mediaPlayer: MediaPlayer? = MediaPlayer.create(requireContext(), R.raw.magic)
-                mediaPlayer?.start()
-                isMagic=false
+                playMusic(R.raw.magic)
                 binding.buttonInvite.visibility= View.VISIBLE
                 val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
                 with (sharedPref!!.edit()) {
@@ -74,7 +73,6 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
                 }
 
             }
-
             var a = 0
             for (i in it){
                 if(i.flafThree){
@@ -93,65 +91,72 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
     }
 
     private fun playGuess() {
-        var voiceGuessing =""
         viewModel.arrayWordForGuess.observe(viewLifecycleOwner, Observer {
             var listFour = mutableListOf<Word>()
-            it.shuffle()
             var a = 0
             for(i in it){
                 if (it[0].flafThree){
                     a= a+1
                 }
             }
+            it.shuffle()
             if(a <6){
-            while (it[0].flafThree){it.shuffle()}
+                while (it[0].flafThree){it.shuffle()}
                 for (i in 0..3){listFour.add(it[i])}
                 binding.textView.text = listFour[0].word
-
                 voiceGuessing = listFour[0].voice
                 listFour.shuffle()
                 adapter.setData(listFour)
+                binding.recyclerGuess.isEnabled = false
+
                 } else{
-                it.shuffle()
                 for (i in 0..3){listFour.add(it[i])
             }
                 binding.textView.text = listFour[0].word
+                voiceGuessing = listFour[0].voice
                 listFour.shuffle()
                 adapter.setData(listFour)
                }
 
 
             binding.cardViewGuess.setOnClickListener {
+                binding.recyclerGuess.isEnabled = false
+                binding.cardViewGuess.isEnabled=false
                 val voiceId = requireContext().resources.getIdentifier(voiceGuessing, "raw", requireContext().packageName)
-                var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, voiceId)
-                mediaPlayer?.start() }
+                playMusic(voiceId)
+
+               mediaPlayer.setOnCompletionListener { binding.recyclerGuess.isEnabled = true
+                   binding.cardViewGuess.isEnabled=true
+               }}
 
         })
     }
 
     override fun oSelectedWord(selectedWord: Word) {
         guessedWord=selectedWord
+        playMusic(R.raw.ding)
         if(guessedWord.word == binding.textView.text.toString()){
-
             arrayForGuessing = viewModel.arrayWordForGuess.value!!
-            if(!guessedWord.flafThree){
-                arrayForGuessing?.find { it.idWord == guessedWord.idWord }?.flafThree = true
-                viewModel.setWordForGuess(arrayForGuessing) }
-            try {
-                val nameVoice = selectedWord.voice
-                val voiceId = requireContext().resources.getIdentifier(nameVoice, "raw", requireContext().packageName)
-                var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, voiceId)
-                mediaPlayer?.start()
-                var mediaPlayerDing: MediaPlayer? = MediaPlayer.create(requireContext(), R.raw.ding)
-                mediaPlayerDing?.start()
 
-            }catch (e: IllegalAccessException) {
-                var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, R.raw.tap1)
-                mediaPlayer?.start()
-            }
-
-            playGuess() } else{var mediaPlayer: MediaPlayer? = MediaPlayer.create(requireContext(), R.raw.voice_another_pic)
-            mediaPlayer?.start()}
+            binding.recyclerGuess.isEnabled = false
+            binding.cardViewGuess.isEnabled=false
+            val voiceId = requireContext().resources.getIdentifier(selectedWord.voice, "raw", requireContext().packageName)
+            playMusic(voiceId)
+            mediaPlayer.setOnCompletionListener {
+                binding.recyclerGuess.isEnabled = true
+                binding.cardViewGuess.isEnabled=true
+                if(!guessedWord.flafThree){
+                    arrayForGuessing?.find { it.idWord == guessedWord.idWord }?.flafThree = true
+                    viewModel.setWordForGuess(arrayForGuessing) }
+                playGuess()
+            } } else{
+            binding.recyclerGuess.isEnabled = false
+            binding.cardViewGuess.isEnabled=false
+            playMusic(R.raw.voice_another_pic)
+            mediaPlayer.setOnCompletionListener {
+                binding.recyclerGuess.isEnabled = true
+                binding.cardViewGuess.isEnabled=true
+            }}
 
 
 
@@ -160,6 +165,10 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
         binding.countGues.text="$score/7"
         binding.progressBarInGuess.progress = score
 
+    }
+    fun playMusic(id: Int){
+        mediaPlayer = MediaPlayer.create(requireContext(), id)
+        mediaPlayer.start()
     }
 
 

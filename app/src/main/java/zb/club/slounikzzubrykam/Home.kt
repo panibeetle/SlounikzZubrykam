@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -25,6 +26,7 @@ class Home : Fragment() {
     lateinit var  binding: FragmentHomeBinding
     private lateinit var viewModel: WordViewModel
     var iviteFriend = 0
+    private lateinit var mediaPlayer: MediaPlayer
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,11 +34,14 @@ class Home : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_home, container,false)
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
+        var animUpDown = AnimationUtils.loadAnimation(requireContext(),
+            R.anim.up_down)
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-
+        var voiceId = R.raw.voice_glad_to_see
         iviteFriend = sharedPref!!.getInt("invite", 0)
         if (iviteFriend == 1){
-            val a = Random().nextInt(7)
+            voiceId = R.raw.voice_milota
+            val a = Random().nextInt(8)
             var nameDrow: String
 
 
@@ -56,23 +61,35 @@ class Home : Fragment() {
             binding.animationView.visibility = View.VISIBLE
 
         }
+
+
+        binding.imageView.startAnimation(animUpDown)
+
+
+
         with (sharedPref!!.edit()) {
             putInt("invite", 0)
             apply()
         }
 
         binding.button.setOnClickListener {
-            var mediaPlayer: MediaPlayer? = MediaPlayer.create(requireContext(), R.raw.tap1)
-            mediaPlayer?.start()
+             playMusic(R.raw.tap1)
 
             findNavController()?.navigate(R.id.action_home2_to_topicFragment)
         }
-        var mediaPlayer: MediaPlayer? = MediaPlayer.create(requireContext(), R.raw.voice_glad_to_see)
-        mediaPlayer?.start()
+
         binding.animationView.setOnClickListener {
-            binding.animationView.repeatCount = 2
+            binding.animationView.repeatCount = 1
             binding.animationView.playAnimation() }
+        binding.imageView.setOnClickListener { binding.imageView.startAnimation(animUpDown) }
+        playMusic(voiceId)
+        binding.button.isEnabled = false
+        mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true }
         return binding.root
+    }
+    fun playMusic(id: Int){
+        mediaPlayer = MediaPlayer.create(requireContext(), id)
+        mediaPlayer.start()
     }
 
 

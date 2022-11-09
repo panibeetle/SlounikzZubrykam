@@ -29,7 +29,7 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="false"
             app:lottie_rawRes="@raw/anim_cute_caterpillar"
-            app:lottie_repeatCount="2" />
+            app:lottie_repeatCount="1" />
 
         <Button
             android:id="@+id/button"
@@ -54,10 +54,10 @@
             app:layout_constraintBottom_toTopOf="@+id/button"
             app:layout_constraintDimensionRatio="3:4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.558"
+            app:layout_constraintHorizontal_bias="0.676"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.559"
+            app:layout_constraintVertical_bias="0.592"
             app:srcCompat="@drawable/zubr_happy" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

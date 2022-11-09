@@ -39,7 +39,7 @@ class GuessAdapter(var selectedWord: GuessSelectedWordPosition): RecyclerView.Ad
 
         card.setOnClickListener {
 
-            card.isSelected = true
+
             selectedWord.oSelectedWord(currentItem)
 
 

@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.SnapHelper
 import zb.club.slounikzzubrykam.R
 import zb.club.slounikzzubrykam.databinding.FragmentRepeatBinding
 import zb.club.slounikzzubrykam.dataclasses.Word
@@ -22,7 +23,7 @@ import zb.club.slounikzzubrykam.dataclasses.WordViewModel
 class RepeatFragment : Fragment(), WordRepeateInterface {
     private lateinit var viewModel: WordViewModel
 
-
+    lateinit private var mediaPlayer: MediaPlayer
     lateinit var adapter: RepeateRecyclerAdapter
     lateinit var  binding: FragmentRepeatBinding
     val args: RepeatFragmentArgs by navArgs()
@@ -45,11 +46,12 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
         adapter = RepeateRecyclerAdapter(this)
         binding.recyclerWord.adapter = adapter
         binding.progressBarInRepeate.max = 7
-
         binding.recyclerWord.layoutManager =LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
 
         getNewWordForGame(topic)
+
         viewModel.arrayWordForGame.observe(viewLifecycleOwner, Observer {
 
             adapter.setData(it)
@@ -67,15 +69,18 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
             if(isButtonVisible == false){
                 binding.button2.visibility = View.INVISIBLE
             }else{
+                binding.button2.visibility = View.VISIBLE
                 if(isMagic == true){
-                    var mediaPlayer: MediaPlayer? = MediaPlayer.create(requireContext(), R.raw.magic)
-                    mediaPlayer?.start()
+                    binding.button2.isEnabled = false
+                    playMusic(R.raw.magic)
+                    mediaPlayer.setOnCompletionListener { binding.button2.isEnabled = true }
                     isMagic=false}
-                binding.button2.visibility = View.VISIBLE}
+               }
             var a = 0
             for (i in it){
                 if(i.flagTwo){
                     a = a+1
+
                 }
             }
             score = a
@@ -85,9 +90,7 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
 
 
         binding.button2.setOnClickListener {
-            var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, R.raw.tap_2)
-            mediaPlayer?.start()
-
+            playMusic(R.raw.tap_2)
              val action = RepeatFragmentDirections.actionRepeatFragmentToGuessFragment(idWords)
             findNavController().navigate(action)
         }
@@ -104,9 +107,15 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
 
     override fun onTappedWord(tapedWord: Word) {
 
+        binding.recyclerWord.isEnabled = false
+
+        val nameVoice = tapedWord.voice
+        val voiceId = requireContext().resources.getIdentifier(nameVoice, "raw", requireContext().packageName)
+        playMusic(voiceId)
+
         arrayForChanging = viewModel.arrayWordForGame.value!!
         if(!tapedWord.flagTwo){
-
+            playMusic(R.raw.ding)
         arrayForChanging?.find { it.idWord == tapedWord.idWord }?.flagTwo = true
         viewModel.setWordForGame(arrayForChanging)
 
@@ -122,6 +131,11 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
         binding.count.text="$score/7"
         binding.progressBarInRepeate.progress = score
 
+    }
+
+    fun playMusic(id: Int){
+        mediaPlayer = MediaPlayer.create(requireContext(), id)
+        mediaPlayer.start()
     }
 
 

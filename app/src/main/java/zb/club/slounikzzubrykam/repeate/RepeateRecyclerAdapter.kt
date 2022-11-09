@@ -20,6 +20,8 @@ import zb.club.slounikzzubrykam.topic.TopicRecyclerAdapter
 class RepeateRecyclerAdapter(var tappedWord: WordRepeateInterface): RecyclerView.Adapter<RepeateRecyclerAdapter.MyHolder>() {
     private var wordList = emptyList<Word>()
 
+
+
     class MyHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     }
@@ -45,16 +47,10 @@ class RepeateRecyclerAdapter(var tappedWord: WordRepeateInterface): RecyclerView
         } else {imageViewChek.visibility = View.INVISIBLE}
 
         card.setOnClickListener {   try {
-            val nameVoice = currentItem.voice
-            val voiceId = context.resources.getIdentifier(nameVoice, "raw", context.packageName)
-            var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, voiceId)
-            mediaPlayer?.start()
-            var mediaPlayerDing: MediaPlayer? = MediaPlayer.create(context, R.raw.ding)
-            mediaPlayerDing?.start()
+
             tappedWord.onTappedWord(currentItem)
             }catch (e: IllegalAccessException) {
-            var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, R.raw.tap1)
-            mediaPlayer?.start()
+
         } }
 
 
@@ -76,6 +72,10 @@ class RepeateRecyclerAdapter(var tappedWord: WordRepeateInterface): RecyclerView
 
 
     }
+
+
+
+
 
     override fun getItemCount(): Int {
         return wordList.size

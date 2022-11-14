@@ -12,7 +12,6 @@
 
         tools:context="zb.club.slounikzzubrykam.MainActivity">
 
-
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationView"
             android:layout_width="185dp"

@@ -4,6 +4,7 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -12,8 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.PagerSnapHelper
-import androidx.recyclerview.widget.SnapHelper
 import zb.club.slounikzzubrykam.R
 import zb.club.slounikzzubrykam.databinding.FragmentRepeatBinding
 import zb.club.slounikzzubrykam.dataclasses.Word
@@ -107,11 +106,24 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
 
     override fun onTappedWord(tapedWord: Word) {
 
-        binding.recyclerWord.isEnabled = false
+
+        binding.recyclerWord.setOnTouchListener(OnTouchListener { v, event -> // I will consume all touch events,
+            // so View.onTouchEvent() will not be called.
+            true
+        })
 
         val nameVoice = tapedWord.voice
         val voiceId = requireContext().resources.getIdentifier(nameVoice, "raw", requireContext().packageName)
         playMusic(voiceId)
+        mediaPlayer.setOnCompletionListener {
+
+            binding.recyclerWord.setOnTouchListener(OnTouchListener { v, event -> // I will consume all touch events,
+                // so View.onTouchEvent() will not be called.
+                false
+            })
+
+
+        }
 
         arrayForChanging = viewModel.arrayWordForGame.value!!
         if(!tapedWord.flagTwo){
@@ -126,7 +138,9 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
         }
         idWords= idWord.toLongArray()
 
-    }}
+    }
+
+    }
     private fun updateProgressBar(){
         binding.count.text="$score/7"
         binding.progressBarInRepeate.progress = score

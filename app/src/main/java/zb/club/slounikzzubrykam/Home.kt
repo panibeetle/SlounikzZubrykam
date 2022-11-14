@@ -41,17 +41,17 @@ class Home : Fragment() {
         iviteFriend = sharedPref!!.getInt("invite", 0)
         if (iviteFriend == 1){
             voiceId = R.raw.voice_milota
-            val a = Random().nextInt(8)
+            val a = Random().nextInt(6)
             var nameDrow: String
 
 
             when(a){
                 1-> nameDrow="anim_cute_caterpillar"
                 2->nameDrow="anim_cat"
-                3->nameDrow="anim_deer"
-                5->nameDrow="anim_dog"
-                6->nameDrow="anim_dog_tail"
-                7->nameDrow="anim_rabbit"
+
+                3->nameDrow="anim_dog"
+                4->nameDrow="anim_dog_tail"
+                5->nameDrow="anim_rabbit"
                 else ->nameDrow= "anim_cute_caterpillar"
 
             }
@@ -75,7 +75,7 @@ class Home : Fragment() {
         binding.button.setOnClickListener {
              playMusic(R.raw.tap1)
 
-            findNavController()?.navigate(R.id.action_home2_to_topicFragment)
+            findNavController()?.navigate(R.id.action_home2_to_rewards)
         }
 
         binding.animationView.setOnClickListener {

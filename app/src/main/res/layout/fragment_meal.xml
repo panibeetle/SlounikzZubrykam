@@ -66,7 +66,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/imageViewHighSecond"
+                android:id="@+id/imageMealThree"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
 
@@ -89,7 +89,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/imageViewleftSecond"
+                android:id="@+id/imageMealFour"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
 
@@ -100,22 +100,22 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/textViewSecond"
+            android:id="@+id/textViewCoastMealTree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alice"
-            android:text="17"
+            android:text="51"
             android:textSize="28dp"
             app:layout_constraintEnd_toEndOf="@+id/cardViewFirstSecond"
             app:layout_constraintStart_toStartOf="@+id/cardViewFirstSecond"
             app:layout_constraintTop_toBottomOf="@+id/cardViewFirstSecond" />
 
         <TextView
-            android:id="@+id/textViewSecondSecond"
+            android:id="@+id/textViewCoastMealFor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alice"
-            android:text="34"
+            android:text="68"
             android:textSize="28dp"
             app:layout_constraintEnd_toEndOf="@+id/cardView3Second"
             app:layout_constraintStart_toStartOf="@+id/cardView3Second"
@@ -126,8 +126,8 @@
             android:layout_width="35dp"
             android:layout_height="34dp"
             android:src="@drawable/ic_baseline_paid_24"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewSecond"
-            app:layout_constraintStart_toEndOf="@+id/textViewSecond"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealTree"
+            app:layout_constraintStart_toEndOf="@+id/textViewCoastMealTree"
             app:layout_constraintTop_toBottomOf="@+id/cardViewFirstSecond" />
 
         <ImageView
@@ -135,8 +135,8 @@
             android:layout_width="35dp"
             android:layout_height="37dp"
             android:src="@drawable/ic_baseline_paid_24"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewSecondSecond"
-            app:layout_constraintStart_toEndOf="@+id/textViewSecondSecond"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealFor"
+            app:layout_constraintStart_toEndOf="@+id/textViewCoastMealFor"
             app:layout_constraintTop_toBottomOf="@+id/cardView3Second"
             app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -162,7 +162,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/imageViewHigh"
+                android:id="@+id/imageMealOne"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
 
@@ -185,7 +185,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/imageViewleft"
+                android:id="@+id/imageMealTwo"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
 
@@ -196,7 +196,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textViewCostMealOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alice"
@@ -207,7 +207,7 @@
             app:layout_constraintTop_toBottomOf="@+id/cardViewFirst" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/textViewCoastMealTwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alice"
@@ -222,8 +222,8 @@
             android:layout_width="35dp"
             android:layout_height="34dp"
             android:src="@drawable/ic_baseline_paid_24"
-            app:layout_constraintBottom_toBottomOf="@+id/textView5"
-            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewCostMealOne"
+            app:layout_constraintStart_toEndOf="@+id/textViewCostMealOne"
             app:layout_constraintTop_toBottomOf="@+id/cardViewFirst" />
 
         <ImageView
@@ -231,8 +231,8 @@
             android:layout_width="35dp"
             android:layout_height="37dp"
             android:src="@drawable/ic_baseline_paid_24"
-            app:layout_constraintBottom_toBottomOf="@+id/textView6"
-            app:layout_constraintStart_toEndOf="@+id/textView6"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealTwo"
+            app:layout_constraintStart_toEndOf="@+id/textViewCoastMealTwo"
             app:layout_constraintTop_toBottomOf="@+id/cardView3"
             app:layout_constraintVertical_bias="0.666" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -258,7 +258,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/imageViewHighThird"
+                android:id="@+id/imageMealFive"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
 
@@ -281,7 +281,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/imageViewleftThird"
+                android:id="@+id/imageMealSix"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
 
@@ -292,22 +292,22 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/textViewThird"
+            android:id="@+id/textViewCoastMealFive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alice"
-            android:text="17"
+            android:text="85"
             android:textSize="28dp"
             app:layout_constraintEnd_toEndOf="@+id/cardViewFirstThird"
             app:layout_constraintStart_toStartOf="@+id/cardViewFirstThird"
             app:layout_constraintTop_toBottomOf="@+id/cardViewFirstThird" />
 
         <TextView
-            android:id="@+id/textViewSecondThird"
+            android:id="@+id/textViewCoastMealSix"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alice"
-            android:text="34"
+            android:text="102"
             android:textSize="28dp"
             app:layout_constraintEnd_toEndOf="@+id/cardView3Third"
             app:layout_constraintStart_toStartOf="@+id/cardView3Third"
@@ -318,8 +318,8 @@
             android:layout_width="35dp"
             android:layout_height="34dp"
             android:src="@drawable/ic_baseline_paid_24"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewThird"
-            app:layout_constraintStart_toEndOf="@+id/textViewThird"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealFive"
+            app:layout_constraintStart_toEndOf="@+id/textViewCoastMealFive"
             app:layout_constraintTop_toBottomOf="@+id/cardViewFirstThird" />
 
         <ImageView
@@ -327,8 +327,8 @@
             android:layout_width="35dp"
             android:layout_height="37dp"
             android:src="@drawable/ic_baseline_paid_24"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewSecondThird"
-            app:layout_constraintStart_toEndOf="@+id/textViewSecondThird"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealSix"
+            app:layout_constraintStart_toEndOf="@+id/textViewCoastMealSix"
             app:layout_constraintTop_toBottomOf="@+id/cardView3Third"
             app:layout_constraintVertical_bias="1.0"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

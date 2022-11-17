@@ -1,22 +1,18 @@
 package zb.club.slounikzzubrykam
 
+import android.animation.Animator
 import android.content.Context
-import android.content.Context.MODE_PRIVATE
-import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import zb.club.slounikzzubrykam.databinding.ActivityMainBinding
+import androidx.navigation.fragment.navArgs
 import zb.club.slounikzzubrykam.databinding.FragmentHomeBinding
 import zb.club.slounikzzubrykam.dataclasses.Word
 import zb.club.slounikzzubrykam.dataclasses.WordViewModel
@@ -24,6 +20,7 @@ import java.util.*
 
 
 class Home : Fragment() {
+    val args: HomeArgs by navArgs()
     lateinit var  binding: FragmentHomeBinding
     private lateinit var viewModel: WordViewModel
     var iviteFriend = 0
@@ -38,33 +35,270 @@ class Home : Fragment() {
         var animUpDown = AnimationUtils.loadAnimation(requireContext(),
             R.anim.up_down)
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-        var voiceId = R.raw.voice_glad_to_see
+
         iviteFriend = sharedPref!!.getInt("invite", 0)
-        if (iviteFriend == 1){
-            voiceId = R.raw.voice_milota
-            val a = Random().nextInt(6)
-            var nameDrow: String
+        val a = args.reward.toInt()
 
 
-            when(a){
-                1-> nameDrow="anim_cute_caterpillar"
-                2->nameDrow="anim_cat"
 
-                3->nameDrow="anim_dog"
-                4->nameDrow="anim_dog_tail"
-                5->nameDrow="anim_rabbit"
-                else ->nameDrow= "anim_cute_caterpillar"
+        var nameDrow: String
+        when(a){
+            0 -> {
+                binding.button.isEnabled = false
+                playMusic(R.raw.voice_glad_to_see)
+                binding.imageView.startAnimation(animUpDown)
+                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+                binding.animationView.visibility = View.INVISIBLE
+                binding.animationMeal.visibility = View.INVISIBLE
+            }
+            1 -> {nameDrow="anim_cute_caterpillar"
+                    val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
+                    binding.animationView.setAnimation(drawableId)
+                    binding.animationView.visibility = View.VISIBLE
+                    binding.button.isEnabled = false
+                    playMusic(R.raw.voice_milota)
+                   binding.imageView.startAnimation(animUpDown)
+                    mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+
 
             }
-            val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
-             binding.animationView.setAnimation(drawableId)
+            3->{nameDrow="anim_dog_tail"
+                val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
+                binding.animationView.setAnimation(drawableId)
+                binding.animationView.visibility = View.VISIBLE
+                binding.button.isEnabled = false
+                playMusic(R.raw.voice_milota)
+                binding.imageView.startAnimation(animUpDown)
+                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}}
 
-            binding.animationView.visibility = View.VISIBLE
+            3->{nameDrow="anim_dog"
+                val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
+                binding.animationView.setAnimation(drawableId)
+                binding.animationView.visibility = View.VISIBLE
+                binding.button.isEnabled = false
+                playMusic(R.raw.voice_milota)
+                binding.imageView.startAnimation(animUpDown)
+                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+
+
+            }
+            5->{nameDrow="anim_cat"
+                val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
+                binding.animationView.setAnimation(drawableId)
+                binding.animationView.visibility = View.VISIBLE
+                binding.button.isEnabled = false
+                playMusic(R.raw.voice_milota)
+                binding.imageView.startAnimation(animUpDown)
+                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+
+
+            }
+            7->{nameDrow="anim_tiger"
+                val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
+                binding.animationView.setAnimation(drawableId)
+                binding.animationView.visibility = View.VISIBLE
+                binding.button.isEnabled = false
+                playMusic(R.raw.voice_milota)
+                binding.imageView.startAnimation(animUpDown)
+                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+            }
+            9->{nameDrow="anim_dog"
+                val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
+                binding.animationView.setAnimation(drawableId)
+                binding.animationView.visibility = View.VISIBLE
+                binding.button.isEnabled = false
+                playMusic(R.raw.voice_milota)
+                binding.imageView.startAnimation(animUpDown)
+                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+            }
+
+            11->{nameDrow="anim_owl"
+                val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
+                binding.animationView.setAnimation(drawableId)
+                binding.animationView.visibility = View.VISIBLE
+                binding.button.isEnabled = false
+                playMusic(R.raw.voice_milota)
+                binding.imageView.startAnimation(animUpDown)
+                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+            }
+
+
+
+
+
+            17->{nameDrow="anim_carrot"
+                val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
+                binding.animationMeal.setAnimation(drawableId)
+                binding.animationMeal.visibility = View.VISIBLE
+                binding.animationMeal.addAnimatorListener(object : Animator.AnimatorListener{
+                    override fun onAnimationStart(p0: Animator?) {
+                        playMusic(R.raw.sound_chewing)
+                    }
+
+                    override fun onAnimationEnd(p0: Animator?) {
+                        binding.animationMeal.visibility = View.INVISIBLE
+                    }
+
+                    override fun onAnimationCancel(p0: Animator?) {
+
+                    }
+
+                    override fun onAnimationRepeat(p0: Animator?) {
+
+                    }
+                })
+
+                binding.button.isEnabled = false
+
+                playMusic(R.raw.sound_bel_dziakuj_paczast)
+                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+            }
+            34->{nameDrow="anim_radish"
+                val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
+                binding.animationMeal.setAnimation(drawableId)
+                binding.animationMeal.visibility = View.VISIBLE
+                binding.animationMeal.addAnimatorListener(object : Animator.AnimatorListener{
+                    override fun onAnimationStart(p0: Animator?) {
+                        playMusic(R.raw.sound_chewing)
+                    }
+
+                    override fun onAnimationEnd(p0: Animator?) {
+                        binding.animationMeal.visibility = View.INVISIBLE
+                    }
+
+                    override fun onAnimationCancel(p0: Animator?) {
+
+                    }
+
+                    override fun onAnimationRepeat(p0: Animator?) {
+
+                    }
+                })
+                binding.button.isEnabled = false
+                playMusic(R.raw.sound_chewing)
+                playMusic(R.raw.sound_bel_dziakuj_paczast)
+                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+            }
+            51->{nameDrow="anim_tomato"
+                val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
+                binding.animationMeal.setAnimation(drawableId)
+                binding.animationMeal.visibility = View.VISIBLE
+                binding.animationMeal.addAnimatorListener(object : Animator.AnimatorListener{
+                    override fun onAnimationStart(p0: Animator?) {
+                        playMusic(R.raw.sound_chewing)
+                    }
+
+                    override fun onAnimationEnd(p0: Animator?) {
+                        binding.animationMeal.visibility = View.INVISIBLE
+                    }
+
+                    override fun onAnimationCancel(p0: Animator?) {
+
+                    }
+
+                    override fun onAnimationRepeat(p0: Animator?) {
+
+                    }
+                })
+                binding.button.isEnabled = false
+                playMusic(R.raw.sound_chewing)
+                playMusic(R.raw.sound_bel_dziakuj_paczast)
+                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+            }
+            68->{nameDrow="anim_avocado"
+                val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
+                binding.animationMeal.setAnimation(drawableId)
+                binding.animationMeal.visibility = View.VISIBLE
+                binding.animationMeal.addAnimatorListener(object : Animator.AnimatorListener{
+                    override fun onAnimationStart(p0: Animator?) {
+                        playMusic(R.raw.sound_chewing)
+                    }
+
+                    override fun onAnimationEnd(p0: Animator?) {
+                        binding.animationMeal.visibility = View.INVISIBLE
+                    }
+
+                    override fun onAnimationCancel(p0: Animator?) {
+
+                    }
+
+                    override fun onAnimationRepeat(p0: Animator?) {
+
+                    }
+                })
+                binding.button.isEnabled = false
+                playMusic(R.raw.sound_chewing)
+                playMusic(R.raw.sound_bel_dziakuj_paczast)
+                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+            }
+            85->{nameDrow="anim_aubergine"
+                val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
+                binding.animationMeal.setAnimation(drawableId)
+                binding.animationMeal.visibility = View.VISIBLE
+                binding.animationMeal.addAnimatorListener(object : Animator.AnimatorListener{
+                    override fun onAnimationStart(p0: Animator?) {
+                        playMusic(R.raw.sound_chewing)
+                    }
+
+                    override fun onAnimationEnd(p0: Animator?) {
+                        binding.animationMeal.visibility = View.INVISIBLE
+                    }
+
+                    override fun onAnimationCancel(p0: Animator?) {
+
+                    }
+
+                    override fun onAnimationRepeat(p0: Animator?) {
+
+                    }
+                })
+                binding.button.isEnabled = false
+                playMusic(R.raw.sound_chewing)
+                playMusic(R.raw.sound_bel_dziakuj_paczast)
+                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+            }
+            102->{nameDrow="anim_peer"
+                val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
+                binding.animationMeal.setAnimation(drawableId)
+                binding.animationMeal.visibility = View.VISIBLE
+                binding.animationMeal.addAnimatorListener(object : Animator.AnimatorListener{
+                    override fun onAnimationStart(p0: Animator?) {
+                        playMusic(R.raw.sound_chewing)
+                    }
+
+                    override fun onAnimationEnd(p0: Animator?) {
+                        binding.animationMeal.visibility = View.INVISIBLE
+                    }
+
+                    override fun onAnimationCancel(p0: Animator?) {
+
+                    }
+
+                    override fun onAnimationRepeat(p0: Animator?) {
+
+                    }
+                })
+                binding.button.isEnabled = false
+                playMusic(R.raw.sound_chewing)
+                playMusic(R.raw.sound_bel_dziakuj_paczast)
+                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+            }
+
+
+
+
+
+
+
+
+
 
         }
 
 
-        binding.imageView.startAnimation(animUpDown)
+
+
+
 
 
 
@@ -83,9 +317,7 @@ class Home : Fragment() {
             binding.animationView.repeatCount = 1
             binding.animationView.playAnimation() }
         binding.imageView.setOnClickListener { binding.imageView.startAnimation(animUpDown) }
-        playMusic(voiceId)
-        binding.button.isEnabled = false
-        mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true }
+
         val word = Word(0, 0,"слова", "pic", "vioce", false,false,false,false,"univerce", "slowa", "sl")
         viewModel.addWord(word)
         return binding.root

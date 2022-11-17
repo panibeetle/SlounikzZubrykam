@@ -62,7 +62,7 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
         })
         binding.buttonInvite.setOnClickListener {
 
-            findNavController().navigate(R.id.action_guessFragment_to_home2)
+            findNavController().navigate(R.id.action_guessFragment_to_rewards)
         }
         viewModel.getScore.observe(viewLifecycleOwner, Observer {
             binding.textViewCoinGuess.text = it.count.toString()

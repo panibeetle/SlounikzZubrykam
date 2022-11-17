@@ -14,6 +14,10 @@
         <action
             android:id="@+id/action_home2_to_topicFragment"
             app:destination="@id/topicFragment" />
+        <argument
+            android:name="reward"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/topicFragment"
@@ -48,8 +52,8 @@
             android:name="idWord"
             app:argType="long[]" />
         <action
-            android:id="@+id/action_guessFragment_to_home2"
-            app:destination="@id/home2" />
+            android:id="@+id/action_guessFragment_to_rewards"
+            app:destination="@id/rewards" />
     </fragment>
     <fragment
         android:id="@+id/wordlyFragment"
@@ -66,6 +70,9 @@
         <action
             android:id="@+id/action_rewards_to_topicFragment"
             app:destination="@id/topicFragment" />
+        <action
+            android:id="@+id/action_rewards_to_home2"
+            app:destination="@id/home2" />
     </fragment>
     <fragment
         android:id="@+id/friends"

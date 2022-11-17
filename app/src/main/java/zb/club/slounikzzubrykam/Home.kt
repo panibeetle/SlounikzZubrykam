@@ -18,6 +18,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import zb.club.slounikzzubrykam.databinding.ActivityMainBinding
 import zb.club.slounikzzubrykam.databinding.FragmentHomeBinding
+import zb.club.slounikzzubrykam.dataclasses.Word
 import zb.club.slounikzzubrykam.dataclasses.WordViewModel
 import java.util.*
 
@@ -85,6 +86,8 @@ class Home : Fragment() {
         playMusic(voiceId)
         binding.button.isEnabled = false
         mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true }
+        val word = Word(0, 0,"слова", "pic", "vioce", false,false,false,false,"univerce", "slowa", "sl")
+        viewModel.addWord(word)
         return binding.root
     }
     fun playMusic(id: Int){

@@ -7,6 +7,7 @@ import java.util.concurrent.Executors
 class WordRepository(private val daoWord: DaoWord) {
 
     val getAllTopic: LiveData<List<Topic>> = daoWord.getAllTopic()
+    val getScore: LiveData<Score> = daoWord.getScore()
 
    fun readWordInTopic(topic:String): LiveData<List<Word>>{
         return daoWord.readWordInTopic(topic)
@@ -29,6 +30,9 @@ class WordRepository(private val daoWord: DaoWord) {
         return  daoWord.getWordById(id)
     }
 
+    suspend fun updateScore(score: Score){
+        daoWord.updateScore(score)
+    }
 
 
 

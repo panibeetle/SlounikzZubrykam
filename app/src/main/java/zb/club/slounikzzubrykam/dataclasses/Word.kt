@@ -1,10 +1,12 @@
 package zb.club.slounikzzubrykam.dataclasses
 
 import android.os.Parcelable
+import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
+import org.jetbrains.annotations.NotNull
 
 @Entity(tableName = "word_table")
 @Parcelize
@@ -18,6 +20,7 @@ data class Word(
     @ColumnInfo(name = "flag_two") var flagTwo: Boolean,
     @ColumnInfo(name = " flag_three") var flafThree: Boolean,
     @ColumnInfo(name = "flag_four") val flagFour: Boolean,
-    @ColumnInfo(name = " flag_five") val flagFive: Boolean,
-    @ColumnInfo(name = "topic") val topic:String
+    @ColumnInfo(name = "topic") val topic:String,
+    @ColumnInfo(name = "word_pol") val wordPol: String,
+    @ColumnInfo(name = "voice_pol") val voicePol: String
 ):Parcelable

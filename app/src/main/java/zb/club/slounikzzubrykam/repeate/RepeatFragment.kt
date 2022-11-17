@@ -15,6 +15,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import zb.club.slounikzzubrykam.R
 import zb.club.slounikzzubrykam.databinding.FragmentRepeatBinding
+import zb.club.slounikzzubrykam.dataclasses.Score
 import zb.club.slounikzzubrykam.dataclasses.Word
 import zb.club.slounikzzubrykam.dataclasses.WordViewModel
 
@@ -50,7 +51,9 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
 
         getNewWordForGame(topic)
-
+        viewModel.getScore.observe(viewLifecycleOwner, Observer {
+            binding.textViewCoin.text = it.count.toString()
+        })
         viewModel.arrayWordForGame.observe(viewLifecycleOwner, Observer {
 
             adapter.setData(it)
@@ -107,20 +110,16 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
     override fun onTappedWord(tapedWord: Word) {
 
 
-        binding.recyclerWord.setOnTouchListener(OnTouchListener { v, event -> // I will consume all touch events,
-            // so View.onTouchEvent() will not be called.
-            true
-        })
+        binding.recyclerWord.isEnabled = false
+        binding.recyclerWord.isClickable = false
+
 
         val nameVoice = tapedWord.voice
         val voiceId = requireContext().resources.getIdentifier(nameVoice, "raw", requireContext().packageName)
         playMusic(voiceId)
         mediaPlayer.setOnCompletionListener {
-
-            binding.recyclerWord.setOnTouchListener(OnTouchListener { v, event -> // I will consume all touch events,
-                // so View.onTouchEvent() will not be called.
-                false
-            })
+            binding.recyclerWord.isEnabled = true
+            binding.recyclerWord.isClickable = true
 
 
         }
@@ -128,6 +127,10 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
         arrayForChanging = viewModel.arrayWordForGame.value!!
         if(!tapedWord.flagTwo){
             playMusic(R.raw.ding)
+            val oldScore = viewModel.getScore.value
+            val increaseScore = oldScore!!.count + 1
+            val newScore = Score(oldScore.id, increaseScore, oldScore.filling, oldScore.heart, oldScore.age)
+            viewModel.updateScore(newScore)
         arrayForChanging?.find { it.idWord == tapedWord.idWord }?.flagTwo = true
         viewModel.setWordForGame(arrayForChanging)
 

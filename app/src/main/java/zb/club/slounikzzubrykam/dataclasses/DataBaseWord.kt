@@ -1,10 +1,14 @@
 package zb.club.slounikzzubrykam.dataclasses
 
 import android.content.Context
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-@Database(entities = [Word::class, Topic::class], version = 1, exportSchema = false)
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
+
+@Database(entities = [Word::class, Topic::class, Score::class], version = 1, exportSchema = true)
 abstract class DataBaseWord: RoomDatabase() {
 
     abstract fun daoWord(): DaoWord
@@ -13,6 +17,7 @@ abstract class DataBaseWord: RoomDatabase() {
         private var INSTANCE: DataBaseWord? = null
 
         fun getDatabase(context:Context): DataBaseWord {
+
             val tempInstance = INSTANCE
             if(tempInstance != null){
                 return  tempInstance
@@ -21,8 +26,8 @@ abstract class DataBaseWord: RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     DataBaseWord::class.java,
-                    "worddatabase.db"
-                ).createFromAsset("database/worddatabase.db").build()
+                    "word_data_base.db"
+                ).createFromAsset("database/word_data_base.db").build()
                 INSTANCE = instance
                 return instance
             }

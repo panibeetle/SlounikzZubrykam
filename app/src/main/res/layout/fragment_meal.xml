@@ -9,6 +9,42 @@
     tools:context=".meal">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomReward"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/bottom_shape"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textViewRewardCoin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.407" />
+
+        <ImageView
+            android:id="@+id/imageViewReward"
+            android:layout_width="37dp"
+            android:layout_height="38dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewRewardCoin"
+            app:layout_constraintStart_toEndOf="@+id/textViewRewardCoin"
+            app:layout_constraintTop_toTopOf="@+id/textViewRewardCoin"
+            app:srcCompat="@drawable/ic_baseline_paid_24" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutSecond"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -302,9 +338,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomReward"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_add_24" />
+        app:srcCompat="@drawable/ic_round_add_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface DaoWord {
@@ -25,5 +26,12 @@ interface DaoWord {
 
     @Query("SELECT * FROM word_table WHERE idWord IN (:id)")
     suspend fun  getWordById( id:List<Long>):MutableList<Word>
+
+
+    @Query("SELECT * FROM score")
+    fun getScore():LiveData<Score>
+
+    @Update
+    suspend fun updateScore(score: Score)
 
 }

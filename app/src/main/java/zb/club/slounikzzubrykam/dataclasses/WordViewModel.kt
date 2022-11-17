@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 
 class WordViewModel(application: Application):AndroidViewModel(application) {
     val getAllTopic: LiveData<List<Topic>>
+    val getScore: LiveData<Score>
     private val  repository: WordRepository
     val returnedWord: MutableLiveData<List<Word>> = MutableLiveData()
 
@@ -17,6 +18,7 @@ class WordViewModel(application: Application):AndroidViewModel(application) {
        val wordDao = DataBaseWord.getDatabase(application).daoWord()
        repository = WordRepository(wordDao)
        getAllTopic = repository.getAllTopic
+       getScore = repository.getScore
    }
      fun  readWordInTopic(topic:String): LiveData<List<Word>>{
         return repository.readWordInTopic(topic)
@@ -67,12 +69,28 @@ class WordViewModel(application: Application):AndroidViewModel(application) {
         _arrayWordForGuess.value  = arrayWord
     }
 
+    private val _arrayWordForGuessPlay = MutableLiveData<MutableList<Word>>()
+    val arrayWordForGuessPlay: LiveData<MutableList<Word>> get() = _arrayWordForGuessPlay
+
+
+    fun setWordForGuessPlay(arrayWord: MutableList<Word>) {
+        _arrayWordForGuessPlay.value  = arrayWord
+    }
+
     fun getGuessWordSuspend(id:List<Long>){
         var list:MutableList<Word>
         viewModelScope.launch(Dispatchers.IO) {
             list = repository.getWordById(id)
             _arrayWordForGuess.postValue(list)
+            _arrayWordForGuessPlay.postValue(list)
 
+        }
+    }
+
+
+    fun updateScore(score: Score){
+        viewModelScope.launch {
+            repository.updateScore(score)
         }
     }
 

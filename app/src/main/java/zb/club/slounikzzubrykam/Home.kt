@@ -137,6 +137,7 @@ class Home : Fragment() {
 
                     override fun onAnimationEnd(p0: Animator?) {
                         binding.animationMeal.visibility = View.INVISIBLE
+                        playMusic(R.raw.sound_bel_dziakuj_paczast)
                     }
 
                     override fun onAnimationCancel(p0: Animator?) {
@@ -150,20 +151,22 @@ class Home : Fragment() {
 
                 binding.button.isEnabled = false
 
-                playMusic(R.raw.sound_bel_dziakuj_paczast)
+
                 mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
             }
-            34->{nameDrow="anim_radish"
+            25->{nameDrow="anim_radish"
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationMeal.setAnimation(drawableId)
                 binding.animationMeal.visibility = View.VISIBLE
                 binding.animationMeal.addAnimatorListener(object : Animator.AnimatorListener{
                     override fun onAnimationStart(p0: Animator?) {
                         playMusic(R.raw.sound_chewing)
+
                     }
 
                     override fun onAnimationEnd(p0: Animator?) {
                         binding.animationMeal.visibility = View.INVISIBLE
+                        playMusic(R.raw.sound_bel_dziakuj_paczast)
                     }
 
                     override fun onAnimationCancel(p0: Animator?) {
@@ -176,10 +179,10 @@ class Home : Fragment() {
                 })
                 binding.button.isEnabled = false
                 playMusic(R.raw.sound_chewing)
-                playMusic(R.raw.sound_bel_dziakuj_paczast)
+
                 mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
             }
-            51->{nameDrow="anim_tomato"
+            30->{nameDrow="anim_tomato"
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationMeal.setAnimation(drawableId)
                 binding.animationMeal.visibility = View.VISIBLE
@@ -190,6 +193,7 @@ class Home : Fragment() {
 
                     override fun onAnimationEnd(p0: Animator?) {
                         binding.animationMeal.visibility = View.INVISIBLE
+                        playMusic(R.raw.sound_bel_dziakuj_paczast)
                     }
 
                     override fun onAnimationCancel(p0: Animator?) {
@@ -202,10 +206,10 @@ class Home : Fragment() {
                 })
                 binding.button.isEnabled = false
                 playMusic(R.raw.sound_chewing)
-                playMusic(R.raw.sound_bel_dziakuj_paczast)
+
                 mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
             }
-            68->{nameDrow="anim_avocado"
+            35->{nameDrow="anim_avocado"
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationMeal.setAnimation(drawableId)
                 binding.animationMeal.visibility = View.VISIBLE
@@ -216,6 +220,7 @@ class Home : Fragment() {
 
                     override fun onAnimationEnd(p0: Animator?) {
                         binding.animationMeal.visibility = View.INVISIBLE
+                        playMusic(R.raw.sound_bel_dziakuj_paczast)
                     }
 
                     override fun onAnimationCancel(p0: Animator?) {
@@ -228,10 +233,10 @@ class Home : Fragment() {
                 })
                 binding.button.isEnabled = false
                 playMusic(R.raw.sound_chewing)
-                playMusic(R.raw.sound_bel_dziakuj_paczast)
+
                 mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
             }
-            85->{nameDrow="anim_aubergine"
+            40->{nameDrow="anim_aubergine"
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationMeal.setAnimation(drawableId)
                 binding.animationMeal.visibility = View.VISIBLE
@@ -242,6 +247,7 @@ class Home : Fragment() {
 
                     override fun onAnimationEnd(p0: Animator?) {
                         binding.animationMeal.visibility = View.INVISIBLE
+                        playMusic(R.raw.sound_bel_dziakuj_paczast)
                     }
 
                     override fun onAnimationCancel(p0: Animator?) {
@@ -254,10 +260,10 @@ class Home : Fragment() {
                 })
                 binding.button.isEnabled = false
                 playMusic(R.raw.sound_chewing)
-                playMusic(R.raw.sound_bel_dziakuj_paczast)
+
                 mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
             }
-            102->{nameDrow="anim_peer"
+            45->{nameDrow="anim_peer"
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationMeal.setAnimation(drawableId)
                 binding.animationMeal.visibility = View.VISIBLE
@@ -268,6 +274,7 @@ class Home : Fragment() {
 
                     override fun onAnimationEnd(p0: Animator?) {
                         binding.animationMeal.visibility = View.INVISIBLE
+                        playMusic(R.raw.sound_bel_dziakuj_paczast)
                     }
 
                     override fun onAnimationCancel(p0: Animator?) {
@@ -280,7 +287,7 @@ class Home : Fragment() {
                 })
                 binding.button.isEnabled = false
                 playMusic(R.raw.sound_chewing)
-                playMusic(R.raw.sound_bel_dziakuj_paczast)
+
                 mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
             }
 

@@ -72,7 +72,7 @@ class Meal : Fragment() {
                 binding.imageMealThree.isClickable = true
                 binding.imageMealThree.setOnClickListener {
                     val oldScore = viewModel.getScore.value
-                    val increaseScore = oldScore!!.count - binding.textViewCoastMealTree.toString().toInt()
+                    val increaseScore = oldScore!!.count - binding.textViewCoastMealTree.text.trim().toString().toInt()
                     val newScore = Score(oldScore.id, increaseScore, oldScore.filling, oldScore.heart, oldScore.age)
                     viewModel.updateScore(newScore)
                     val navigateHome = RewardsDirections.actionRewardsToHome2(binding.textViewCoastMealTree.text.toString().toInt())

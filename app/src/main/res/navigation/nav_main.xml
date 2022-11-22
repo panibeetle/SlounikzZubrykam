@@ -26,6 +26,9 @@
             app:popUpTo="@id/topicFragment">
 
         </action>
+        <action
+            android:id="@+id/action_topicFragment_to_rewards"
+            app:destination="@id/rewards" />
 
     </fragment>
     <fragment
@@ -39,6 +42,9 @@
         <argument
             android:name="topic"
             app:argType="string" />
+        <action
+            android:id="@+id/action_repeatFragment_to_rewards"
+            app:destination="@id/rewards" />
     </fragment>
     <fragment
         android:id="@+id/guessFragment"

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,6 +21,7 @@ import zb.club.slounikzzubrykam.dataclasses.Score
 import zb.club.slounikzzubrykam.dataclasses.Word
 import zb.club.slounikzzubrykam.dataclasses.WordViewModel
 import zb.club.slounikzzubrykam.repeate.RepeateRecyclerAdapter
+import zb.club.slounikzzubrykam.reward.RewardsDirections
 
 
 class GuessFragment : Fragment(), GuessSelectedWordPosition {
@@ -67,7 +69,13 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
         viewModel.getScore.observe(viewLifecycleOwner, Observer {
             binding.textViewCoinGuess.text = it.count.toString()
         })
-
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val navigateHome = GuessFragmentDirections.actionGuessFragmentToRewards(0)
+                findNavController().navigate(navigateHome)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), onBackPressedCallback)
         return binding.root
     }
 

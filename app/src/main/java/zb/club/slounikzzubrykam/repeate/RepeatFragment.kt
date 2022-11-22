@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnTouchListener
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -18,6 +19,7 @@ import zb.club.slounikzzubrykam.databinding.FragmentRepeatBinding
 import zb.club.slounikzzubrykam.dataclasses.Score
 import zb.club.slounikzzubrykam.dataclasses.Word
 import zb.club.slounikzzubrykam.dataclasses.WordViewModel
+import zb.club.slounikzzubrykam.reward.RewardsDirections
 
 
 class RepeatFragment : Fragment(), WordRepeateInterface {
@@ -52,7 +54,7 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
 
         getNewWordForGame(topic)
         viewModel.arrayWordForGame.observe(viewLifecycleOwner, Observer {
-            if(it.size == 7){adapter.setData(it)
+            adapter.setData(it)
                 var isButtonVisible: Boolean = false
                 for (i in it){
 
@@ -82,7 +84,7 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
                     }
                 }
                 score = a
-                updateProgressBar()}
+                updateProgressBar()
 
 
         })
@@ -93,6 +95,14 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
              val action = RepeatFragmentDirections.actionRepeatFragmentToGuessFragment(idWords)
             findNavController().navigate(action)
         }
+
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val navigateHome = RepeatFragmentDirections.actionRepeatFragmentToRewards(0)
+                findNavController().navigate(navigateHome)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), onBackPressedCallback)
         return binding.root
     }
 

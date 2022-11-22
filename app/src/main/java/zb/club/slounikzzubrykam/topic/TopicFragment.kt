@@ -5,14 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import zb.club.slounikzzubrykam.R
 import zb.club.slounikzzubrykam.databinding.FragmentTopicBinding
 import zb.club.slounikzzubrykam.dataclasses.WordViewModel
+import zb.club.slounikzzubrykam.reward.RewardsDirections
 
 
 class TopicFragment : Fragment() {
@@ -37,7 +40,13 @@ class TopicFragment : Fragment() {
                 topic -> adapter.setData(topic)
 
         })
-
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val navigateHome = TopicFragmentDirections.actionTopicFragmentToRewards(0)
+                findNavController().navigate(navigateHome)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), onBackPressedCallback)
 
         return binding.root
 

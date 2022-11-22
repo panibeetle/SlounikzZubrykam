@@ -60,7 +60,7 @@ class Rewards : Fragment() {
                 findNavController().navigate(navigateHome)
             }
         }
-        requireActivity().getOnBackPressedDispatcher().addCallback(requireActivity(), onBackPressedCallback)
+        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), onBackPressedCallback)
 
 
         return binding.root

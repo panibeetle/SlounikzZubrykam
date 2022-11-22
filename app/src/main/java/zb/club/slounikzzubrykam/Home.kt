@@ -9,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.activity.OnBackPressedCallback
 import androidx.core.animation.doOnEnd
+import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -407,7 +409,12 @@ class Home : Fragment() {
         binding.animationView.startAnimation(animUpDown)}
         binding.imageView.setOnClickListener { binding.imageView.startAnimation(animUpDown) }
 
-
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                finishAffinity(requireActivity())
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), onBackPressedCallback)
         return binding.root
     }
     fun playMusic(id: Int){

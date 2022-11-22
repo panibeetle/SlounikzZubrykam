@@ -11,9 +11,6 @@
         <action
             android:id="@+id/action_home2_to_rewards"
             app:destination="@id/rewards" />
-        <action
-            android:id="@+id/action_home2_to_topicFragment"
-            app:destination="@id/topicFragment" />
         <argument
             android:name="reward"
             app:argType="integer"
@@ -25,7 +22,8 @@
         android:label="TopicFragment" >
         <action
             android:id="@+id/action_topicFragment_to_repeatFragment"
-            app:destination="@id/repeatFragment">
+            app:destination="@id/repeatFragment"
+            app:popUpTo="@id/topicFragment">
 
         </action>
 
@@ -36,7 +34,8 @@
         android:label="RepeatFragment" >
         <action
             android:id="@+id/action_repeatFragment_to_guessFragment"
-            app:destination="@id/guessFragment" />
+            app:destination="@id/guessFragment"
+            app:popUpTo="@id/topicFragment" />
         <argument
             android:name="topic"
             app:argType="string" />
@@ -53,7 +52,8 @@
             app:argType="long[]" />
         <action
             android:id="@+id/action_guessFragment_to_rewards"
-            app:destination="@id/rewards" />
+            app:destination="@id/rewards"
+            app:popUpTo="@id/home2" />
     </fragment>
     <fragment
         android:id="@+id/wordlyFragment"
@@ -72,7 +72,13 @@
             app:destination="@id/topicFragment" />
         <action
             android:id="@+id/action_rewards_to_home2"
-            app:destination="@id/home2" />
+            app:destination="@id/home2"
+            app:popUpTo="@id/home2"
+            app:popUpToInclusive="false" />
+        <argument
+            android:name="choose"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/friends"

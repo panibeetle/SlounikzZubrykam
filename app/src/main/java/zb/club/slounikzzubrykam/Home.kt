@@ -1,6 +1,7 @@
 package zb.club.slounikzzubrykam
 
 import android.animation.Animator
+import android.animation.ValueAnimator
 import android.content.Context
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -8,14 +9,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.core.animation.doOnEnd
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import zb.club.slounikzzubrykam.databinding.FragmentHomeBinding
+import zb.club.slounikzzubrykam.dataclasses.Score
 import zb.club.slounikzzubrykam.dataclasses.Word
 import zb.club.slounikzzubrykam.dataclasses.WordViewModel
+import zb.club.slounikzzubrykam.guess.GuessFragmentDirections
 import java.util.*
 
 
@@ -23,7 +27,8 @@ class Home : Fragment() {
     val args: HomeArgs by navArgs()
     lateinit var  binding: FragmentHomeBinding
     private lateinit var viewModel: WordViewModel
-    var iviteFriend = 0
+
+
     private lateinit var mediaPlayer: MediaPlayer
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,18 +41,58 @@ class Home : Fragment() {
             R.anim.up_down)
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
 
-        iviteFriend = sharedPref!!.getInt("invite", 0)
+
+        with (sharedPref!!.edit()) {
+            putInt("fill", 0)
+            apply()
+        }
         val a = args.reward.toInt()
+        binding.imageViewHearHome.visibility=View.INVISIBLE
+        viewModel.getScore.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+
+            binding.countHome.text="${it.filling}/3"
+            binding.progressBarInHome.progress = it.filling
+            var fill  = sharedPref!!.getInt("fill", 0)
+
+            if(it.filling.equals(3)  and fill.equals(0) ){
+
+                with (sharedPref!!.edit()) {
+                    putInt("fill", 1)
+                    apply()
+                }
+
+            val newScore = Score(it.id, it.count, 0, it.heart+1, it.age)
+            viewModel.updateScore(newScore)
+            playMusic(R.raw.magic)
+                binding.imageViewHearHome.visibility = View.VISIBLE
+                val anim = ValueAnimator.ofFloat(1f, 3f)
+                anim.duration = 2000
+                anim.addUpdateListener { animation ->
+                    binding.imageViewHearHome.setScaleX(animation.animatedValue as Float)
+                    binding.imageViewHearHome.setScaleY(animation.animatedValue as Float)
+                }
+                anim.start()
+
+                anim.doOnEnd { binding.imageViewHearHome.visibility = View.INVISIBLE
+                    val action = HomeDirections.actionHome2ToRewards(1)
+                    findNavController().navigate(action)
+
+                }
 
 
+            }
+
+
+        })
 
         var nameDrow: String
         when(a){
             0 -> {
                 binding.button.isEnabled = false
                 playMusic(R.raw.voice_glad_to_see)
-                binding.imageView.startAnimation(animUpDown)
-                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+
+                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true
+                    binding.imageView.startAnimation(animUpDown)}
                 binding.animationView.visibility = View.INVISIBLE
                 binding.animationMeal.visibility = View.INVISIBLE
             }
@@ -58,75 +103,69 @@ class Home : Fragment() {
                     binding.button.isEnabled = false
                     playMusic(R.raw.voice_milota)
                    binding.imageView.startAnimation(animUpDown)
-                    mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+
 
 
             }
-            3->{nameDrow="anim_dog_tail"
+            2->{nameDrow="anim_dog"
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationView.setAnimation(drawableId)
                 binding.animationView.visibility = View.VISIBLE
                 binding.button.isEnabled = false
                 playMusic(R.raw.voice_milota)
                 binding.imageView.startAnimation(animUpDown)
-                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}}
+               }
 
-            3->{nameDrow="anim_dog"
+
+
+
+
+            3->{nameDrow="anim_cat"
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationView.setAnimation(drawableId)
                 binding.animationView.visibility = View.VISIBLE
                 binding.button.isEnabled = false
                 playMusic(R.raw.voice_milota)
                 binding.imageView.startAnimation(animUpDown)
-                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+
 
 
             }
-            5->{nameDrow="anim_cat"
+            4->{nameDrow="anim_tiger"
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationView.setAnimation(drawableId)
                 binding.animationView.visibility = View.VISIBLE
                 binding.button.isEnabled = false
                 playMusic(R.raw.voice_milota)
                 binding.imageView.startAnimation(animUpDown)
-                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
-
 
             }
-            7->{nameDrow="anim_tiger"
+           5->{nameDrow="anim_dog_tail"
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationView.setAnimation(drawableId)
                 binding.animationView.visibility = View.VISIBLE
                 binding.button.isEnabled = false
                 playMusic(R.raw.voice_milota)
                 binding.imageView.startAnimation(animUpDown)
-                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+
             }
-            9->{nameDrow="anim_dog"
+
+            6->{nameDrow="anim_owl"
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationView.setAnimation(drawableId)
                 binding.animationView.visibility = View.VISIBLE
                 binding.button.isEnabled = false
                 playMusic(R.raw.voice_milota)
                 binding.imageView.startAnimation(animUpDown)
-                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
-            }
 
-            11->{nameDrow="anim_owl"
-                val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
-                binding.animationView.setAnimation(drawableId)
-                binding.animationView.visibility = View.VISIBLE
-                binding.button.isEnabled = false
-                playMusic(R.raw.voice_milota)
-                binding.imageView.startAnimation(animUpDown)
-                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
             }
 
 
 
 
 
-            17->{nameDrow="anim_carrot"
+            7->{nameDrow="anim_carrot"
+
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationMeal.setAnimation(drawableId)
                 binding.animationMeal.visibility = View.VISIBLE
@@ -138,6 +177,13 @@ class Home : Fragment() {
                     override fun onAnimationEnd(p0: Animator?) {
                         binding.animationMeal.visibility = View.INVISIBLE
                         playMusic(R.raw.sound_bel_dziakuj_paczast)
+                        val oldScore = viewModel.getScore.value
+                        if(oldScore!!.filling <3){
+                            playMusic(R.raw.woosh)
+                            val oldScore = viewModel.getScore.value
+                            var increaseScore = oldScore!!.filling + 1
+                            val newScore = Score(oldScore!!.id, oldScore.count, increaseScore, oldScore.heart, oldScore.age)
+                            viewModel.updateScore(newScore)}
                     }
 
                     override fun onAnimationCancel(p0: Animator?) {
@@ -152,9 +198,12 @@ class Home : Fragment() {
                 binding.button.isEnabled = false
 
 
-                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+
+
+
             }
-            25->{nameDrow="anim_radish"
+            9->{
+                nameDrow="anim_radish"
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationMeal.setAnimation(drawableId)
                 binding.animationMeal.visibility = View.VISIBLE
@@ -167,33 +216,13 @@ class Home : Fragment() {
                     override fun onAnimationEnd(p0: Animator?) {
                         binding.animationMeal.visibility = View.INVISIBLE
                         playMusic(R.raw.sound_bel_dziakuj_paczast)
-                    }
+                        val oldScore = viewModel.getScore.value
+                        if(oldScore!!.filling <3){
+                            playMusic(R.raw.woosh)
 
-                    override fun onAnimationCancel(p0: Animator?) {
-
-                    }
-
-                    override fun onAnimationRepeat(p0: Animator?) {
-
-                    }
-                })
-                binding.button.isEnabled = false
-                playMusic(R.raw.sound_chewing)
-
-                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
-            }
-            30->{nameDrow="anim_tomato"
-                val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
-                binding.animationMeal.setAnimation(drawableId)
-                binding.animationMeal.visibility = View.VISIBLE
-                binding.animationMeal.addAnimatorListener(object : Animator.AnimatorListener{
-                    override fun onAnimationStart(p0: Animator?) {
-                        playMusic(R.raw.sound_chewing)
-                    }
-
-                    override fun onAnimationEnd(p0: Animator?) {
-                        binding.animationMeal.visibility = View.INVISIBLE
-                        playMusic(R.raw.sound_bel_dziakuj_paczast)
+                            var increaseScore = oldScore!!.filling + 1
+                            val newScore = Score(oldScore!!.id, oldScore.count, increaseScore, oldScore.heart, oldScore.age)
+                            viewModel.updateScore(newScore)}
                     }
 
                     override fun onAnimationCancel(p0: Animator?) {
@@ -207,9 +236,8 @@ class Home : Fragment() {
                 binding.button.isEnabled = false
                 playMusic(R.raw.sound_chewing)
 
-                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
             }
-            35->{nameDrow="anim_avocado"
+            11->{nameDrow="anim_tomato"
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationMeal.setAnimation(drawableId)
                 binding.animationMeal.visibility = View.VISIBLE
@@ -221,6 +249,13 @@ class Home : Fragment() {
                     override fun onAnimationEnd(p0: Animator?) {
                         binding.animationMeal.visibility = View.INVISIBLE
                         playMusic(R.raw.sound_bel_dziakuj_paczast)
+                        val oldScore = viewModel.getScore.value
+                        if(oldScore!!.filling <3){
+                            playMusic(R.raw.woosh)
+
+                            var increaseScore = oldScore!!.filling + 1
+                            val newScore = Score(oldScore!!.id, oldScore.count, increaseScore, oldScore.heart, oldScore.age)
+                            viewModel.updateScore(newScore)}
                     }
 
                     override fun onAnimationCancel(p0: Animator?) {
@@ -234,9 +269,9 @@ class Home : Fragment() {
                 binding.button.isEnabled = false
                 playMusic(R.raw.sound_chewing)
 
-                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+
             }
-            40->{nameDrow="anim_aubergine"
+            13->{nameDrow="anim_avocado"
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationMeal.setAnimation(drawableId)
                 binding.animationMeal.visibility = View.VISIBLE
@@ -248,6 +283,13 @@ class Home : Fragment() {
                     override fun onAnimationEnd(p0: Animator?) {
                         binding.animationMeal.visibility = View.INVISIBLE
                         playMusic(R.raw.sound_bel_dziakuj_paczast)
+                        val oldScore = viewModel.getScore.value
+                        if(oldScore!!.filling <3){
+                            playMusic(R.raw.woosh)
+
+                            var increaseScore = oldScore!!.filling + 1
+                            val newScore = Score(oldScore!!.id, oldScore.count, increaseScore, oldScore.heart, oldScore.age)
+                            viewModel.updateScore(newScore)}
                     }
 
                     override fun onAnimationCancel(p0: Animator?) {
@@ -261,9 +303,9 @@ class Home : Fragment() {
                 binding.button.isEnabled = false
                 playMusic(R.raw.sound_chewing)
 
-                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+
             }
-            45->{nameDrow="anim_peer"
+            15->{nameDrow="anim_aubergine"
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationMeal.setAnimation(drawableId)
                 binding.animationMeal.visibility = View.VISIBLE
@@ -275,6 +317,13 @@ class Home : Fragment() {
                     override fun onAnimationEnd(p0: Animator?) {
                         binding.animationMeal.visibility = View.INVISIBLE
                         playMusic(R.raw.sound_bel_dziakuj_paczast)
+                        val oldScore = viewModel.getScore.value
+                        if(oldScore!!.filling <3){
+                            playMusic(R.raw.woosh)
+
+                            var increaseScore = oldScore!!.filling + 1
+                            val newScore = Score(oldScore!!.id, oldScore.count, increaseScore, oldScore.heart, oldScore.age)
+                            viewModel.updateScore(newScore)}
                     }
 
                     override fun onAnimationCancel(p0: Animator?) {
@@ -288,7 +337,41 @@ class Home : Fragment() {
                 binding.button.isEnabled = false
                 playMusic(R.raw.sound_chewing)
 
-                mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
+
+            }
+            17->{nameDrow="anim_peer"
+                val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
+                binding.animationMeal.setAnimation(drawableId)
+                binding.animationMeal.visibility = View.VISIBLE
+                binding.animationMeal.addAnimatorListener(object : Animator.AnimatorListener{
+                    override fun onAnimationStart(p0: Animator?) {
+                        playMusic(R.raw.sound_chewing)
+                    }
+
+                    override fun onAnimationEnd(p0: Animator?) {
+                        binding.animationMeal.visibility = View.INVISIBLE
+                        playMusic(R.raw.sound_bel_dziakuj_paczast)
+                        val oldScore = viewModel.getScore.value
+                        if(oldScore!!.filling <3){
+                            playMusic(R.raw.woosh)
+
+                            var increaseScore = oldScore!!.filling + 1
+                            val newScore = Score(oldScore!!.id, oldScore.count, increaseScore, oldScore.heart, oldScore.age)
+                            viewModel.updateScore(newScore)}
+                    }
+
+                    override fun onAnimationCancel(p0: Animator?) {
+
+                    }
+
+                    override fun onAnimationRepeat(p0: Animator?) {
+
+                    }
+                })
+                binding.button.isEnabled = false
+                playMusic(R.raw.sound_chewing)
+
+
             }
 
 
@@ -309,29 +392,28 @@ class Home : Fragment() {
 
 
 
-        with (sharedPref!!.edit()) {
-            putInt("invite", 0)
-            apply()
-        }
+
 
         binding.button.setOnClickListener {
              playMusic(R.raw.tap1)
 
-            findNavController()?.navigate(R.id.action_home2_to_rewards)
+            val action = HomeDirections.actionHome2ToRewards(0)
+            findNavController().navigate(action)
         }
 
         binding.animationView.setOnClickListener {
             binding.animationView.repeatCount = 1
-            binding.animationView.playAnimation() }
+            binding.animationView.playAnimation()
+        binding.animationView.startAnimation(animUpDown)}
         binding.imageView.setOnClickListener { binding.imageView.startAnimation(animUpDown) }
 
-        val word = Word(0, 0,"слова", "pic", "vioce", false,false,false,false,"univerce", "slowa", "sl")
-        viewModel.addWord(word)
+
         return binding.root
     }
     fun playMusic(id: Int){
         mediaPlayer = MediaPlayer.create(requireContext(), id)
         mediaPlayer.start()
+        mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true}
     }
 
 

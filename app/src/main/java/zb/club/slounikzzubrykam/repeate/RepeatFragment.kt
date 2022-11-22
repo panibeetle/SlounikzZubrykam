@@ -51,42 +51,39 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
 
         getNewWordForGame(topic)
-        viewModel.getScore.observe(viewLifecycleOwner, Observer {
-            binding.textViewCoin.text = it.count.toString()
-        })
         viewModel.arrayWordForGame.observe(viewLifecycleOwner, Observer {
+            if(it.size == 7){adapter.setData(it)
+                var isButtonVisible: Boolean = false
+                for (i in it){
 
-            adapter.setData(it)
-            var isButtonVisible: Boolean = false
-            for (i in it){
+                    if(i.flagTwo == false){
 
-                if(i.flagTwo == false){
-
-                    isButtonVisible = false
-                    break
-                }
-                isButtonVisible = true
-
-            }
-            if(isButtonVisible == false){
-                binding.button2.visibility = View.INVISIBLE
-            }else{
-                binding.button2.visibility = View.VISIBLE
-                if(isMagic == true){
-                    binding.button2.isEnabled = false
-                    playMusic(R.raw.magic)
-                    mediaPlayer.setOnCompletionListener { binding.button2.isEnabled = true }
-                    isMagic=false}
-               }
-            var a = 0
-            for (i in it){
-                if(i.flagTwo){
-                    a = a+1
+                        isButtonVisible = false
+                        break
+                    }
+                    isButtonVisible = true
 
                 }
-            }
-            score = a
-            updateProgressBar()
+                if(isButtonVisible == false){
+                    binding.button2.visibility = View.INVISIBLE
+                }else{
+                    binding.button2.visibility = View.VISIBLE
+                    if(isMagic == true){
+                        binding.button2.isEnabled = false
+                        playMusic(R.raw.magic)
+                        mediaPlayer.setOnCompletionListener { binding.button2.isEnabled = true }
+                        isMagic=false}
+                }
+                var a = 0
+                for (i in it){
+                    if(i.flagTwo){
+                        a = a+1
+
+                    }
+                }
+                score = a
+                updateProgressBar()}
+
 
         })
 
@@ -102,8 +99,8 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
     private fun getNewWordForGame(topic: String) {
         if(viewModel.sizeWordForGame.value!! == 0){
         viewModel.getSevenWordSuspend(topic, 1)
-        if (viewModel.sizeWordForGame.value!! < 7){
-            viewModel.getSevenWordSuspend(topic, 2)
+            if (viewModel.sizeWordForGame.value!! < 7){
+                viewModel.getSevenWordSuspend(topic, 2)
         }}
     }
 
@@ -127,10 +124,6 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
         arrayForChanging = viewModel.arrayWordForGame.value!!
         if(!tapedWord.flagTwo){
             playMusic(R.raw.ding)
-            val oldScore = viewModel.getScore.value
-            val increaseScore = oldScore!!.count + 1
-            val newScore = Score(oldScore.id, increaseScore, oldScore.filling, oldScore.heart, oldScore.age)
-            viewModel.updateScore(newScore)
         arrayForChanging?.find { it.idWord == tapedWord.idWord }?.flagTwo = true
         viewModel.setWordForGame(arrayForChanging)
 

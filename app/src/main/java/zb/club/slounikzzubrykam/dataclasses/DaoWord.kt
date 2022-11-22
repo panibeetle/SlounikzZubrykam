@@ -8,13 +8,16 @@ import androidx.room.Update
 
 @Dao
 interface DaoWord {
+    @Query("SELECT * FROM word_table")
+    fun  readWords():LiveData<List<Word>>
+
     @Query("SELECT * FROM word_table WHERE topic =:topic")
     fun  readWordInTopic( topic: String):LiveData<List<Word>>
 
-    @Query("SELECT * FROM word_table WHERE topic =:topic AND flag_one = 0 ORDER BY random() LIMIT 7")
+    @Query("SELECT * FROM word_table WHERE topic =:topic AND flag_one < 0 ORDER BY random() LIMIT 7")
     fun  getSevenRandomWords( topic: String):LiveData<List<Word>>
 
-    @Query("SELECT * FROM topic_table")
+    @Query("SELECT * FROM topic_table ")
     fun  getAllTopic():LiveData<List<Topic>>
 
     @Insert
@@ -33,5 +36,12 @@ interface DaoWord {
 
     @Update
     suspend fun updateScore(score: Score)
+
+    @Update
+    suspend fun updateTopic(topic: Topic)
+
+
+    @Update
+    suspend fun updateWords(words: List<Word>): Int
 
 }

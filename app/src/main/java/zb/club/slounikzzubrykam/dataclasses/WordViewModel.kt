@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 
 class WordViewModel(application: Application):AndroidViewModel(application) {
     val getAllTopic: LiveData<List<Topic>>
+    val getAllWords: LiveData<List<Word>>
     val getScore: LiveData<Score>
     private val  repository: WordRepository
     val returnedWord: MutableLiveData<List<Word>> = MutableLiveData()
@@ -18,6 +19,7 @@ class WordViewModel(application: Application):AndroidViewModel(application) {
        val wordDao = DataBaseWord.getDatabase(application).daoWord()
        repository = WordRepository(wordDao)
        getAllTopic = repository.getAllTopic
+       getAllWords = repository.getAllWords
        getScore = repository.getScore
    }
      fun  readWordInTopic(topic:String): LiveData<List<Word>>{
@@ -93,7 +95,17 @@ class WordViewModel(application: Application):AndroidViewModel(application) {
             repository.updateScore(score)
         }
     }
+    fun updateWords(word:List<Word>){
+        viewModelScope.launch {
+            repository.udateWords(word )
+        }
+    }
 
+    fun updateTopic(topic: Topic){
+        viewModelScope.launch {
+            repository.updateTopic(topic )
+        }
+    }
 
 
 

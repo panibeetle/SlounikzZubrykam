@@ -26,8 +26,8 @@ abstract class DataBaseWord: RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     DataBaseWord::class.java,
-                    "word_data_base.db"
-                ).createFromAsset("database/word_data_base.db").build()
+                    "word.db"
+                ).createFromAsset("database/word.db").build()
                 INSTANCE = instance
                 return instance
             }

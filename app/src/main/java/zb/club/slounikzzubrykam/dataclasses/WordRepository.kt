@@ -8,7 +8,7 @@ class WordRepository(private val daoWord: DaoWord) {
 
     val getAllTopic: LiveData<List<Topic>> = daoWord.getAllTopic()
     val getScore: LiveData<Score> = daoWord.getScore()
-
+    val getAllWords: LiveData<List<Word>> = daoWord.readWords()
    fun readWordInTopic(topic:String): LiveData<List<Word>>{
         return daoWord.readWordInTopic(topic)
 
@@ -33,6 +33,10 @@ class WordRepository(private val daoWord: DaoWord) {
     suspend fun updateScore(score: Score){
         daoWord.updateScore(score)
     }
+    suspend fun udateWords(words:List<Word>){
+        daoWord.updateWords(words)
+    }
+    suspend fun updateTopic(topic: Topic){daoWord.updateTopic(topic)}
 
 
 

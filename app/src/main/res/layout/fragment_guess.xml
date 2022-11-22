@@ -15,12 +15,12 @@
         <ProgressBar
             android:id="@+id/progressBarInGuess"
             style="@style/CircularDeterminateProgressBar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:max="7"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:progress="60" />
 
@@ -29,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alice"
+            android:textSize="25dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/progressBarInGuess"
             app:layout_constraintEnd_toEndOf="@+id/progressBarInGuess"
@@ -40,11 +41,12 @@
             android:id="@+id/recyclerGuess"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toTopOf="@+id/buttonGuessWord"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewCoinGuess" />
+            app:layout_constraintTop_toBottomOf="@+id/progressBarInGuess" />
 
 
 
@@ -66,11 +68,12 @@
             android:id="@+id/buttonInvite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/shape_butons"
-            android:text="&quot;ЗАПРАСІЦЬ ДА ЗУБРЫКА СЯБРА!&quot;"
-            android:visibility="invisible"
             android:fontFamily="@font/alice"
+            android:text="Перайсці да ўзнагароды!"
+            android:textSize="20sp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
@@ -84,6 +87,7 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/shape_butons"
             android:fontFamily="@font/alice"
+            android:textSize="20sp"
             app:icon="@drawable/ic_baseline_volume_up_wight"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -93,20 +97,19 @@
             android:id="@+id/textViewCoinGuess"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="0"
             android:textSize="40dp"
-            app:layout_constraintEnd_toStartOf="@+id/progressBarInGuess"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/progressBarInGuess"
+            app:layout_constraintEnd_toStartOf="@+id/imageView3"
+            app:layout_constraintTop_toTopOf="@+id/progressBarInGuess" />
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/textViewCoinGuess"
-            app:layout_constraintStart_toEndOf="@+id/textViewCoinGuess"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textViewCoinGuess"
             app:srcCompat="@drawable/ic_baseline_paid_24" />
     </androidx.constraintlayout.widget.ConstraintLayout>

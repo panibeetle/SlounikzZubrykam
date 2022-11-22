@@ -61,8 +61,8 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
             playGuess(it)
         })
         binding.buttonInvite.setOnClickListener {
-
-            findNavController().navigate(R.id.action_guessFragment_to_rewards)
+            val action = GuessFragmentDirections.actionGuessFragmentToRewards(0)
+            findNavController().navigate(action)
         }
         viewModel.getScore.observe(viewLifecycleOwner, Observer {
             binding.textViewCoinGuess.text = it.count.toString()
@@ -81,15 +81,18 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
             isButtonInviteVisibility = true
         }
         if (isButtonInviteVisibility) {
+            for(i in it){
+                i.flagOne = true
+                i.flafThree = false
+
+            }
+            viewModel.updateWords(it)
             binding.animationViewConfetti.visibility = View.VISIBLE
             playMusic(R.raw.magic)
+
             playVoice = 1
             binding.buttonInvite.visibility = View.VISIBLE
-            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-            with(sharedPref!!.edit()) {
-                putInt("invite", 1)
-                apply()
-            }
+
 
         }
         var a = 0
@@ -126,6 +129,7 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
 
             mediaPlayer.setOnCompletionListener {
                 setEnable()
+                mediaPlayer.release()
             }}
 
 
@@ -140,6 +144,7 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
 
                 mediaPlayer.setOnCompletionListener {
                     setEnable()
+                    mediaPlayer.release()
                 }
             }
 
@@ -153,22 +158,20 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
         if(guessedWord.word == binding.buttonGuessWord.text.toString()){
             playMusic(R.raw.ding)
             val oldScore = viewModel.getScore.value
-            val increaseScore = oldScore!!.count + 2
+            val increaseScore = oldScore!!.count + 1
             val newScore = Score(oldScore.id, increaseScore, oldScore.filling, oldScore.heart, oldScore.age)
             viewModel.updateScore(newScore)
             gameNumber++
             arrayForGuessing = viewModel.arrayWordForGuess.value!!
+            arrayForGuessing?.find { it.idWord == guessedWord.idWord }?.flafThree = true
+            viewModel.setWordForGuess(arrayForGuessing)
 
-            if(!guessedWord.flafThree){
-
-                    arrayForGuessing?.find { it.idWord == guessedWord.idWord }?.flafThree = true
-                    viewModel.setWordForGuess(arrayForGuessing) }
-                playGuess(arrayForPlay)
              } else{
             setUnenable()
             playMusic(R.raw.voice_another_pic)
             mediaPlayer.setOnCompletionListener {
                 setEnable()
+                mediaPlayer.release()
             }}
 
 

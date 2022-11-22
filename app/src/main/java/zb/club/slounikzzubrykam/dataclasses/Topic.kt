@@ -17,7 +17,12 @@ data class Topic(
     @ColumnInfo(name = " flag_five") val flagFive: Boolean,
     @ColumnInfo(name = "topic_pol") val topicPol: String,
     @ColumnInfo(name = "voice_topic_pol") val voicePol: String,
-    @ColumnInfo(name = "word_bel_learned") val wordBel: Int,
-    @ColumnInfo(name = "word_pol_learned") val wordPol: Int
+    @ColumnInfo(name = "word_bel_learned") val wordBelLearned: Int,
+    @ColumnInfo(name = "word_pol_learned") val wordPolLearned: Int,
+    @ColumnInfo(name = "word_bel") val wordBel: Int,
+    @ColumnInfo(name = "word_pol") val wordPol: Int
+
+
+
 
     )

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
@@ -32,9 +33,11 @@ class TopicRecyclerAdapter: RecyclerView.Adapter<TopicRecyclerAdapter.MyHolder>(
         val textViewTopic = holder.itemView.findViewById<TextView>(R.id.text_view_topic_rec)
         val imageTopic = holder.itemView.findViewById<ImageView>(R.id.image_topic)
         val card = holder.itemView.findViewById<CardView>(R.id.topiccard)
+
         textViewTopic.text = currentItem.topic
         val topic =currentItem.topic
 
+        currentItem.wordBel
         var res = 0
         val context: Context = holder.itemView.context
 

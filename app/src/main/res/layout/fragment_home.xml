@@ -12,17 +12,40 @@
 
         tools:context="zb.club.slounikzzubrykam.MainActivity">
 
+        <ProgressBar
+            android:id="@+id/progressBarInHome"
+            style="@style/CircularDeterminateProgressBar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:max="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:progress="0" />
+
+        <TextView
+            android:id="@+id/countHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alice"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBarInHome"
+            app:layout_constraintEnd_toEndOf="@+id/progressBarInHome"
+            app:layout_constraintStart_toStartOf="@+id/progressBarInHome"
+            app:layout_constraintTop_toTopOf="@+id/progressBarInHome"
+            tools:text="0/3" />
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationView"
-            android:layout_width="185dp"
-            android:layout_height="147dp"
+            android:layout_width="112dp"
+            android:layout_height="120dp"
             android:adjustViewBounds="true"
             android:clickable="true"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView"
             app:layout_constraintVertical_bias="1.0"
             app:lottie_autoPlay="true"
@@ -39,6 +62,7 @@
             android:fontFamily="@font/alice"
             android:text="пачаць!"
             android:textColor="@color/white"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -47,8 +71,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="216dp"
-            android:layout_height="326dp"
+            android:layout_width="197dp"
+            android:layout_height="295dp"
             android:contentDescription="@string/zubryk_sad_pic"
             app:layout_constraintBottom_toTopOf="@+id/button"
             app:layout_constraintDimensionRatio="3:4"
@@ -75,6 +99,17 @@
             app:lottie_loop="false"
             app:lottie_rawRes="@raw/anim_avocado"
             app:lottie_repeatCount="1" />
+
+        <ImageView
+            android:id="@+id/imageViewHearHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBarInHome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/progressBarInHome"
+            app:layout_constraintTop_toTopOf="@+id/progressBarInHome"
+            app:srcCompat="@drawable/ic_baseline_favorite_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

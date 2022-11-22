@@ -16,6 +16,7 @@ import zb.club.slounikzzubrykam.dataclasses.WordViewModel
 
 
 class Meal : Fragment() {
+
     private lateinit var viewModel: WordViewModel
      private lateinit var binding: FragmentMealBinding
     override fun onCreateView(

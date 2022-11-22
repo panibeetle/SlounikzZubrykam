@@ -31,6 +31,8 @@
             android:id="@+id/imageViewForGuess"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:cropToPadding="true"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"

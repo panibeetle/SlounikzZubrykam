@@ -32,8 +32,10 @@ class TopicFragment : Fragment() {
         binding.recyclerTopic.adapter = adapter
         binding.recyclerTopic.layoutManager = LinearLayoutManager(requireContext())
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
+
         viewModel.getAllTopic.observe(viewLifecycleOwner, Observer {
                 topic -> adapter.setData(topic)
+
         })
 
 

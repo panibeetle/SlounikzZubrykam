@@ -60,6 +60,41 @@ class WordViewModel(application: Application):AndroidViewModel(application) {
         }
     }
 
+//Get addingWord
+    private val _addingArrayWordForGame = MutableLiveData<MutableList<Word>>()
+    val addingArrayWordForGame: LiveData<MutableList<Word>> get() = _arrayWordForGame
+
+
+    fun setAddingArrayWordForGame(arrayWord: MutableList<Word>) {
+        _addingArrayWordForGame.value  = arrayWord
+    }
+    private val _checkAddingWordForGame = MutableLiveData<Int>(0)
+    val checkAddingWordForGame: LiveData<Int> get() = _checkAddingWordForGame
+    fun setCheckAddingWordForGame(n: Int) {
+        _checkAddingWordForGame.value  = n
+    }
+
+    fun getNWordSuspend(topic:(String), n: Int){
+        var list = mutableListOf<Word>()
+        viewModelScope.launch(Dispatchers.IO) {
+            list = repository.getNrandomWordSuspend(topic, n)
+            _addingArrayWordForGame.postValue(list)
+            _checkAddingWordForGame.postValue(1)
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

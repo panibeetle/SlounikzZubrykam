@@ -54,7 +54,7 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
 
         getNewWordForGame(topic)
         viewModel.arrayWordForGame.observe(viewLifecycleOwner, Observer {
-            adapter.setData(it)
+          adapter.setData(it)
                 var isButtonVisible: Boolean = false
                 for (i in it){
 
@@ -98,7 +98,7 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
 
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                val navigateHome = RepeatFragmentDirections.actionRepeatFragmentToRewards(0)
+                val navigateHome = RepeatFragmentDirections.actionRepeatFragmentToTopicFragment()
                 findNavController().navigate(navigateHome)
             }
         }
@@ -107,11 +107,26 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
     }
 
     private fun getNewWordForGame(topic: String) {
-        if(viewModel.sizeWordForGame.value!! == 0){
-        viewModel.getSevenWordSuspend(topic, 1)
-            if (viewModel.sizeWordForGame.value!! < 7){
-                viewModel.getSevenWordSuspend(topic, 2)
-        }}
+        var arrayNeededWord = mutableListOf<Word>()
+        viewModel.getSevenWordSuspend(topic, 2)
+        if(viewModel.sizeWordForGame.value!! < 7){
+            var needWord = 7 - viewModel.sizeWordForGame.value!!
+            for (i in 1 until needWord) {
+                viewModel.getNWordSuspend(topic, 1)
+                if(viewModel.checkAddingWordForGame.value == 1){
+                    arrayNeededWord = viewModel.arrayWordForGame.value!!
+                    arrayNeededWord.add(viewModel.addingArrayWordForGame.value!![0])
+                    viewModel.setCheckAddingWordForGame(0)
+                    viewModel.setWordForGame(arrayNeededWord)
+                    adapter.setData(arrayNeededWord)
+                }
+
+            }
+
+            viewModel.setWordForGame(arrayNeededWord)
+            adapter.setData(arrayNeededWord)
+
+        }
     }
 
     override fun onTappedWord(tapedWord: Word) {

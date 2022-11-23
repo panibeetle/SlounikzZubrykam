@@ -17,7 +17,7 @@ interface DaoWord {
     @Query("SELECT * FROM word_table WHERE topic =:topic AND flag_one < 0 ORDER BY random() LIMIT 7")
     fun  getSevenRandomWords( topic: String):LiveData<List<Word>>
 
-    @Query("SELECT * FROM topic_table ")
+    @Query("SELECT * FROM topic_table ORDER BY topic DESC")
     fun  getAllTopic():LiveData<List<Topic>>
 
     @Insert
@@ -25,6 +25,9 @@ interface DaoWord {
 
     @Query("SELECT * FROM word_table WHERE topic =:topic AND flag_one < :n ORDER BY random() LIMIT 7")
     suspend fun  getSevenRandomWordsSuspend( topic: String, n:Int):MutableList<Word>
+
+    @Query("SELECT * FROM word_table WHERE topic =:topic AND flag_one < :n ORDER BY random() LIMIT :n")
+    suspend fun  getNRandomWordsSuspend( topic: String, n:Int):MutableList<Word>
 
 
     @Query("SELECT * FROM word_table WHERE idWord IN (:id)")

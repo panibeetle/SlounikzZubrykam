@@ -13,6 +13,10 @@ class WordRepository(private val daoWord: DaoWord) {
         return daoWord.readWordInTopic(topic)
 
     }
+    fun readNRandomWords(topic:String): LiveData<List<Word>>{
+        return daoWord.readWordInTopic(topic)
+
+    }
     fun getSevenWordInTopic(topic:String): LiveData<List<Word>>{
         return daoWord.getSevenRandomWords(topic)
 
@@ -24,6 +28,9 @@ class WordRepository(private val daoWord: DaoWord) {
 
     suspend fun getSevenWordSuspend(topic: String, n:Int):MutableList<Word>{
         return daoWord.getSevenRandomWordsSuspend(topic, n)
+    }
+    suspend fun getNrandomWordSuspend(topic: String, n:Int):MutableList<Word>{
+        return daoWord.getNRandomWordsSuspend(topic, n)
     }
 
     suspend fun  getWordById( id:List<Long>):MutableList<Word>{

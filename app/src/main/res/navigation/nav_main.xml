@@ -43,8 +43,8 @@
             android:name="topic"
             app:argType="string" />
         <action
-            android:id="@+id/action_repeatFragment_to_rewards"
-            app:destination="@id/rewards" />
+            android:id="@+id/action_repeatFragment_to_topicFragment"
+            app:destination="@id/topicFragment" />
     </fragment>
     <fragment
         android:id="@+id/guessFragment"

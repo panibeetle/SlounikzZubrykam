@@ -69,6 +69,7 @@ class Home : Fragment() {
                 binding.imageViewHearHome.visibility = View.VISIBLE
                 val anim = ValueAnimator.ofFloat(1f, 3f)
                 anim.duration = 2000
+                anim.reverse()
                 anim.addUpdateListener { animation ->
                     binding.imageViewHearHome.setScaleX(animation.animatedValue as Float)
                     binding.imageViewHearHome.setScaleY(animation.animatedValue as Float)
@@ -76,8 +77,6 @@ class Home : Fragment() {
                 anim.start()
 
                 anim.doOnEnd { binding.imageViewHearHome.visibility = View.INVISIBLE
-                    val action = HomeDirections.actionHome2ToRewards(1)
-                    findNavController().navigate(action)
 
                 }
 
@@ -411,6 +410,7 @@ class Home : Fragment() {
 
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
+                mediaPlayer.stop()
                 finishAffinity(requireActivity())
             }
         }

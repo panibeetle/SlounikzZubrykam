@@ -11,14 +11,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottomReward"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@drawable/bottom_shape"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textViewRewardCoin"
@@ -44,302 +44,306 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayoutSecond"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewFirstSecond"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="#FFF9EB"
-            app:cardCornerRadius="24dp"
-            app:layout_constraintEnd_toStartOf="@+id/cardView3Second"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/imageMealThree"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-
-
-                android:background="@drawable/shape_reward"
-                android:padding="8dp"
-                app:lottie_rawRes="@raw/anim_tomato" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3Second"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="#FFF9EB"
-            app:cardCornerRadius="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cardViewFirstSecond"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/imageMealFour"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-
-
-                android:background="@drawable/shape_reward"
-                android:padding="8dp"
-                app:lottie_rawRes="@raw/anim_avocado" />
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/textViewCoastMealTree"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/alice"
-            android:text="11"
-            android:textSize="28dp"
-            app:layout_constraintEnd_toEndOf="@+id/cardViewFirstSecond"
-            app:layout_constraintStart_toStartOf="@+id/cardViewFirstSecond"
-            app:layout_constraintTop_toBottomOf="@+id/cardViewFirstSecond" />
-
-        <TextView
-            android:id="@+id/textViewCoastMealFor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/alice"
-            android:text="13"
-            android:textSize="28dp"
-            app:layout_constraintEnd_toEndOf="@+id/cardView3Second"
-            app:layout_constraintStart_toStartOf="@+id/cardView3Second"
-            app:layout_constraintTop_toBottomOf="@+id/cardView3Second" />
-
-        <ImageView
-            android:id="@+id/imageViewSecond"
-            android:layout_width="35dp"
-            android:layout_height="34dp"
-            android:src="@drawable/ic_baseline_paid_24"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealTree"
-            app:layout_constraintStart_toEndOf="@+id/textViewCoastMealTree"
-            app:layout_constraintTop_toBottomOf="@+id/cardViewFirstSecond" />
-
-        <ImageView
-            android:id="@+id/imageViewSecondSec"
-            android:layout_width="35dp"
-            android:layout_height="37dp"
-            android:src="@drawable/ic_baseline_paid_24"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealFor"
-            app:layout_constraintStart_toEndOf="@+id/textViewCoastMealFor"
-            app:layout_constraintTop_toBottomOf="@+id/cardView3Second"
-            app:layout_constraintVertical_bias="1.0" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewFirst"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="#FFF9EB"
-            app:cardCornerRadius="24dp"
-            app:layout_constraintEnd_toStartOf="@+id/cardView3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/imageMealOne"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-
-
-                android:background="@drawable/shape_reward"
-                android:padding="8dp"
-                app:lottie_rawRes="@raw/anim_carrot" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="#FFF9EB"
-            app:cardCornerRadius="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cardViewFirst"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/imageMealTwo"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-
-
-                android:background="@drawable/shape_reward"
-                android:padding="8dp"
-                app:lottie_rawRes="@raw/anim_radish" />
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/textViewCostMealOne"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/alice"
-            android:text="7"
-            android:textSize="28dp"
-            app:layout_constraintEnd_toEndOf="@+id/cardViewFirst"
-            app:layout_constraintStart_toStartOf="@+id/cardViewFirst"
-            app:layout_constraintTop_toBottomOf="@+id/cardViewFirst" />
-
-        <TextView
-            android:id="@+id/textViewCoastMealTwo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/alice"
-            android:text="9"
-            android:textSize="28dp"
-            app:layout_constraintEnd_toEndOf="@+id/cardView3"
-            app:layout_constraintStart_toStartOf="@+id/cardView3"
-            app:layout_constraintTop_toBottomOf="@+id/cardView3" />
-
-        <ImageView
-            android:id="@+id/imageView15"
-            android:layout_width="35dp"
-            android:layout_height="34dp"
-            android:src="@drawable/ic_baseline_paid_24"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewCostMealOne"
-            app:layout_constraintStart_toEndOf="@+id/textViewCostMealOne"
-            app:layout_constraintTop_toBottomOf="@+id/cardViewFirst" />
-
-        <ImageView
-            android:id="@+id/imageView16"
-            android:layout_width="35dp"
-            android:layout_height="37dp"
-            android:src="@drawable/ic_baseline_paid_24"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealTwo"
-            app:layout_constraintStart_toEndOf="@+id/textViewCoastMealTwo"
-            app:layout_constraintTop_toBottomOf="@+id/cardView3"
-            app:layout_constraintVertical_bias="0.666" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayoutThird"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutSecond"
-        tools:layout_editor_absoluteY="447dp">
+        app:layout_constraintTop_toBottomOf="@+id/bottomReward">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewFirstThird"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="#FFF9EB"
-            app:cardCornerRadius="24dp"
-            app:layout_constraintEnd_toStartOf="@+id/cardView3Third"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:orientation="vertical">
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/imageMealFive"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewFirst"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="#FFF9EB"
+                    app:cardCornerRadius="24dp"
+                    app:layout_constraintEnd_toStartOf="@+id/cardView3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                android:background="@drawable/shape_reward"
-                android:padding="8dp"
-                app:lottie_rawRes="@raw/anim_aubergine" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3Third"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="#FFF9EB"
-            app:cardCornerRadius="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cardViewFirstThird"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/imageMealSix"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/imageMealOne"
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
 
 
-                android:background="@drawable/shape_reward"
-                android:padding="8dp"
-                app:lottie_rawRes="@raw/anim_peer" />
-        </androidx.cardview.widget.CardView>
+                        android:background="@drawable/shape_reward"
+                        android:padding="8dp"
+                        app:lottie_rawRes="@raw/anim_carrot" />
 
-        <TextView
-            android:id="@+id/textViewCoastMealFive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/alice"
-            android:text="15"
-            android:textSize="28dp"
-            app:layout_constraintEnd_toEndOf="@+id/cardViewFirstThird"
-            app:layout_constraintStart_toStartOf="@+id/cardViewFirstThird"
-            app:layout_constraintTop_toBottomOf="@+id/cardViewFirstThird" />
+                </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/textViewCoastMealSix"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/alice"
-            android:text="17"
-            android:textSize="28dp"
-            app:layout_constraintEnd_toEndOf="@+id/cardView3Third"
-            app:layout_constraintStart_toStartOf="@+id/cardView3Third"
-            app:layout_constraintTop_toBottomOf="@+id/cardView3Third" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="#FFF9EB"
+                    app:cardCornerRadius="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cardViewFirst"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageViewThird"
-            android:layout_width="35dp"
-            android:layout_height="34dp"
-            android:src="@drawable/ic_baseline_paid_24"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealFive"
-            app:layout_constraintStart_toEndOf="@+id/textViewCoastMealFive"
-            app:layout_constraintTop_toBottomOf="@+id/cardViewFirstThird" />
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/imageMealTwo"
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
 
-        <ImageView
-            android:id="@+id/imageViewSecondThird"
-            android:layout_width="35dp"
-            android:layout_height="37dp"
-            android:src="@drawable/ic_baseline_paid_24"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealSix"
-            app:layout_constraintStart_toEndOf="@+id/textViewCoastMealSix"
-            app:layout_constraintTop_toBottomOf="@+id/cardView3Third"
-            app:layout_constraintVertical_bias="1.0"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        android:background="@drawable/shape_reward"
+                        android:padding="8dp"
+                        app:lottie_rawRes="@raw/anim_radish" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textViewCostMealOne"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alice"
+                    android:text="7"
+                    android:textSize="28dp"
+                    app:layout_constraintEnd_toEndOf="@+id/cardViewFirst"
+                    app:layout_constraintStart_toStartOf="@+id/cardViewFirst"
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewFirst" />
+
+                <TextView
+                    android:id="@+id/textViewCoastMealTwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alice"
+                    android:text="9"
+                    android:textSize="28dp"
+                    app:layout_constraintEnd_toEndOf="@+id/cardView3"
+                    app:layout_constraintStart_toStartOf="@+id/cardView3"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+
+                <ImageView
+                    android:id="@+id/imageView15"
+                    android:layout_width="35dp"
+                    android:layout_height="34dp"
+                    android:src="@drawable/ic_baseline_paid_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewCostMealOne"
+                    app:layout_constraintStart_toEndOf="@+id/textViewCostMealOne"
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewFirst" />
+
+                <ImageView
+                    android:id="@+id/imageView16"
+                    android:layout_width="35dp"
+                    android:layout_height="37dp"
+                    android:src="@drawable/ic_baseline_paid_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealTwo"
+                    app:layout_constraintStart_toEndOf="@+id/textViewCoastMealTwo"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView3"
+                    app:layout_constraintVertical_bias="0.666" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayoutSecond"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewFirstSecond"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="#FFF9EB"
+                    app:cardCornerRadius="24dp"
+                    app:layout_constraintEnd_toStartOf="@+id/cardView3Second"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/imageMealThree"
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
+
+
+                        android:background="@drawable/shape_reward"
+                        android:padding="8dp"
+                        app:lottie_rawRes="@raw/anim_tomato" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView3Second"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="#FFF9EB"
+                    app:cardCornerRadius="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cardViewFirstSecond"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/imageMealFour"
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
+
+
+                        android:background="@drawable/shape_reward"
+                        android:padding="8dp"
+                        app:lottie_rawRes="@raw/anim_avocado" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textViewCoastMealTree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alice"
+                    android:text="11"
+                    android:textSize="28dp"
+                    app:layout_constraintEnd_toEndOf="@+id/cardViewFirstSecond"
+                    app:layout_constraintStart_toStartOf="@+id/cardViewFirstSecond"
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewFirstSecond" />
+
+                <TextView
+                    android:id="@+id/textViewCoastMealFor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alice"
+                    android:text="13"
+                    android:textSize="28dp"
+                    app:layout_constraintEnd_toEndOf="@+id/cardView3Second"
+                    app:layout_constraintStart_toStartOf="@+id/cardView3Second"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView3Second" />
+
+                <ImageView
+                    android:id="@+id/imageViewSecond"
+                    android:layout_width="35dp"
+                    android:layout_height="34dp"
+                    android:src="@drawable/ic_baseline_paid_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealTree"
+                    app:layout_constraintStart_toEndOf="@+id/textViewCoastMealTree"
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewFirstSecond" />
+
+                <ImageView
+                    android:id="@+id/imageViewSecondSec"
+                    android:layout_width="35dp"
+                    android:layout_height="37dp"
+                    android:src="@drawable/ic_baseline_paid_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealFor"
+                    app:layout_constraintStart_toEndOf="@+id/textViewCoastMealFor"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView3Second"
+                    app:layout_constraintVertical_bias="1.0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayoutThird"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewFirstThird"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="#FFF9EB"
+                    app:cardCornerRadius="24dp"
+                    app:layout_constraintEnd_toStartOf="@+id/cardView3Third"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/imageMealFive"
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
+
+
+                        android:background="@drawable/shape_reward"
+                        android:padding="8dp"
+                        app:lottie_rawRes="@raw/anim_aubergine" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView3Third"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="#FFF9EB"
+                    app:cardCornerRadius="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cardViewFirstThird"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/imageMealSix"
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
+
+
+                        android:background="@drawable/shape_reward"
+                        android:padding="8dp"
+                        app:lottie_rawRes="@raw/anim_peer" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textViewCoastMealFive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alice"
+                    android:text="15"
+                    android:textSize="28dp"
+                    app:layout_constraintEnd_toEndOf="@+id/cardViewFirstThird"
+                    app:layout_constraintStart_toStartOf="@+id/cardViewFirstThird"
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewFirstThird" />
+
+                <TextView
+                    android:id="@+id/textViewCoastMealSix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alice"
+                    android:text="17"
+                    android:textSize="28dp"
+                    app:layout_constraintEnd_toEndOf="@+id/cardView3Third"
+                    app:layout_constraintStart_toStartOf="@+id/cardView3Third"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView3Third" />
+
+                <ImageView
+                    android:id="@+id/imageViewThird"
+                    android:layout_width="35dp"
+                    android:layout_height="34dp"
+                    android:src="@drawable/ic_baseline_paid_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealFive"
+                    app:layout_constraintStart_toEndOf="@+id/textViewCoastMealFive"
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewFirstThird" />
+
+                <ImageView
+                    android:id="@+id/imageViewSecondThird"
+                    android:layout_width="35dp"
+                    android:layout_height="37dp"
+                    android:src="@drawable/ic_baseline_paid_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealSix"
+                    app:layout_constraintStart_toEndOf="@+id/textViewCoastMealSix"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView3Third"
+                    app:layout_constraintVertical_bias="1.0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButtonMeal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/bottomReward"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_round_add_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -71,7 +71,7 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/shape_butons"
             android:fontFamily="@font/alice"
-            android:text="Перайсці да ўзнагароды!"
+            android:text="Перайсці да наступнай гульні!"
             android:textSize="20sp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"

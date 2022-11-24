@@ -11,6 +11,31 @@
         android:layout_height="match_parent"
         tools:context="zb.club.slounikzzubrykam.Wordlee">
 
+        <ProgressBar
+            android:id="@+id/progressBarInWordly"
+            style="@style/CircularDeterminateProgressBar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:max="7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:progress="60" />
+
+        <TextView
+            android:id="@+id/countWordly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alice"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBarInWordly"
+            app:layout_constraintEnd_toEndOf="@+id/progressBarInWordly"
+            app:layout_constraintStart_toStartOf="@+id/progressBarInWordly"
+            app:layout_constraintTop_toTopOf="@+id/progressBarInWordly"
+            tools:text="1/7" />
+
         <LinearLayout
             android:id="@+id/wordbybook"
             android:layout_width="0dp"
@@ -54,6 +79,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ready_word" />
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationViewConfettiWordly"
+            android:layout_width="348dp"
+            android:layout_height="256dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/button3"
+            app:layout_constraintEnd_toEndOf="@+id/button3"
+            app:layout_constraintHorizontal_bias="0.448"
+            app:layout_constraintStart_toStartOf="@+id/button3"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/anim_confettie" />
+
         <ImageView
             android:id="@+id/imageViewGuessingWord"
             android:layout_width="wrap_content"
@@ -63,6 +101,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewCheck"
             app:srcCompat="@drawable/art_bowl" />
+
+        <TextView
+            android:id="@+id/textViewCoinWordly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBarInWordly"
+            app:layout_constraintEnd_toStartOf="@+id/imageView3"
+            app:layout_constraintTop_toTopOf="@+id/progressBarInWordly" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewCoinWordly"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewCoinWordly"
+            app:srcCompat="@drawable/ic_baseline_paid_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

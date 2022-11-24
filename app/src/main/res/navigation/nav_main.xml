@@ -57,9 +57,8 @@
             android:name="idWord"
             app:argType="long[]" />
         <action
-            android:id="@+id/action_guessFragment_to_rewards"
-            app:destination="@id/rewards"
-            app:popUpTo="@id/home2" />
+            android:id="@+id/action_guessFragment_to_topicFragment"
+            app:destination="@id/topicFragment" />
     </fragment>
     <fragment
         android:id="@+id/wordlyFragment"
@@ -67,7 +66,13 @@
         android:label="WordlyFragment" >
         <argument
             android:name="idWords"
-            app:argType="long[]" />
+            app:argType="zb.club.slounikzzubrykam.dataclasses.Word[]" />
+        <action
+            android:id="@+id/action_wordlyFragment_to_topicFragment"
+            app:destination="@id/topicFragment" />
+        <action
+            android:id="@+id/action_wordlyFragment_to_rewards"
+            app:destination="@id/rewards" />
     </fragment>
     <fragment
         android:id="@+id/rewards"

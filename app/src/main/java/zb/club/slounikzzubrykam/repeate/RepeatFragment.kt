@@ -1,5 +1,6 @@
 package zb.club.slounikzzubrykam.repeate
 
+import android.animation.Animator
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -51,43 +52,28 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
         binding.recyclerWord.layoutManager =LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
-
         getNewWordForGame(topic)
-        viewModel.arrayWordForGame.observe(viewLifecycleOwner, Observer {
-          adapter.setData(it)
-                var isButtonVisible: Boolean = false
-                for (i in it){
+        showWord()
+        binding.animationHand.addAnimatorListener(object : Animator.AnimatorListener{
+            override fun onAnimationStart(p0: Animator?) {
 
-                    if(i.flagTwo == false){
+            }
 
-                        isButtonVisible = false
-                        break
-                    }
-                    isButtonVisible = true
+            override fun onAnimationEnd(p0: Animator?) {
+                binding.animationHand.visibility= View.INVISIBLE
 
-                }
-                if(isButtonVisible == false){
-                    binding.button2.visibility = View.INVISIBLE
-                }else{
-                    binding.button2.visibility = View.VISIBLE
-                    if(isMagic == true){
-                        binding.button2.isEnabled = false
-                        playMusic(R.raw.magic)
-                        mediaPlayer.setOnCompletionListener { binding.button2.isEnabled = true }
-                        isMagic=false}
-                }
-                var a = 0
-                for (i in it){
-                    if(i.flagTwo){
-                        a = a+1
+            }
 
-                    }
-                }
-                score = a
-                updateProgressBar()
+            override fun onAnimationCancel(p0: Animator?) {
 
+            }
 
+            override fun onAnimationRepeat(p0: Animator?) {
+
+            }
         })
+
+
 
 
         binding.button2.setOnClickListener {
@@ -106,16 +92,55 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
         return binding.root
     }
 
+    private fun showWord() {
+        viewModel.arrayWordForGame.observe(viewLifecycleOwner, Observer {
+            adapter.setData(it)
+            var isButtonVisible: Boolean = false
+            for (i in it) {
+
+                if (i.flagTwo == false) {
+
+                    isButtonVisible = false
+                    break
+                }
+                isButtonVisible = true
+
+            }
+            if (isButtonVisible == false) {
+                binding.button2.visibility = View.INVISIBLE
+            } else {
+                binding.button2.visibility = View.VISIBLE
+                if (isMagic == true) {
+                    binding.button2.isEnabled = false
+                    playMusic(R.raw.magic)
+                    mediaPlayer.setOnCompletionListener { binding.button2.isEnabled = true }
+                    isMagic = false
+                }
+            }
+            var a = 0
+            for (i in it) {
+                if (i.flagTwo) {
+                    a = a + 1
+
+                }
+            }
+            score = a
+            updateProgressBar()
+
+
+        })
+    }
+
     private fun getNewWordForGame(topic: String) {
         var arrayNeededWord = mutableListOf<Word>()
         viewModel.getSevenWordSuspend(topic, 2)
         if(viewModel.sizeWordForGame.value!! < 7){
             var needWord = 7 - viewModel.sizeWordForGame.value!!
             for (i in 1 until needWord) {
-                viewModel.getNWordSuspend(topic, 1)
+                viewModel.getNWordSuspend(topic, 7)
                 if(viewModel.checkAddingWordForGame.value == 1){
                     arrayNeededWord = viewModel.arrayWordForGame.value!!
-                    arrayNeededWord.add(viewModel.addingArrayWordForGame.value!![0])
+                    arrayNeededWord.addAll(viewModel.addingArrayWordForGame.value!!)
                     viewModel.setCheckAddingWordForGame(0)
                     viewModel.setWordForGame(arrayNeededWord)
                     adapter.setData(arrayNeededWord)

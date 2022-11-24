@@ -75,6 +75,16 @@
             app:layout_constraintTop_toTopOf="@+id/progressBarInRepeate"
             tools:text="1/7" />
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationHand"
+            android:layout_width="136dp"
+            android:layout_height="152dp"
+            android:alpha="0.4"
+            app:layout_constraintEnd_toEndOf="@+id/scrollView2"
+            app:layout_constraintTop_toTopOf="@+id/scrollView2"
+            app:lottie_autoPlay="true"
+            app:lottie_rawRes="@raw/anim_hand" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

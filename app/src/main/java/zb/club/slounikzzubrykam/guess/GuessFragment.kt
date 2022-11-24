@@ -63,7 +63,7 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
             playGuess(it)
         })
         binding.buttonInvite.setOnClickListener {
-            val action = GuessFragmentDirections.actionGuessFragmentToRewards(0)
+            val action = GuessFragmentDirections.actionGuessFragmentToWordlyFragment(viewModel.arrayWordForGuess.value!!.toTypedArray())
             findNavController().navigate(action)
         }
         viewModel.getScore.observe(viewLifecycleOwner, Observer {
@@ -71,7 +71,7 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
         })
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                val navigateHome = GuessFragmentDirections.actionGuessFragmentToRewards(0)
+                val navigateHome = GuessFragmentDirections.actionGuessFragmentToTopicFragment()
                 findNavController().navigate(navigateHome)
             }
         }

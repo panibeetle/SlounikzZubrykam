@@ -40,6 +40,8 @@
             android:id="@+id/wordbybook"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="64dp"
             android:gravity="center"
             android:orientation="horizontal"
@@ -70,15 +72,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"></LinearLayout>
 
-        <TextView
-            android:id="@+id/textViewCheck"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/alice"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ready_word" />
-
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationViewConfettiWordly"
             android:layout_width="348dp"
@@ -99,7 +92,7 @@
             app:layout_constraintBottom_toTopOf="@+id/wordbybook"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewCheck"
+            app:layout_constraintTop_toBottomOf="@+id/ready_word"
             app:srcCompat="@drawable/art_bowl" />
 
         <TextView

@@ -69,7 +69,8 @@ class Home : Fragment() {
                 binding.imageViewHearHome.visibility = View.VISIBLE
                 val anim = ValueAnimator.ofFloat(1f, 3f)
                 anim.duration = 2000
-                anim.reverse()
+                anim.repeatCount = 1
+                anim.setRepeatMode(ValueAnimator.REVERSE)
                 anim.addUpdateListener { animation ->
                     binding.imageViewHearHome.setScaleX(animation.animatedValue as Float)
                     binding.imageViewHearHome.setScaleY(animation.animatedValue as Float)

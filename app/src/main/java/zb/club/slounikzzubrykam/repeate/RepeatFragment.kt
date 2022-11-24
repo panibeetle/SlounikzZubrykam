@@ -48,7 +48,7 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
         topic = args.topic.toString()
         adapter = RepeateRecyclerAdapter(this)
         binding.recyclerWord.adapter = adapter
-        binding.progressBarInRepeate.max = 7
+        binding.progressBarInRepeate.max = 5
         binding.recyclerWord.layoutManager =LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
@@ -134,19 +134,19 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
     private fun getNewWordForGame(topic: String) {
         var arrayNeededWord = mutableListOf<Word>()
         viewModel.getSevenWordSuspend(topic, 2)
-        if(viewModel.sizeWordForGame.value!! < 7){
-            var needWord = 7 - viewModel.sizeWordForGame.value!!
-            for (i in 1 until needWord) {
-                viewModel.getNWordSuspend(topic, 7)
-                if(viewModel.checkAddingWordForGame.value == 1){
-                    arrayNeededWord = viewModel.arrayWordForGame.value!!
-                    arrayNeededWord.addAll(viewModel.addingArrayWordForGame.value!!)
-                    viewModel.setCheckAddingWordForGame(0)
-                    viewModel.setWordForGame(arrayNeededWord)
-                    adapter.setData(arrayNeededWord)
+        if(viewModel.sizeWordForGame.value!! < 5){
+            var needWord = 5 - viewModel.sizeWordForGame.value!!
+
+            viewModel.getNWordSuspend(topic, needWord)
+            if(viewModel.checkAddingWordForGame.value == 1){
+                arrayNeededWord = viewModel.arrayWordForGame.value!!
+                arrayNeededWord.addAll(viewModel.addingArrayWordForGame.value!!)
+                viewModel.setCheckAddingWordForGame(0)
+                viewModel.setWordForGame(arrayNeededWord)
+                adapter.setData(arrayNeededWord)
                 }
 
-            }
+
 
             viewModel.setWordForGame(arrayNeededWord)
             adapter.setData(arrayNeededWord)
@@ -188,7 +188,7 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
 
     }
     private fun updateProgressBar(){
-        binding.count.text="$score/7"
+        binding.count.text="$score/5"
         binding.progressBarInRepeate.progress = score
 
     }

@@ -200,7 +200,8 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
     }
 
     private fun updateProgressBar(){
-        binding.countGues.text="$score/7"
+        binding.countGues.text="$score/5"
+        binding.progressBarInGuess.max= 5
         binding.progressBarInGuess.progress = score
 
     }

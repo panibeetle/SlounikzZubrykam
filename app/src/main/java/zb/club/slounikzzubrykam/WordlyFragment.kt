@@ -1,16 +1,18 @@
 package zb.club.slounikzzubrykam
 
 import android.media.MediaPlayer
+import android.media.MediaPlayer.OnCompletionListener
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -19,6 +21,7 @@ import zb.club.slounikzzubrykam.databinding.FragmentWordlyBinding
 import zb.club.slounikzzubrykam.dataclasses.Score
 import zb.club.slounikzzubrykam.dataclasses.Word
 import zb.club.slounikzzubrykam.dataclasses.WordViewModel
+import zb.club.slounikzzubrykam.guess.GuessFragmentDirections
 
 class WordlyFragment : Fragment() {
     val args: WordlyFragmentArgs by navArgs()
@@ -26,7 +29,9 @@ class WordlyFragment : Fragment() {
     var wordRandom = String()
     private lateinit var viewModel: WordViewModel
     var wordCount = 0
-   var wordForGame = arrayListOf<Word>()
+    var wordForGame = arrayListOf<Word>()
+    var arrayWordSize:Int = 0
+
 
     lateinit private var mediaPlayer: MediaPlayer
 
@@ -42,6 +47,8 @@ class WordlyFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
 
         val words = args.idWords
+        arrayWordSize = words.size
+        binding.progressBarInWordly.max = arrayWordSize
         wordForGame = arrayListOf<Word>()
         viewModel.getScore.observe(viewLifecycleOwner, Observer {
             binding.textViewCoinWordly.text = it.count.toString()
@@ -59,10 +66,29 @@ class WordlyFragment : Fragment() {
             }
             var wordFromGameString = wordFromGame.toString()
             if(wordFromGameString == wordRandom){
-
-                Toast.makeText(requireContext(),"Так, слушна!", Toast.LENGTH_LONG).show()
+                binding.button3.visibility = View.INVISIBLE
 
                 playMusic(R.raw.win)
+
+
+                mediaPlayer.setOnCompletionListener {
+                    binding.button3.visibility = View.VISIBLE
+                    if(wordCount == arrayWordSize){
+
+                    binding.animationViewConfettiWordly.visibility = View.VISIBLE
+                    playMusic(R.raw.magic)
+                    binding.button3.text = "Перайсці да ўзнагароды!!!"
+
+                    binding.button3.setOnClickListener {
+
+                        wordCount = 0
+                        val action = WordlyFragmentDirections.actionWordlyFragmentToRewards(0)
+                        findNavController().navigate(action) }
+
+                        binding.imageViewGuessingWord.visibility = View.INVISIBLE
+                }else{ binding.readyWord.removeAllViews()
+                    binding.wordbybook.removeAllViews()
+                    wordly()} }
                 binding.readyWord.removeAllViews()
                 binding.wordbybook.removeAllViews()
                 wordCount += 1
@@ -75,16 +101,8 @@ class WordlyFragment : Fragment() {
                 val increaseScore = oldScore!!.count + 1
                 val newScore = Score(oldScore.id, increaseScore, oldScore.filling, oldScore.heart, oldScore.age)
                 viewModel.updateScore(newScore)
-                if(wordCount == 7){
-                    binding.animationViewConfettiWordly.visibility = View.VISIBLE
-                    playMusic(R.raw.magic)
-                    binding.button3.text = "Перайсці да ўзнагароды!!!"
-                    binding.button3.setOnClickListener {
 
-                        wordCount = 0
-                        val action = WordlyFragmentDirections.actionWordlyFragmentToRewards(0)
-                        findNavController().navigate(action) }
-                }else{wordly()}
+
 
 
 
@@ -96,13 +114,21 @@ class WordlyFragment : Fragment() {
         }
         wordly()
 
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val navigateHome = WordlyFragmentDirections.actionWordlyFragmentToRewards(0)
+                findNavController().navigate(navigateHome)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), onBackPressedCallback)
+
         return binding.root
 
     }
 
     private fun updateProgressBar(){
 
-        binding.countWordly.text="$wordCount/7"
+        binding.countWordly.text="$wordCount/$arrayWordSize"
         binding.progressBarInWordly.progress = wordCount
 
 
@@ -129,14 +155,14 @@ class WordlyFragment : Fragment() {
                 val dynamicTextview = TextView(requireContext())
                 val dynamicTextviewReady = TextView(requireContext())
                 dynamicTextview.text = letter
-                dynamicTextview!!.typeface = ResourcesCompat.getFont(requireContext(), R.font.rubik_light)
+                dynamicTextview!!.typeface = ResourcesCompat.getFont(requireContext(), R.font.alice)
                 val params = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 )
-                params.setMargins(8,4,8,4)
+                params.setMargins(1,4,1,4)
                 dynamicTextview.setLayoutParams(params)
-                dynamicTextview.textSize = (40F)
+                dynamicTextview.textSize = (35F)
                 dynamicTextview.background = resources.getDrawable(R.drawable.square_letters)
                 dynamicTextview.setOnClickListener {
                     playMusic(R.raw.tap1)
@@ -147,10 +173,10 @@ class WordlyFragment : Fragment() {
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                     )
-                    params.setMargins(8,4,8,4)
+                    params.setMargins(1,4,1,4)
                     dynamicTextviewReady.setLayoutParams(params)
-                    dynamicTextviewReady!!.typeface = ResourcesCompat.getFont(requireContext(), R.font.rubik_light)
-                    dynamicTextviewReady.textSize = (40F)
+                    dynamicTextviewReady!!.typeface = ResourcesCompat.getFont(requireContext(), R.font.alice)
+                    dynamicTextviewReady.textSize = (35F)
                     dynamicTextviewReady.background = resources.getDrawable(R.drawable.square_letters)
                     binding.readyWord.addView(dynamicTextviewReady)
                     binding.wordbybook.removeView(dynamicTextview)
@@ -165,10 +191,10 @@ class WordlyFragment : Fragment() {
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                     )
-                    params.setMargins(8,4,8,4)
+                    params.setMargins(1,4,1,4)
                     dynamicTextview.setLayoutParams(params)
-                    dynamicTextview!!.typeface = ResourcesCompat.getFont(requireContext(), R.font.rubik_light)
-                    dynamicTextview.textSize = (40F)
+                    dynamicTextview!!.typeface = ResourcesCompat.getFont(requireContext(), R.font.alice)
+                    dynamicTextview.textSize = (35F)
                     dynamicTextview.background = resources.getDrawable(R.drawable.square_letters)
                     binding.wordbybook.addView(dynamicTextview)
                     binding.readyWord.removeView(dynamicTextviewReady)

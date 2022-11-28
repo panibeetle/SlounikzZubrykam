@@ -92,6 +92,7 @@ class Home : Fragment() {
             0 -> {
                 binding.button.isEnabled = false
                 playMusic(R.raw.voice_glad_to_see)
+                binding.imageView.setImageResource(R.drawable.zubr_want_to_play)
 
                 mediaPlayer.setOnCompletionListener { binding.button.isEnabled = true
                     binding.imageView.startAnimation(animUpDown)}
@@ -99,6 +100,7 @@ class Home : Fragment() {
                 binding.animationMeal.visibility = View.INVISIBLE
             }
             1 -> {nameDrow="anim_cute_caterpillar"
+                   binding.imageView.setImageResource(R.drawable.zubr_happy)
                     val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                     binding.animationView.setAnimation(drawableId)
                     binding.animationView.visibility = View.VISIBLE
@@ -110,6 +112,7 @@ class Home : Fragment() {
 
             }
             2->{nameDrow="anim_dog"
+                binding.imageView.setImageResource(R.drawable.zubr_happy)
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationView.setAnimation(drawableId)
                 binding.animationView.visibility = View.VISIBLE
@@ -123,6 +126,7 @@ class Home : Fragment() {
 
 
             3->{nameDrow="anim_cat"
+                binding.imageView.setImageResource(R.drawable.zubr_happy)
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationView.setAnimation(drawableId)
                 binding.animationView.visibility = View.VISIBLE
@@ -134,6 +138,7 @@ class Home : Fragment() {
 
             }
             4->{nameDrow="anim_tiger"
+                binding.imageView.setImageResource(R.drawable.zubr_happy)
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationView.setAnimation(drawableId)
                 binding.animationView.visibility = View.VISIBLE
@@ -143,6 +148,7 @@ class Home : Fragment() {
 
             }
            5->{nameDrow="anim_dog_tail"
+               binding.imageView.setImageResource(R.drawable.zubr_happy)
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationView.setAnimation(drawableId)
                 binding.animationView.visibility = View.VISIBLE
@@ -153,6 +159,7 @@ class Home : Fragment() {
             }
 
             6->{nameDrow="anim_owl"
+                binding.imageView.setImageResource(R.drawable.zubr_happy)
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationView.setAnimation(drawableId)
                 binding.animationView.visibility = View.VISIBLE
@@ -167,7 +174,7 @@ class Home : Fragment() {
 
 
             7->{nameDrow="anim_carrot"
-
+                binding.imageView.setImageResource(R.drawable.zubr_happy)
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationMeal.setAnimation(drawableId)
                 binding.animationMeal.visibility = View.VISIBLE
@@ -205,6 +212,7 @@ class Home : Fragment() {
 
             }
             9->{
+                binding.imageView.setImageResource(R.drawable.zubr_happy)
                 nameDrow="anim_radish"
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationMeal.setAnimation(drawableId)
@@ -240,6 +248,7 @@ class Home : Fragment() {
 
             }
             11->{nameDrow="anim_tomato"
+                binding.imageView.setImageResource(R.drawable.zubr_happy)
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationMeal.setAnimation(drawableId)
                 binding.animationMeal.visibility = View.VISIBLE
@@ -274,6 +283,7 @@ class Home : Fragment() {
 
             }
             13->{nameDrow="anim_avocado"
+                binding.imageView.setImageResource(R.drawable.zubr_happy)
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationMeal.setAnimation(drawableId)
                 binding.animationMeal.visibility = View.VISIBLE
@@ -308,6 +318,7 @@ class Home : Fragment() {
 
             }
             15->{nameDrow="anim_aubergine"
+                binding.imageView.setImageResource(R.drawable.zubr_happy)
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationMeal.setAnimation(drawableId)
                 binding.animationMeal.visibility = View.VISIBLE
@@ -342,6 +353,7 @@ class Home : Fragment() {
 
             }
             17->{nameDrow="anim_peer"
+                binding.imageView.setImageResource(R.drawable.zubr_happy)
                 val drawableId = requireContext().resources.getIdentifier(nameDrow, "raw", requireContext().packageName)
                 binding.animationMeal.setAnimation(drawableId)
                 binding.animationMeal.visibility = View.VISIBLE

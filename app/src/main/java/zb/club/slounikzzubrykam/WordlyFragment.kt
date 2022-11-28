@@ -85,7 +85,7 @@ class WordlyFragment : Fragment() {
                         val action = WordlyFragmentDirections.actionWordlyFragmentToRewards(0)
                         findNavController().navigate(action) }
 
-                        binding.imageViewGuessingWord.visibility = View.INVISIBLE
+                        binding.imageViewGuessingWord.setImageResource(R.drawable.zubr_laying)
                 }else{ binding.readyWord.removeAllViews()
                     binding.wordbybook.removeAllViews()
                     wordly()} }

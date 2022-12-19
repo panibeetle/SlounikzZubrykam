@@ -19,7 +19,7 @@ data class Word(
     @ColumnInfo(name = "flag_one") var flagOne: Boolean,
     @ColumnInfo(name = "flag_two") var flagTwo: Boolean,
     @ColumnInfo(name = " flag_three") var flafThree: Boolean,
-    @ColumnInfo(name = "flag_four") val flagFour: Boolean,
+    @ColumnInfo(name = "flag_four") var flagFour: Boolean,
     @ColumnInfo(name = "topic") val topic:String,
     @ColumnInfo(name = "word_pol") val wordPol: String,
     @ColumnInfo(name = "voice_pol") val voicePol: String

@@ -22,6 +22,15 @@ class WordViewModel(application: Application):AndroidViewModel(application) {
        getAllWords = repository.getAllWords
        getScore = repository.getScore
    }
+
+
+    fun countTopicWord(topic: String): LiveData<Int>{
+        return repository.countWordInTopic(topic)
+    }
+    fun countTopicWordDone(topic: String): LiveData<Int>{
+        return repository.countWordInTopicDone(topic)
+    }
+
      fun  readWordInTopic(topic:String): LiveData<List<Word>>{
         return repository.readWordInTopic(topic)
 
@@ -106,6 +115,7 @@ class WordViewModel(application: Application):AndroidViewModel(application) {
         _arrayWordForGuess.value  = arrayWord
     }
 
+
     private val _arrayWordForGuessPlay = MutableLiveData<MutableList<Word>>()
     val arrayWordForGuessPlay: LiveData<MutableList<Word>> get() = _arrayWordForGuessPlay
 
@@ -133,6 +143,13 @@ class WordViewModel(application: Application):AndroidViewModel(application) {
     fun updateWords(word:List<Word>){
         viewModelScope.launch {
             repository.udateWords(word )
+        }
+    }
+
+
+    fun updateWord(word:Word){
+        viewModelScope.launch {
+            repository.udateWord(word)
         }
     }
 

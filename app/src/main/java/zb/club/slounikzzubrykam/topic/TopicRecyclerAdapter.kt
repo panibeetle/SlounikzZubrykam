@@ -10,11 +10,14 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleRegistry
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import zb.club.slounikzzubrykam.R
-
 import zb.club.slounikzzubrykam.dataclasses.Topic
+import zb.club.slounikzzubrykam.dataclasses.WordViewModel
 
 
 class TopicRecyclerAdapter: RecyclerView.Adapter<TopicRecyclerAdapter.MyHolder>() {
@@ -24,28 +27,33 @@ class TopicRecyclerAdapter: RecyclerView.Adapter<TopicRecyclerAdapter.MyHolder>(
 
     }
 
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         return MyHolder(LayoutInflater.from(parent.context).inflate(R.layout.topic_card_recycler, parent,false))
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         val currentItem = topicList[position]
+
         val textViewTopic = holder.itemView.findViewById<TextView>(R.id.text_view_topic_rec)
         val imageTopic = holder.itemView.findViewById<ImageView>(R.id.image_topic)
         val card = holder.itemView.findViewById<CardView>(R.id.topiccard)
+        val count = holder.itemView.findViewById<TextView>(R.id.countTopic)
+        val progressBarInCount = holder.itemView.findViewById<ProgressBar>(R.id.progressBarInRecycler)
 
         textViewTopic.text = currentItem.topic
+
+        count.text="${currentItem.wordBelLearned}/${currentItem.wordBel}"
+        progressBarInCount.progress = currentItem.wordBelLearned
+        progressBarInCount.max = currentItem.wordBel
         val topic =currentItem.topic
-
-        currentItem.wordBel
-        var res = 0
         val context: Context = holder.itemView.context
-
         card.setOnClickListener {
             var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, R.raw.tap1)
             mediaPlayer?.start()
-              val action = TopicFragmentDirections.actionTopicFragmentToRepeatFragment(topic)
-                it.findNavController().navigate(action)
+            val action = TopicFragmentDirections.actionTopicFragmentToRepeatFragment(topic)
+            it.findNavController().navigate(action)
             }
 
    // Try to find the resource with that name (icons in drawable folder)

@@ -27,6 +27,7 @@ class WordlyFragment : Fragment() {
     val args: WordlyFragmentArgs by navArgs()
     lateinit var binding: FragmentWordlyBinding
     var wordRandom = String()
+    lateinit var word:Word
     private lateinit var viewModel: WordViewModel
     var wordCount = 0
     var wordForGame = arrayListOf<Word>()
@@ -69,6 +70,8 @@ class WordlyFragment : Fragment() {
                 binding.button3.visibility = View.INVISIBLE
 
                 playMusic(R.raw.win)
+                word.flagFour = true
+                viewModel.updateWord(word)
 
 
                 mediaPlayer.setOnCompletionListener {
@@ -137,7 +140,7 @@ class WordlyFragment : Fragment() {
     fun wordly(){
 
         if(wordForGame.size>0){
-        val word: Word = wordForGame.random()
+        word= wordForGame.random()
         wordRandom = word.word
         val picture = resources.getIdentifier(word.picture, "drawable", requireContext().packageName )
         binding.imageViewGuessingWord.setImageResource(picture)

@@ -20,6 +20,8 @@ interface DaoWord {
     @Query("SELECT * FROM topic_table ORDER BY topic DESC")
     fun  getAllTopic():LiveData<List<Topic>>
 
+
+
     @Insert
     suspend fun insertWord(word: Word)
 
@@ -46,5 +48,21 @@ interface DaoWord {
 
     @Update
     suspend fun updateWords(words: List<Word>): Int
+
+    @Update
+    suspend fun updateWord(word: Word)
+
+
+
+    @Query("SELECT COUNT(*) FROM word_table WHERE topic = :topic")
+    fun countingTopik(topic:String): LiveData<Int>
+
+    @Query("SELECT SUM(flag_four) FROM word_table WHERE topic = :topic")
+    fun countingTopikDone(topic:String): LiveData<Int>
+
+
+
+
+
 
 }

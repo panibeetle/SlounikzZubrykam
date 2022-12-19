@@ -15,6 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+
         <ImageView
             android:id="@+id/image_topic"
             android:layout_width="match_parent"
@@ -47,6 +49,31 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBarInRecycler"
+            style="@style/CircularDeterminateProgressBar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:max="7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:progress="60" />
+
+        <TextView
+            android:id="@+id/countTopic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alice"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBarInRecycler"
+            app:layout_constraintEnd_toEndOf="@+id/progressBarInRecycler"
+            app:layout_constraintStart_toStartOf="@+id/progressBarInRecycler"
+            app:layout_constraintTop_toTopOf="@+id/progressBarInRecycler"
+            tools:text="1/7" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

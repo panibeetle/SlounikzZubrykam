@@ -10,12 +10,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import zb.club.slounikzzubrykam.R
 import zb.club.slounikzzubrykam.databinding.FragmentTopicBinding
+import zb.club.slounikzzubrykam.dataclasses.Topic
 import zb.club.slounikzzubrykam.dataclasses.WordViewModel
-import zb.club.slounikzzubrykam.reward.RewardsDirections
 
 
 class TopicFragment : Fragment() {
@@ -23,6 +22,7 @@ class TopicFragment : Fragment() {
     private lateinit var viewModel: WordViewModel
     lateinit var  binding: FragmentTopicBinding
     lateinit var adapter: TopicRecyclerAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,8 +36,12 @@ class TopicFragment : Fragment() {
         binding.recyclerTopic.layoutManager = LinearLayoutManager(requireContext())
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
 
+
         viewModel.getAllTopic.observe(viewLifecycleOwner, Observer {
-                topic -> adapter.setData(topic)
+                topic ->
+
+
+            adapter.setData(topic)
 
         })
         val onBackPressedCallback = object : OnBackPressedCallback(true) {

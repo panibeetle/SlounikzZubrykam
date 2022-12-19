@@ -22,6 +22,16 @@ class WordRepository(private val daoWord: DaoWord) {
 
     }
 
+    fun countWordInTopic(topic: String): LiveData<Int>{
+        return daoWord.countingTopik(topic)
+    }
+
+    fun countWordInTopicDone(topic: String): LiveData<Int>{
+        return daoWord.countingTopikDone(topic)
+    }
+
+
+
     suspend fun insertWord(word: Word){
         daoWord.insertWord(word)
     }
@@ -42,6 +52,9 @@ class WordRepository(private val daoWord: DaoWord) {
     }
     suspend fun udateWords(words:List<Word>){
         daoWord.updateWords(words)
+    }
+    suspend fun udateWord(word:Word){
+        daoWord.updateWord(word)
     }
     suspend fun updateTopic(topic: Topic){daoWord.updateTopic(topic)}
 

@@ -19,6 +19,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import zb.club.slounikzzubrykam.databinding.FragmentHomeBinding
 import zb.club.slounikzzubrykam.dataclasses.Score
+import zb.club.slounikzzubrykam.dataclasses.Topic
 import zb.club.slounikzzubrykam.dataclasses.Word
 import zb.club.slounikzzubrykam.dataclasses.WordViewModel
 import zb.club.slounikzzubrykam.guess.GuessFragmentDirections
@@ -39,6 +40,24 @@ class Home : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_home, container,false)
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
+
+        viewModel.getAllTopic.observe(viewLifecycleOwner, androidx.lifecycle.Observer { topic ->
+            for(top in topic ){
+                var topInsert: Topic
+                viewModel.countTopicWord(top.topic).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                    topInsert  = Topic(top.id,top.topic,top.picture, top.voice, top.flagOneTopic, top.flagTwoToic, top.flafThreeTopic, top.flagFour, top.flagFive, top.topicPol, top.voicePol, top.wordBelLearned, top.wordPolLearned, it, top.wordPol)
+                    viewModel.updateTopic(topInsert)
+                })
+
+                viewModel.countTopicWordDone(top.topic).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                    topInsert  = Topic(top.id,top.topic,top.picture, top.voice, top.flagOneTopic, top.flagTwoToic, top.flafThreeTopic, top.flagFour, top.flagFive, top.topicPol, top.voicePol, it, top.wordPolLearned, top.wordBel, top.wordPol)
+                    viewModel.updateTopic(topInsert)
+                })
+            }
+        })
+
+
+
         var animUpDown = AnimationUtils.loadAnimation(requireContext(),
             R.anim.up_down)
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)

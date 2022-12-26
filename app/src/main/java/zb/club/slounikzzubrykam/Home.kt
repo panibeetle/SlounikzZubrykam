@@ -41,20 +41,7 @@ class Home : Fragment() {
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_home, container,false)
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
 
-        viewModel.getAllTopic.observe(viewLifecycleOwner, androidx.lifecycle.Observer { topic ->
-            for(top in topic ){
-                var topInsert: Topic
-                viewModel.countTopicWord(top.topic).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-                    topInsert  = Topic(top.id,top.topic,top.picture, top.voice, top.flagOneTopic, top.flagTwoToic, top.flafThreeTopic, top.flagFour, top.flagFive, top.topicPol, top.voicePol, top.wordBelLearned, top.wordPolLearned, it, top.wordPol)
-                    viewModel.updateTopic(topInsert)
-                })
 
-                viewModel.countTopicWordDone(top.topic).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-                    topInsert  = Topic(top.id,top.topic,top.picture, top.voice, top.flagOneTopic, top.flagTwoToic, top.flafThreeTopic, top.flagFour, top.flagFive, top.topicPol, top.voicePol, it, top.wordPolLearned, top.wordBel, top.wordPol)
-                    viewModel.updateTopic(topInsert)
-                })
-            }
-        })
 
 
 

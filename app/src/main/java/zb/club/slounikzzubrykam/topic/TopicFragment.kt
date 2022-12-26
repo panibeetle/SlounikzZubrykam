@@ -37,7 +37,7 @@ class TopicFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
 
 
-        viewModel.getAllTopic.observe(viewLifecycleOwner, Observer {
+        viewModel.getTopicsWithWord.observe(viewLifecycleOwner, Observer {
                 topic ->
 
 

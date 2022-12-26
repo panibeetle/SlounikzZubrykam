@@ -11,7 +11,11 @@ interface DaoWord {
     @Query("SELECT * FROM word_table")
     fun  readWords():LiveData<List<Word>>
 
-    @Query("SELECT * FROM word_table WHERE topic =:topic")
+
+    @Query("SELECT * FROM word_table INNER JOIN topic_table ON topic_table.topic = word_table.topic GROUP BY topic_table.topic")
+    fun readWordsWithTopic():LiveData<List<TopicWithWord>>
+
+    @Query("SELECT * FROM word_table WHERE topic =:topic ")
     fun  readWordInTopic( topic: String):LiveData<List<Word>>
 
     @Query("SELECT * FROM word_table WHERE topic =:topic AND flag_one < 0 ORDER BY random() LIMIT 5")
@@ -59,6 +63,10 @@ interface DaoWord {
 
     @Query("SELECT SUM(flag_four) FROM word_table WHERE topic = :topic")
     fun countingTopikDone(topic:String): LiveData<Int>
+
+
+
+
 
 
 

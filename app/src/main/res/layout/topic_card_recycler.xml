@@ -67,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alice"
-            android:textSize="25dp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/progressBarInRecycler"
             app:layout_constraintEnd_toEndOf="@+id/progressBarInRecycler"

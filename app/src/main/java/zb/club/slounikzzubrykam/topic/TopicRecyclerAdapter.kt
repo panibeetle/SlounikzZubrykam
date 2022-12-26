@@ -17,12 +17,13 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import zb.club.slounikzzubrykam.R
 import zb.club.slounikzzubrykam.dataclasses.Topic
+import zb.club.slounikzzubrykam.dataclasses.TopicWithWord
 import zb.club.slounikzzubrykam.dataclasses.WordViewModel
 
 
 class TopicRecyclerAdapter: RecyclerView.Adapter<TopicRecyclerAdapter.MyHolder>() {
 
-    private var topicList = emptyList<Topic>()
+    private var topicList = emptyList<TopicWithWord>()
     class MyHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     }
@@ -42,23 +43,31 @@ class TopicRecyclerAdapter: RecyclerView.Adapter<TopicRecyclerAdapter.MyHolder>(
         val count = holder.itemView.findViewById<TextView>(R.id.countTopic)
         val progressBarInCount = holder.itemView.findViewById<ProgressBar>(R.id.progressBarInRecycler)
 
-        textViewTopic.text = currentItem.topic
+        textViewTopic.text = currentItem.topic.topic
+        var countLearned = 0
+        for(i in currentItem.word){
+            if (i.flagFour) {
+                countLearned += 1
+            }
 
-        count.text="${currentItem.wordBelLearned}/${currentItem.wordBel}"
-        progressBarInCount.progress = currentItem.wordBelLearned
-        progressBarInCount.max = currentItem.wordBel
+        }
+
+        count.text="${countLearned}/${currentItem.word.size}"
+
+        progressBarInCount.max = currentItem.word.size
+        progressBarInCount.progress = countLearned
         val topic =currentItem.topic
         val context: Context = holder.itemView.context
         card.setOnClickListener {
             var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, R.raw.tap1)
             mediaPlayer?.start()
-            val action = TopicFragmentDirections.actionTopicFragmentToRepeatFragment(topic)
+            val action = TopicFragmentDirections.actionTopicFragmentToRepeatFragment(topic.topic)
             it.findNavController().navigate(action)
             }
 
    // Try to find the resource with that name (icons in drawable folder)
         try {
-            val nameDrow = currentItem.picture
+            val nameDrow = currentItem.topic.picture
 
             val drawableId = context.resources.getIdentifier(nameDrow, "drawable", context.packageName)
 
@@ -81,7 +90,7 @@ class TopicRecyclerAdapter: RecyclerView.Adapter<TopicRecyclerAdapter.MyHolder>(
        return topicList.size
     }
 
-    fun setData(topic: List<Topic>){
+    fun setData(topic: List<TopicWithWord>){
         this.topicList = topic
         notifyDataSetChanged()
     }

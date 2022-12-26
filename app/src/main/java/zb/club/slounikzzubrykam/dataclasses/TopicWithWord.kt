@@ -6,8 +6,8 @@ import androidx.room.Relation
 data class TopicWithWord(
     @Embedded val topic: Topic,
     @Relation(
-    parentColumn = "id",
-    entityColumn ="topic_id")
+    parentColumn = "topic",
+    entityColumn ="topic")
     val word: List<Word>
 
 

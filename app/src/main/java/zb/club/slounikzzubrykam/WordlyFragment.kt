@@ -19,6 +19,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import zb.club.slounikzzubrykam.databinding.FragmentWordlyBinding
 import zb.club.slounikzzubrykam.dataclasses.Score
+import zb.club.slounikzzubrykam.dataclasses.Topic
 import zb.club.slounikzzubrykam.dataclasses.Word
 import zb.club.slounikzzubrykam.dataclasses.WordViewModel
 import zb.club.slounikzzubrykam.guess.GuessFragmentDirections
@@ -75,6 +76,8 @@ class WordlyFragment : Fragment() {
 
 
                 mediaPlayer.setOnCompletionListener {
+
+
                     binding.button3.visibility = View.VISIBLE
                     if(wordCount == arrayWordSize){
 
@@ -152,7 +155,10 @@ class WordlyFragment : Fragment() {
             ?: emptyArray()
 
         letters.shuffle()
+            var a = 35F
+        if (letters.size > 14) {a = 18F} else if (letters.size in 10..14) { a = 30F } else {a = 35F}
         for(letter in letters){
+
 
             if(letter.isNotEmpty()){
                 val dynamicTextview = TextView(requireContext())
@@ -165,7 +171,7 @@ class WordlyFragment : Fragment() {
                 )
                 params.setMargins(1,4,1,4)
                 dynamicTextview.setLayoutParams(params)
-                dynamicTextview.textSize = (35F)
+                dynamicTextview.textSize = (a)
                 dynamicTextview.background = resources.getDrawable(R.drawable.square_letters)
                 dynamicTextview.setOnClickListener {
                     playMusic(R.raw.tap1)
@@ -179,7 +185,7 @@ class WordlyFragment : Fragment() {
                     params.setMargins(1,4,1,4)
                     dynamicTextviewReady.setLayoutParams(params)
                     dynamicTextviewReady!!.typeface = ResourcesCompat.getFont(requireContext(), R.font.alice)
-                    dynamicTextviewReady.textSize = (35F)
+                    dynamicTextviewReady.textSize = (a)
                     dynamicTextviewReady.background = resources.getDrawable(R.drawable.square_letters)
                     binding.readyWord.addView(dynamicTextviewReady)
                     binding.wordbybook.removeView(dynamicTextview)
@@ -197,7 +203,7 @@ class WordlyFragment : Fragment() {
                     params.setMargins(1,4,1,4)
                     dynamicTextview.setLayoutParams(params)
                     dynamicTextview!!.typeface = ResourcesCompat.getFont(requireContext(), R.font.alice)
-                    dynamicTextview.textSize = (35F)
+                    dynamicTextview.textSize = (a)
                     dynamicTextview.background = resources.getDrawable(R.drawable.square_letters)
                     binding.wordbybook.addView(dynamicTextview)
                     binding.readyWord.removeView(dynamicTextviewReady)

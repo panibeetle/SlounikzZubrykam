@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayout
@@ -16,9 +17,12 @@ import zb.club.slounikzzubrykam.HomeArgs
 import zb.club.slounikzzubrykam.R
 import zb.club.slounikzzubrykam.databinding.FragmentRewardsBinding
 import zb.club.slounikzzubrykam.databinding.FragmentTopicBinding
+import zb.club.slounikzzubrykam.dataclasses.Topic
+import zb.club.slounikzzubrykam.dataclasses.WordViewModel
 
 
 class Rewards : Fragment() {
+    private lateinit var viewModel: WordViewModel
     val args: RewardsArgs by navArgs()
     lateinit var  binding: FragmentRewardsBinding
     private var fragmentList = arrayListOf<Fragment>()
@@ -61,6 +65,9 @@ class Rewards : Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), onBackPressedCallback)
+        viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
+
+
 
 
         return binding.root

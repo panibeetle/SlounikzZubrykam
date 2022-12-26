@@ -9,6 +9,7 @@ class WordRepository(private val daoWord: DaoWord) {
     val getAllTopic: LiveData<List<Topic>> = daoWord.getAllTopic()
     val getScore: LiveData<Score> = daoWord.getScore()
     val getAllWords: LiveData<List<Word>> = daoWord.readWords()
+    val getWordInTopic: LiveData<List<TopicWithWord>> = daoWord.readWordsWithTopic()
    fun readWordInTopic(topic:String): LiveData<List<Word>>{
         return daoWord.readWordInTopic(topic)
 

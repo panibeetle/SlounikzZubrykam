@@ -51,8 +51,25 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
         binding.progressBarInRepeate.max = 5
         binding.recyclerWord.layoutManager =LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
+
+
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
-        getNewWordForGame(topic)
+        viewModel.getWordsForGame(topic, 5).observe(viewLifecycleOwner, Observer {
+            var a = 0
+            for (i in it){
+                if(i.flagFour == true){a = a+1}
+            }
+            if(a< 5){
+            adapter.setData(it)
+            viewModel.setWordForGame(it as MutableList<Word>)
+
+            }else{viewModel.getAnyWordsForGame(topic, 5).observe(viewLifecycleOwner,
+                Observer {words ->  adapter.setData(words)
+                    viewModel.setWordForGame(words as MutableList<Word>)
+                })}
+        })
+
+
         showWord()
         binding.animationHand.addAnimatorListener(object : Animator.AnimatorListener{
             override fun onAnimationStart(p0: Animator?) {
@@ -131,28 +148,6 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
         })
     }
 
-    private fun getNewWordForGame(topic: String) {
-        var arrayNeededWord = mutableListOf<Word>()
-        viewModel.getSevenWordSuspend(topic, 2)
-        if(viewModel.sizeWordForGame.value!! < 5){
-            var needWord = 5 - viewModel.sizeWordForGame.value!!
-
-            viewModel.getNWordSuspend(topic, needWord)
-            if(viewModel.checkAddingWordForGame.value == 1){
-                arrayNeededWord = viewModel.arrayWordForGame.value!!
-                arrayNeededWord.addAll(viewModel.addingArrayWordForGame.value!!)
-                viewModel.setCheckAddingWordForGame(0)
-                viewModel.setWordForGame(arrayNeededWord)
-                adapter.setData(arrayNeededWord)
-                }
-
-
-
-            viewModel.setWordForGame(arrayNeededWord)
-            adapter.setData(arrayNeededWord)
-
-        }
-    }
 
     override fun onTappedWord(tapedWord: Word) {
 
@@ -167,13 +162,14 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
         mediaPlayer.setOnCompletionListener {
             binding.recyclerWord.isEnabled = true
             binding.recyclerWord.isClickable = true
+            playMusic(R.raw.ding)
 
 
         }
 
         arrayForChanging = viewModel.arrayWordForGame.value!!
         if(!tapedWord.flagTwo){
-            playMusic(R.raw.ding)
+
         arrayForChanging?.find { it.idWord == tapedWord.idWord }?.flagTwo = true
         viewModel.setWordForGame(arrayForChanging)
 
@@ -194,9 +190,16 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
     }
 
     fun playMusic(id: Int){
+
         mediaPlayer = MediaPlayer.create(requireContext(), id)
         mediaPlayer.start()
     }
+
+
+
+
+
+
 
 
 }

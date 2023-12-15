@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -33,6 +34,7 @@ class WordlyFragment : Fragment() {
     var wordCount = 0
     var wordForGame = arrayListOf<Word>()
     var arrayWordSize:Int = 0
+    var checkMusik:Int = 0
 
 
     lateinit private var mediaPlayer: MediaPlayer
@@ -44,13 +46,14 @@ class WordlyFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_wordly, container,false)
-
-
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
+
 
         val words = args.idWords
         arrayWordSize = words.size
         binding.progressBarInWordly.max = arrayWordSize
+        binding.countWordly.text="$wordCount/$arrayWordSize"
+        binding.progressBarInWordly.progress = wordCount
         wordForGame = arrayListOf<Word>()
         viewModel.getScore.observe(viewLifecycleOwner, Observer {
             binding.textViewCoinWordly.text = it.count.toString()
@@ -63,7 +66,7 @@ class WordlyFragment : Fragment() {
             val wordFromGame = StringBuilder()
             for(child in 0 until (binding.readyWord.childCount)){
                 val children = binding.readyWord.getChildAt(child) as TextView
-                wordFromGame.append(children.text.toString().trim())
+                wordFromGame.append(children.text.toString())
 
             }
             var wordFromGameString = wordFromGame.toString()
@@ -94,7 +97,7 @@ class WordlyFragment : Fragment() {
                         binding.imageViewGuessingWord.setImageResource(R.drawable.zubr_laying)
                 }else{ binding.readyWord.removeAllViews()
                     binding.wordbybook.removeAllViews()
-                    wordly()} }
+                    wordlyFromRandom()} }
                 binding.readyWord.removeAllViews()
                 binding.wordbybook.removeAllViews()
                 wordCount += 1
@@ -108,17 +111,13 @@ class WordlyFragment : Fragment() {
                 val newScore = Score(oldScore.id, increaseScore, oldScore.filling, oldScore.heart, oldScore.age)
                 viewModel.updateScore(newScore)
 
-
-
-
-
             } else{ Toast.makeText(requireContext(),"Паспрабуй яшчэ раз!", Toast.LENGTH_LONG).show()
                 binding.readyWord.removeAllViews()
                 binding.wordbybook.removeAllViews()
-                wordly()
+                wordly(word)
                 }
         }
-        wordly()
+        wordlyFromRandom()
 
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -139,13 +138,19 @@ class WordlyFragment : Fragment() {
 
 
     }
-
-    fun wordly(){
-
+    fun wordlyFromRandom(){
         if(wordForGame.size>0){
-        word= wordForGame.random()
-        wordRandom = word.word
-        val picture = resources.getIdentifier(word.picture, "drawable", requireContext().packageName )
+            word= wordForGame.random()
+            wordly(word)
+
+
+    }}
+
+    fun wordly(wordForParce:Word){
+
+
+        wordRandom = wordForParce.word
+        val picture = resources.getIdentifier(wordForParce.picture, "drawable", requireContext().packageName )
         binding.imageViewGuessingWord.setImageResource(picture)
 
         var letters = wordRandom.removeSurrounding("[", "]")
@@ -156,7 +161,7 @@ class WordlyFragment : Fragment() {
 
         letters.shuffle()
             var a = 35F
-        if (letters.size > 14) {a = 18F} else if (letters.size in 10..14) { a = 30F } else {a = 35F}
+        if (letters.size > 13) {a = 18F} else if (letters.size in 10..13) { a = 30F } else {a = 35F}
         for(letter in letters){
 
 
@@ -164,18 +169,22 @@ class WordlyFragment : Fragment() {
                 val dynamicTextview = TextView(requireContext())
                 val dynamicTextviewReady = TextView(requireContext())
                 dynamicTextview.text = letter
+                dynamicTextview.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+                dynamicTextviewReady.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+
                 dynamicTextview!!.typeface = ResourcesCompat.getFont(requireContext(), R.font.alice)
                 val params = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 )
                 params.setMargins(1,4,1,4)
+
                 dynamicTextview.setLayoutParams(params)
                 dynamicTextview.textSize = (a)
                 dynamicTextview.background = resources.getDrawable(R.drawable.square_letters)
                 dynamicTextview.setOnClickListener {
                     playMusic(R.raw.tap1)
-                    var letterForReadyWord = dynamicTextview.text.toString().trim()
+                    var letterForReadyWord = dynamicTextview.text.toString()
 
                     dynamicTextviewReady.text = letterForReadyWord
                     val params = LinearLayout.LayoutParams(
@@ -193,7 +202,7 @@ class WordlyFragment : Fragment() {
 
                 dynamicTextviewReady.setOnClickListener {
                     playMusic(R.raw.tap_2)
-                    var letterForReadyWordReady = dynamicTextviewReady.text.toString().trim()
+                    var letterForReadyWordReady = dynamicTextviewReady.text.toString()
 
                     dynamicTextviewReady.text = letterForReadyWordReady
                     val params = LinearLayout.LayoutParams(
@@ -210,12 +219,22 @@ class WordlyFragment : Fragment() {
                 }
                 binding.wordbybook.addView(dynamicTextview)
             }
-        }}
+        }
 
     }
+
+
+
     fun playMusic(id: Int){
+        if (checkMusik == 1){
+            if (mediaPlayer.isPlaying ){mediaPlayer.stop()
+                mediaPlayer.release()
+                checkMusik = 0
+            }
+        }
         mediaPlayer = MediaPlayer.create(requireContext(), id)
         mediaPlayer.start()
+        checkMusik = 1
     }
 
 

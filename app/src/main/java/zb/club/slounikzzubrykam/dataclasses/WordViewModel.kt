@@ -27,6 +27,20 @@ class WordViewModel(application: Application):AndroidViewModel(application) {
    }
 
 
+    fun  getWordsForGame( topic: String, count: Int):LiveData<List<Word>>{
+        return repository.getWordsForGame(topic, count)
+
+    }
+
+
+    fun  getAnyWordsForGame( topic: String, count: Int):LiveData<List<Word>>{
+        return repository.getAnyWordsForGame(topic, count)
+
+    }
+
+
+
+
     fun countTopicWord(topic: String): LiveData<Int>{
         return repository.countWordInTopic(topic)
     }

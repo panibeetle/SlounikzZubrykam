@@ -2,6 +2,7 @@ package zb.club.slounikzzubrykam.dataclasses
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.room.Query
 import java.util.concurrent.Executors
 
 class WordRepository(private val daoWord: DaoWord) {
@@ -14,10 +15,21 @@ class WordRepository(private val daoWord: DaoWord) {
         return daoWord.readWordInTopic(topic)
 
     }
-    fun readNRandomWords(topic:String): LiveData<List<Word>>{
-        return daoWord.readWordInTopic(topic)
+
+
+    fun  getWordsForGame( topic: String, count: Int):LiveData<List<Word>>{
+        return daoWord.getWordsForGame(topic, count)
 
     }
+
+
+    fun  getAnyWordsForGame( topic: String, count: Int):LiveData<List<Word>>{
+        return daoWord.getAnyWordsForGame(topic, count)
+
+    }
+
+
+
     fun getSevenWordInTopic(topic:String): LiveData<List<Word>>{
         return daoWord.getSevenRandomWords(topic)
 

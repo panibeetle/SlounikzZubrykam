@@ -68,6 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alice"
+            android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/progressBarInRepeate"
             app:layout_constraintEnd_toEndOf="@+id/progressBarInRepeate"

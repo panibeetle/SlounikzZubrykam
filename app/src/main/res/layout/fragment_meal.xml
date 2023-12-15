@@ -40,7 +40,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/textViewRewardCoin"
             app:layout_constraintStart_toEndOf="@+id/textViewRewardCoin"
             app:layout_constraintTop_toTopOf="@+id/textViewRewardCoin"
-            app:srcCompat="@drawable/ic_baseline_paid_24" />
+            app:srcCompat="@drawable/taler_coin" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -133,7 +133,7 @@
                     android:id="@+id/imageView15"
                     android:layout_width="35dp"
                     android:layout_height="34dp"
-                    android:src="@drawable/ic_baseline_paid_24"
+                    android:src="@drawable/taler_coin"
                     app:layout_constraintBottom_toBottomOf="@+id/textViewCostMealOne"
                     app:layout_constraintStart_toEndOf="@+id/textViewCostMealOne"
                     app:layout_constraintTop_toBottomOf="@+id/cardViewFirst" />
@@ -142,7 +142,7 @@
                     android:id="@+id/imageView16"
                     android:layout_width="35dp"
                     android:layout_height="37dp"
-                    android:src="@drawable/ic_baseline_paid_24"
+                    android:src="@drawable/taler_coin"
                     app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealTwo"
                     app:layout_constraintStart_toEndOf="@+id/textViewCoastMealTwo"
                     app:layout_constraintTop_toBottomOf="@+id/cardView3"
@@ -226,7 +226,7 @@
                     android:id="@+id/imageViewSecond"
                     android:layout_width="35dp"
                     android:layout_height="34dp"
-                    android:src="@drawable/ic_baseline_paid_24"
+                    android:src="@drawable/taler_coin"
                     app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealTree"
                     app:layout_constraintStart_toEndOf="@+id/textViewCoastMealTree"
                     app:layout_constraintTop_toBottomOf="@+id/cardViewFirstSecond" />
@@ -235,7 +235,7 @@
                     android:id="@+id/imageViewSecondSec"
                     android:layout_width="35dp"
                     android:layout_height="37dp"
-                    android:src="@drawable/ic_baseline_paid_24"
+                    android:src="@drawable/taler_coin"
                     app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealFor"
                     app:layout_constraintStart_toEndOf="@+id/textViewCoastMealFor"
                     app:layout_constraintTop_toBottomOf="@+id/cardView3Second"
@@ -318,7 +318,7 @@
                     android:id="@+id/imageViewThird"
                     android:layout_width="35dp"
                     android:layout_height="34dp"
-                    android:src="@drawable/ic_baseline_paid_24"
+                    android:src="@drawable/taler_coin"
                     app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealFive"
                     app:layout_constraintStart_toEndOf="@+id/textViewCoastMealFive"
                     app:layout_constraintTop_toBottomOf="@+id/cardViewFirstThird" />
@@ -327,7 +327,7 @@
                     android:id="@+id/imageViewSecondThird"
                     android:layout_width="35dp"
                     android:layout_height="37dp"
-                    android:src="@drawable/ic_baseline_paid_24"
+                    android:src="@drawable/taler_coin"
                     app:layout_constraintBottom_toBottomOf="@+id/textViewCoastMealSix"
                     app:layout_constraintStart_toEndOf="@+id/textViewCoastMealSix"
                     app:layout_constraintTop_toBottomOf="@+id/cardView3Third"

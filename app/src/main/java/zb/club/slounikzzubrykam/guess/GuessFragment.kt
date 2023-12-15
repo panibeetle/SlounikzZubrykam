@@ -135,10 +135,7 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
             )
             playMusic(voiceId)
 
-            mediaPlayer.setOnCompletionListener {
-                setEnable()
-                mediaPlayer.release()
-            }}
+          }
 
 
             binding.buttonGuessWord.setOnClickListener {
@@ -164,7 +161,7 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
         guessedWord=selectedWord
 
         if(guessedWord.word == binding.buttonGuessWord.text.toString()){
-            playMusic(R.raw.ding)
+           
             val oldScore = viewModel.getScore.value
             val increaseScore = oldScore!!.count + 1
             val newScore = Score(oldScore.id, increaseScore, oldScore.filling, oldScore.heart, oldScore.age)
@@ -177,10 +174,7 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
              } else{
             setUnenable()
             playMusic(R.raw.voice_another_pic)
-            mediaPlayer.setOnCompletionListener {
-                setEnable()
-                mediaPlayer.release()
-            }}
+          }
 
 
 
@@ -208,6 +202,10 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
     fun playMusic(id: Int){
         mediaPlayer = MediaPlayer.create(requireContext(), id)
         mediaPlayer.start()
+        mediaPlayer.setOnCompletionListener {
+            setEnable()
+            mediaPlayer.release()
+        }
     }
 
 

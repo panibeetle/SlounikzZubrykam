@@ -27,7 +27,7 @@ abstract class DataBaseWord: RoomDatabase() {
                     context.applicationContext,
                     DataBaseWord::class.java,
                     "word.db"
-                ).createFromAsset("database/word.db").build()
+                ).createFromAsset("database/wordd.db").build()
                 INSTANCE = instance
                 return instance
             }

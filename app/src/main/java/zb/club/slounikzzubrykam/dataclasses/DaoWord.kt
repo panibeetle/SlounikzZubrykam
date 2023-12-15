@@ -11,7 +11,6 @@ interface DaoWord {
     @Query("SELECT * FROM word_table")
     fun  readWords():LiveData<List<Word>>
 
-
     @Query("SELECT * FROM word_table INNER JOIN topic_table ON topic_table.topic = word_table.topic GROUP BY topic_table.topic")
     fun readWordsWithTopic():LiveData<List<TopicWithWord>>
 
@@ -24,10 +23,17 @@ interface DaoWord {
     @Query("SELECT * FROM topic_table ORDER BY topic DESC")
     fun  getAllTopic():LiveData<List<Topic>>
 
-
-
     @Insert
     suspend fun insertWord(word: Word)
+
+
+    @Query("SELECT * FROM (SELECT * FROM word_table WHERE topic =:topic  ORDER BY random( ) ) ORDER BY flag_four ASC LIMIT :count")
+    fun  getWordsForGame( topic: String, count: Int):LiveData<List<Word>>
+
+
+
+    @Query("SELECT * FROM word_table WHERE topic =:topic  ORDER BY random() LIMIT :count")
+    fun  getAnyWordsForGame( topic: String, count: Int):LiveData<List<Word>>
 
     @Query("SELECT * FROM word_table WHERE topic =:topic AND flag_one < :n ORDER BY random() LIMIT 5")
     suspend fun  getSevenRandomWordsSuspend( topic: String, n:Int):MutableList<Word>
@@ -55,8 +61,6 @@ interface DaoWord {
 
     @Update
     suspend fun updateWord(word: Word)
-
-
 
     @Query("SELECT COUNT(*) FROM word_table WHERE topic = :topic")
     fun countingTopik(topic:String): LiveData<Int>

@@ -18,7 +18,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="8dp"
-            android:max="3"
+            android:max="4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -29,13 +29,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alice"
+            android:textColor="@color/black"
             android:textSize="25dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/progressBarInHome"
             app:layout_constraintEnd_toEndOf="@+id/progressBarInHome"
             app:layout_constraintStart_toStartOf="@+id/progressBarInHome"
             app:layout_constraintTop_toTopOf="@+id/progressBarInHome"
-            tools:text="0/3" />
+            tools:text="0/4" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationView"

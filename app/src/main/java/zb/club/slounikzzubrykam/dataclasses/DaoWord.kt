@@ -46,11 +46,6 @@ interface DaoWord {
     suspend fun  getWordById( id:List<Long>):MutableList<Word>
 
 
-    @Query("SELECT * FROM score")
-    fun getScore():LiveData<Score>
-
-    @Update
-    suspend fun updateScore(score: Score)
 
     @Update
     suspend fun updateTopic(topic: Topic)

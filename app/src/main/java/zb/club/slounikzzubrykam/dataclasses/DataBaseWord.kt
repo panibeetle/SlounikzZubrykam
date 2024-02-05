@@ -1,12 +1,9 @@
 package zb.club.slounikzzubrykam.dataclasses
 
 import android.content.Context
-import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(entities = [Word::class, Topic::class, Score::class], version = 1, exportSchema = true)
 abstract class DataBaseWord: RoomDatabase() {
@@ -23,16 +20,22 @@ abstract class DataBaseWord: RoomDatabase() {
                 return  tempInstance
             }
             synchronized(this ){
+
+
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     DataBaseWord::class.java,
-                    "word.db"
-                ).createFromAsset("database/word.db").build()
+                    "words.db"
+                ).createFromAsset("database/words.db").build()
                 INSTANCE = instance
                 return instance
             }
         }
     }
+
+
+
+
 
 
 }

@@ -86,10 +86,12 @@
             app:lottie_loop="false"
             app:lottie_rawRes="@raw/anim_confettie" />
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
+            app:shapeAppearanceOverlay="@style/roundedCornersImageView"
             android:id="@+id/imageViewGuessingWord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#FFF9EB"
             app:layout_constraintBottom_toTopOf="@+id/wordbybook"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -115,6 +117,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textViewCoinWordly"
             app:srcCompat="@drawable/ic_baseline_paid_24" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="169dp"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="102dp"
+            tools:layout_editor_absoluteY="345dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

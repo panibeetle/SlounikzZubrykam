@@ -32,7 +32,7 @@ class Rewards : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_rewards, container,false)
-      fragmentList = arrayListOf(
+        fragmentList = arrayListOf(
              Meal(),
              Friends()
          )

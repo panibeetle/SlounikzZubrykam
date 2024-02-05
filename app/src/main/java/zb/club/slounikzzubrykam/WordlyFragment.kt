@@ -1,5 +1,7 @@
 package zb.club.slounikzzubrykam
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.media.MediaPlayer.OnCompletionListener
 import android.os.Bundle
@@ -35,6 +37,7 @@ class WordlyFragment : Fragment() {
     var wordForGame = arrayListOf<Word>()
     var arrayWordSize:Int = 0
     var checkMusik:Int = 0
+    lateinit var  sharedPref: SharedPreferences
 
 
     lateinit private var mediaPlayer: MediaPlayer
@@ -47,17 +50,18 @@ class WordlyFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_wordly, container,false)
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
+        sharedPref = this.requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
 
-
+        val score = sharedPref!!.getInt("score", 0)
         val words = args.idWords
         arrayWordSize = words.size
         binding.progressBarInWordly.max = arrayWordSize
         binding.countWordly.text="$wordCount/$arrayWordSize"
         binding.progressBarInWordly.progress = wordCount
         wordForGame = arrayListOf<Word>()
-        viewModel.getScore.observe(viewLifecycleOwner, Observer {
-            binding.textViewCoinWordly.text = it.count.toString()
-        })
+
+        binding.textViewCoinWordly.text = score.toString()
+
         for(word in words){
             wordForGame.add(word)
         }
@@ -72,44 +76,57 @@ class WordlyFragment : Fragment() {
             var wordFromGameString = wordFromGame.toString()
             if(wordFromGameString == wordRandom){
                 binding.button3.visibility = View.INVISIBLE
-
+                var scoreCheck = sharedPref!!.getInt("score",0)
                 playMusic(R.raw.win)
                 word.flagFour = true
                 viewModel.updateWord(word)
 
 
                 mediaPlayer.setOnCompletionListener {
-
-
                     binding.button3.visibility = View.VISIBLE
+
                     if(wordCount == arrayWordSize){
 
-                    binding.animationViewConfettiWordly.visibility = View.VISIBLE
-                    playMusic(R.raw.magic)
-                    binding.button3.text = "Перайсці да ўзнагароды!!!"
+                        var countIncrease = sharedPref!!.getInt("count",0)
+                        countIncrease += scoreCheck
+                        with(sharedPref!!.edit()) {
 
-                    binding.button3.setOnClickListener {
+                            putInt("count", countIncrease)
+                            putInt("score",0)
+                            apply()
+                        }
 
-                        wordCount = 0
+                        binding.animationViewConfettiWordly.visibility = View.VISIBLE
+                        playMusic(R.raw.magic)
+                        binding.button3.text = "Перайсці да ўзнагароды!!!"
+
+                        binding.button3.setOnClickListener {
+
                         val action = WordlyFragmentDirections.actionWordlyFragmentToRewards(0)
                         findNavController().navigate(action) }
 
                         binding.imageViewGuessingWord.setImageResource(R.drawable.zubr_laying)
-                }else{ binding.readyWord.removeAllViews()
-                    binding.wordbybook.removeAllViews()
-                    wordlyFromRandom()} }
-                binding.readyWord.removeAllViews()
-                binding.wordbybook.removeAllViews()
-                wordCount += 1
-                val wordDel: Word? = wordForGame?.find { it.word== wordFromGameString }
-                wordForGame.remove(wordDel)
+                    }else{
+                        binding.readyWord.removeAllViews()
+                        binding.wordbybook.removeAllViews()
+                        wordlyFromRandom()
 
 
-                updateProgressBar()
-                val oldScore = viewModel.getScore.value
-                val increaseScore = oldScore!!.count + 1
-                val newScore = Score(oldScore.id, increaseScore, oldScore.filling, oldScore.heart, oldScore.age)
-                viewModel.updateScore(newScore)
+                    } }
+                        binding.readyWord.removeAllViews()
+                        binding.wordbybook.removeAllViews()
+                        wordCount += 1
+                        val wordDel: Word? = wordForGame?.find { it.word== wordFromGameString }
+                        wordForGame.remove(wordDel)
+
+
+                    updateProgressBar()
+                    scoreCheck++
+                    binding.textViewCoinWordly.text = scoreCheck.toString()
+                    with(sharedPref!!.edit()) {
+                    putInt("score",scoreCheck)
+                    apply() }
+
 
             } else{ Toast.makeText(requireContext(),"Паспрабуй яшчэ раз!", Toast.LENGTH_LONG).show()
                 binding.readyWord.removeAllViews()

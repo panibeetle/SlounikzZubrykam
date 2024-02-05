@@ -1,6 +1,8 @@
 package zb.club.slounikzzubrykam.repeate
 
 import android.animation.Animator
+import android.content.Context
+import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -25,7 +27,7 @@ import zb.club.slounikzzubrykam.reward.RewardsDirections
 
 class RepeatFragment : Fragment(), WordRepeateInterface {
     private lateinit var viewModel: WordViewModel
-
+    lateinit var  sharedPref: SharedPreferences
     lateinit private var mediaPlayer: MediaPlayer
     lateinit var adapter: RepeateRecyclerAdapter
     lateinit var  binding: FragmentRepeatBinding
@@ -33,7 +35,7 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
     lateinit var topic:String
     lateinit var idWords: LongArray
     var isMagic = true
-    var score =0
+
     var arrayForChanging = mutableListOf<Word>()
     var idWord = arrayListOf<Long>()
     override fun onCreateView(
@@ -42,7 +44,8 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_repeat, container,false)
-        score=0
+        sharedPref = this.requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
+
         updateProgressBar()
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
         topic = args.topic.toString()
@@ -94,7 +97,7 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
 
 
         binding.button2.setOnClickListener {
-            playMusic(R.raw.tap_2)
+            playMusic(R.raw.tap_2){}
              val action = RepeatFragmentDirections.actionRepeatFragmentToGuessFragment(idWords)
             findNavController().navigate(action)
         }
@@ -115,7 +118,7 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
             var isButtonVisible: Boolean = false
             for (i in it) {
 
-                if (i.flagTwo == false) {
+                if (!i.flagTwo) {
 
                     isButtonVisible = false
                     break
@@ -128,10 +131,9 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
             } else {
                 binding.button2.visibility = View.VISIBLE
                 if (isMagic == true) {
-                    binding.button2.isEnabled = false
-                    playMusic(R.raw.magic)
-                    mediaPlayer.setOnCompletionListener { binding.button2.isEnabled = true }
-                    isMagic = false
+                    binding.button2.isEnabled = true
+                    playMusic(R.raw.magic){isMagic = false}
+
                 }
             }
             var a = 0
@@ -141,7 +143,10 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
 
                 }
             }
-            score = a
+            with(sharedPref!!.edit()) {
+                putInt("score",a)
+                apply()
+            }
             updateProgressBar()
 
 
@@ -158,14 +163,14 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
 
         val nameVoice = tapedWord.voice
         val voiceId = requireContext().resources.getIdentifier(nameVoice, "raw", requireContext().packageName)
-        playMusic(voiceId)
-        mediaPlayer.setOnCompletionListener {
-            binding.recyclerWord.isEnabled = true
-            binding.recyclerWord.isClickable = true
-            playMusic(R.raw.ding)
+        playMusic(R.raw.ding){}
+        playMusic(voiceId){binding.recyclerWord.isEnabled = true
+            binding.recyclerWord.isClickable = true}
 
 
-        }
+
+
+
 
         arrayForChanging = viewModel.arrayWordForGame.value!!
         if(!tapedWord.flagTwo){
@@ -179,19 +184,23 @@ class RepeatFragment : Fragment(), WordRepeateInterface {
             idWord.add(i.idWord)
         }
         idWords= idWord.toLongArray()
-
-    }
+        }
 
     }
     private fun updateProgressBar(){
-        binding.count.text="$score/5"
-        binding.progressBarInRepeate.progress = score
+        var scoreStart = sharedPref!!.getInt("score", 0)
+        binding.count.text="$scoreStart/5"
+        binding.progressBarInRepeate.progress = scoreStart
 
     }
 
-    fun playMusic(id: Int){
+    fun playMusic(id: Int, onCompletion: () -> Unit){
 
         mediaPlayer = MediaPlayer.create(requireContext(), id)
+        mediaPlayer.setOnCompletionListener {
+            mediaPlayer.release()
+            onCompletion.invoke()
+        }
         mediaPlayer.start()
     }
 

@@ -1,6 +1,7 @@
 package zb.club.slounikzzubrykam.guess
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -38,6 +39,7 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
     var gameNumber = 0
     var arrayForPlay = mutableListOf<Word>()
     var arrayForGuessing = mutableListOf<Word>()
+    lateinit var  sharedPref: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -49,6 +51,7 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_guess, container,false)
+        sharedPref = this.requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
         viewModel.getGuessWordSuspend(args.idWord.toList())
         adapter = GuessAdapter(this)
@@ -66,9 +69,9 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
             val action = GuessFragmentDirections.actionGuessFragmentToWordlyFragment(viewModel.arrayWordForGuess.value!!.toTypedArray())
             findNavController().navigate(action)
         }
-        viewModel.getScore.observe(viewLifecycleOwner, Observer {
-            binding.textViewCoinGuess.text = it.count.toString()
-        })
+
+        val scoreAppear = sharedPref.getInt("score", 0)
+        binding.textViewCoinGuess.text = scoreAppear.toString()
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 val navigateHome = GuessFragmentDirections.actionGuessFragmentToTopicFragment()
@@ -133,7 +136,7 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
                 "raw",
                 requireContext().packageName
             )
-            playMusic(voiceId)
+
 
           }
 
@@ -162,14 +165,30 @@ class GuessFragment : Fragment(), GuessSelectedWordPosition {
 
         if(guessedWord.word == binding.buttonGuessWord.text.toString()){
            
-            val oldScore = viewModel.getScore.value
-            val increaseScore = oldScore!!.count + 1
-            val newScore = Score(oldScore.id, increaseScore, oldScore.filling, oldScore.heart, oldScore.age)
-            viewModel.updateScore(newScore)
+            var increaseScore = sharedPref.getInt("score",0)
+            increaseScore++
+            with(sharedPref!!.edit()) {
+                putInt("score",increaseScore)
+                apply()
+            }
+            binding.textViewCoinGuess.text = increaseScore.toString()
             gameNumber++
-            arrayForGuessing = viewModel.arrayWordForGuess.value!!
-            arrayForGuessing?.find { it.idWord == guessedWord.idWord }?.flafThree = true
-            viewModel.setWordForGuess(arrayForGuessing)
+
+
+            val voiceId = requireContext().resources.getIdentifier(
+                guessedWord.voice,
+                "raw",
+                requireContext().packageName
+            )
+            mediaPlayer = MediaPlayer.create(requireContext(), voiceId)
+            mediaPlayer.start()
+            mediaPlayer.setOnCompletionListener {
+                setEnable()
+                mediaPlayer.release()
+                arrayForGuessing = viewModel.arrayWordForGuess.value!!
+                arrayForGuessing?.find { it.idWord == guessedWord.idWord }?.flafThree = true
+                viewModel.setWordForGuess(arrayForGuessing)
+            }
 
              } else{
             setUnenable()

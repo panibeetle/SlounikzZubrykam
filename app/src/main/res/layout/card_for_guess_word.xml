@@ -20,6 +20,7 @@
     app:layout_constraintTop_toTopOf="parent"
     app:strokeColor="@color/strouk_color"
     app:strokeWidth="3dp"
+    app:cardBackgroundColor="#FFF9EB"
     >
 
 

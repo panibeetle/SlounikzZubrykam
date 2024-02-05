@@ -12,7 +12,7 @@ class WordViewModel(application: Application):AndroidViewModel(application) {
     val getAllTopic: LiveData<List<Topic>>
     val getAllWords: LiveData<List<Word>>
     val getTopicsWithWord: LiveData<List<TopicWithWord>>
-    val getScore: LiveData<Score>
+
     private val  repository: WordRepository
     val returnedWord: MutableLiveData<List<Word>> = MutableLiveData()
 
@@ -22,7 +22,6 @@ class WordViewModel(application: Application):AndroidViewModel(application) {
        repository = WordRepository(wordDao)
        getAllTopic = repository.getAllTopic
        getAllWords = repository.getAllWords
-       getScore = repository.getScore
        getTopicsWithWord = repository.getWordInTopic
    }
 
@@ -152,11 +151,6 @@ class WordViewModel(application: Application):AndroidViewModel(application) {
     }
 
 
-    fun updateScore(score: Score){
-        viewModelScope.launch {
-            repository.updateScore(score)
-        }
-    }
     fun updateWords(word:List<Word>){
         viewModelScope.launch {
             repository.udateWords(word )
